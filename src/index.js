@@ -2,17 +2,18 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, type Store } from 'redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
-import initialState from './state';
+import initialState, { type State } from './state';
 import rootReducer from './state/root-reducer';
 import theme, { GlobalStyles } from './view/theme';
 import App from './view/app';
 import FourOhFour from './view/404';
 
-const store = createStore(rootReducer, initialState);
+// TODO: Fix this Flow type workaround
+const store: Store<State, *, *> = createStore((rootReducer: any), initialState);
 const appElement = document.getElementById('app');
 
 if (appElement) {
