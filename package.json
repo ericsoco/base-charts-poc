@@ -1,0 +1,56 @@
+{
+  "name": "seed-app-2020",
+  "version": "0.0.1",
+  "description": "Starter SPA React/Redux app w/ basic runtime and build tooling",
+  "author": "ericsoco",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ericsoco/seed-app-2020.git"
+  },
+  "keywords": [
+    "webdev",
+    "SPA",
+    "react",
+    "redux",
+    "parcel"
+  ],
+  "license": "ISC",
+  "main": "index.js",
+  "dependencies": {
+    "@babel/core": "^7.7.5",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-redux": "^7.1.3",
+    "react-router-dom": "^5.1.2",
+    "redux": "^4.0.4",
+    "styled-components": "^4.4.1"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.7.6",
+    "@babel/preset-flow": "^7.8.3",
+    "@babel/preset-react": "^7.7.4",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-flowtype": "^4.6.0",
+    "eslint-plugin-react": "^7.17.0",
+    "flow-bin": "^0.120.1",
+    "husky": "^3.1.0",
+    "parcel": "^2.0.0-alpha.3.2",
+    "prettier": "^1.19.1"
+  },
+  "scripts": {
+    "lint": "eslint src",
+    "prettier": "prettier --write \"src/**/*.{js,json}\"",
+    "start": "parcel index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "browserslist": [
+    "> 1%",
+    "not dead"
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint && yarn prettier"
+    }
+  }
+}
