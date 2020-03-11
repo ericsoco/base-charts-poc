@@ -13,7 +13,10 @@ const Title = styled.h1`
 export default function App() {
   const dispatch = useDispatch();
   const rootState = useSelector(state => state.root);
-  return (
+  const onlyChart = true;
+  return onlyChart ? (
+    <Chart />
+  ) : (
     <div>
       <Title>{`Hello App (${rootState})`}</Title>
       <div>
