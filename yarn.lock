@@ -920,6 +920,32 @@
     lodash "^4.17.11"
     recompose "^0.30.0"
 
+"@nivo/line@^0.61.1":
+  version "0.61.1"
+  resolved "https://unpm.uberinternal.com/@nivo%2fline/-/line-0.61.1.tgz#7e857c4abababef3e019211deff9feb347cec788"
+  integrity sha1-foV8Srq6vvPgGSEd7/n+s0fOx4g=
+  dependencies:
+    "@nivo/annotations" "0.61.0"
+    "@nivo/axes" "0.61.0"
+    "@nivo/colors" "0.61.0"
+    "@nivo/core" "0.61.0"
+    "@nivo/legends" "0.61.1"
+    "@nivo/scales" "0.61.0"
+    "@nivo/tooltip" "0.61.0"
+    "@nivo/voronoi" "0.61.0"
+    d3-shape "^1.3.5"
+    lodash "^4.17.11"
+    react-motion "^0.5.2"
+
+"@nivo/scales@0.61.0":
+  version "0.61.0"
+  resolved "https://unpm.uberinternal.com/@nivo%2fscales/-/scales-0.61.0.tgz#48bcc94941271f1f23c353f1da1ee4da1af981ef"
+  integrity sha1-SLzJSUEnHx8jw1Px2h7k2hr5ge8=
+  dependencies:
+    d3-scale "^3.0.0"
+    d3-time-format "^2.1.3"
+    lodash "^4.17.11"
+
 "@nivo/tooltip@0.61.0":
   version "0.61.0"
   resolved "https://unpm.uberinternal.com/@nivo%2ftooltip/-/tooltip-0.61.0.tgz#bf8b06a18f41fc9072e3f2d9591ebbb9b45c2a54"
@@ -928,6 +954,16 @@
     "@nivo/core" "0.61.0"
     react-measure "^2.2.4"
     react-motion "^0.5.2"
+
+"@nivo/voronoi@0.61.0":
+  version "0.61.0"
+  resolved "https://unpm.uberinternal.com/@nivo%2fvoronoi/-/voronoi-0.61.0.tgz#977da00f7805d57f4d315116785503c611570ef5"
+  integrity sha1-l32gD3gF1X9NMVEWeFUDxhFXDvU=
+  dependencies:
+    "@nivo/core" "0.61.0"
+    d3-delaunay "^5.1.1"
+    d3-scale "^3.0.0"
+    recompose "^0.30.0"
 
 "@nodelib/fs.stat@^1.1.2":
   version "1.1.3"
@@ -2073,6 +2109,13 @@ d3-color@1, d3-color@^1.2.3:
   resolved "https://unpm.uberinternal.com/d3-color/-/d3-color-1.4.0.tgz#89c45a995ed773b13314f06460df26d60ba0ecaf"
   integrity sha1-icRamV7Xc7EzFPBkYN8m1gug7K8=
 
+d3-delaunay@^5.1.1:
+  version "5.2.1"
+  resolved "https://unpm.uberinternal.com/d3-delaunay/-/d3-delaunay-5.2.1.tgz#0c4b280eb00194986ac4a3df9c81d32bf216cb36"
+  integrity sha1-DEsoDrABlJhqxKPfnIHTK/IWyzY=
+  dependencies:
+    delaunator "4"
+
 d3-format@1, d3-format@^1.3.2:
   version "1.4.3"
   resolved "https://unpm.uberinternal.com/d3-format/-/d3-format-1.4.3.tgz#4e8eb4dff3fdcb891a8489ec6e698601c41b96f1"
@@ -2221,6 +2264,11 @@ define-property@^2.0.2:
   dependencies:
     is-descriptor "^1.0.2"
     isobject "^3.0.1"
+
+delaunator@4:
+  version "4.0.1"
+  resolved "https://unpm.uberinternal.com/delaunator/-/delaunator-4.0.1.tgz#3d779687f57919a7a418f8ab947d3bddb6846957"
+  integrity sha1-PXeWh/V5GaekGPirlH073baEaVc=
 
 delayed-stream@~1.0.0:
   version "1.0.0"

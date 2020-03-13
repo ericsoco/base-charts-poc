@@ -6,7 +6,7 @@
     "sandwich": 160,
     "kebab": 99,
     "fries": 144,
-    "donut": 87,
+    "donut": 87
   },
   {
     "country": "AE",
@@ -15,7 +15,7 @@
     "sandwich": 18,
     "kebab": 35,
     "fries": 22,
-    "donut": 112,
+    "donut": 112
   },
   {
     "country": "AF",
@@ -24,7 +24,7 @@
     "sandwich": 153,
     "kebab": 196,
     "fries": 149,
-    "donut": 191,
+    "donut": 191
   },
   {
     "country": "AG",
@@ -33,7 +33,7 @@
     "sandwich": 161,
     "kebab": 133,
     "fries": 110,
-    "donut": 57,
+    "donut": 57
   },
   {
     "country": "AI",
@@ -42,7 +42,7 @@
     "sandwich": 121,
     "kebab": 181,
     "fries": 129,
-    "donut": 66,
+    "donut": 66
   },
   {
     "country": "AL",
@@ -51,7 +51,7 @@
     "sandwich": 66,
     "kebab": 80,
     "fries": 151,
-    "donut": 149,
+    "donut": 149
   },
   {
     "country": "AM",
@@ -60,6 +60,6 @@
     "sandwich": 167,
     "kebab": 142,
     "fries": 8,
-    "donut": 22,
+    "donut": 22
   }
 ]

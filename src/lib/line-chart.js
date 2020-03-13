@@ -1,20 +1,20 @@
 // @flow
 import React from 'react';
-import { ResponsiveBar } from '@nivo/bar';
+import { ResponsiveLine } from '@nivo/line';
 
-import { barProperties, type Datum } from './chart-props';
+import { lineProperties, type Datum } from './chart-props';
 
 type Props = $ReadOnly<{|
   data: $ReadOnlyArray<Datum>,
 |}>;
 
-export default function BaseBar({ data }: Props) {
+export default function BaseLine({ data }: Props) {
   return (
-    <ResponsiveBar
+    <ResponsiveLine
       data={data}
       keys={['hot dog', 'burger', 'sandwich', 'kebab', 'fries', 'donut']}
       indexBy="country"
-      {...barProperties}
+      {...lineProperties}
     />
   );
 }
