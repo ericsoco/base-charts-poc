@@ -1,0 +1,212 @@
+[
+  {
+    "country": "AD",
+    "dish": "hot dog",
+    "count": 17
+  },
+  {
+    "country": "AD",
+    "dish": "burger",
+    "count": 83
+  },
+  {
+    "country": "AD",
+    "dish": "sandwich",
+    "count": 160
+  },
+  {
+    "country": "AD",
+    "dish": "kebab",
+    "count": 99
+  },
+  {
+    "country": "AD",
+    "dish": "fries",
+    "count": 144
+  },
+  {
+    "country": "AD",
+    "dish": "donut",
+    "count": 87
+  },
+  {
+    "country": "AE",
+    "dish": "hot dog",
+    "count": 57
+  },
+  {
+    "country": "AE",
+    "dish": "burger",
+    "count": 185
+  },
+  {
+    "country": "AE",
+    "dish": "sandwich",
+    "count": 18
+  },
+  {
+    "country": "AE",
+    "dish": "kebab",
+    "count": 35
+  },
+  {
+    "country": "AE",
+    "dish": "fries",
+    "count": 22
+  },
+  {
+    "country": "AE",
+    "dish": "donut",
+    "count": 112
+  },
+  {
+    "country": "AF",
+    "dish": "hot dog",
+    "count": 77
+  },
+  {
+    "country": "AF",
+    "dish": "burger",
+    "count": 109
+  },
+  {
+    "country": "AF",
+    "dish": "sandwich",
+    "count": 153
+  },
+  {
+    "country": "AF",
+    "dish": "kebab",
+    "count": 196
+  },
+  {
+    "country": "AF",
+    "dish": "fries",
+    "count": 149
+  },
+  {
+    "country": "AF",
+    "dish": "donut",
+    "count": 191
+  },
+  {
+    "country": "AG",
+    "dish": "hot dog",
+    "count": 154
+  },
+  {
+    "country": "AG",
+    "dish": "burger",
+    "count": 132
+  },
+  {
+    "country": "AG",
+    "dish": "sandwich",
+    "count": 161
+  },
+  {
+    "country": "AG",
+    "dish": "kebab",
+    "count": 133
+  },
+  {
+    "country": "AG",
+    "dish": "fries",
+    "count": 110
+  },
+  {
+    "country": "AG",
+    "dish": "donut",
+    "count": 57
+  },
+  {
+    "country": "AI",
+    "dish": "hot dog",
+    "count": 55
+  },
+  {
+    "country": "AI",
+    "dish": "burger",
+    "count": 104
+  },
+  {
+    "country": "AI",
+    "dish": "sandwich",
+    "count": 121
+  },
+  {
+    "country": "AI",
+    "dish": "kebab",
+    "count": 181
+  },
+  {
+    "country": "AI",
+    "dish": "fries",
+    "count": 129
+  },
+  {
+    "country": "AI",
+    "dish": "donut",
+    "count": 66
+  },
+  {
+    "country": "AL",
+    "dish": "hot dog",
+    "count": 171
+  },
+  {
+    "country": "AL",
+    "dish": "burger",
+    "count": 132
+  },
+  {
+    "country": "AL",
+    "dish": "sandwich",
+    "count": 66
+  },
+  {
+    "country": "AL",
+    "dish": "kebab",
+    "count": 80
+  },
+  {
+    "country": "AL",
+    "dish": "fries",
+    "count": 151
+  },
+  {
+    "country": "AL",
+    "dish": "donut",
+    "count": 149
+  },
+  {
+    "country": "AM",
+    "dish": "hot dog",
+    "count": 81
+  },
+  {
+    "country": "AM",
+    "dish": "burger",
+    "count": 91
+  },
+  {
+    "country": "AM",
+    "dish": "sandwich",
+    "count": 167
+  },
+  {
+    "country": "AM",
+    "dish": "kebab",
+    "count": 142
+  },
+  {
+    "country": "AM",
+    "dish": "fries",
+    "count": 8
+  },
+  {
+    "country": "AM",
+    "dish": "donut",
+    "count": 22
+  }
+]

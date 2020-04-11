@@ -4,9 +4,9 @@
  * Row-level datum within a data array
  * passed to a Base Charts chart component.
  */
-export type Datum = $ReadOnly<{|
-  [string]: string | boolean | Date | null,
-|}>;
+export type Datum = $ReadOnly<{
+  [string]: number | string | boolean | Date | null,
+}>;
 
 const defaultMargin = {
   margin: {

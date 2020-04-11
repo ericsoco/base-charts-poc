@@ -15,7 +15,14 @@ export default function Chart() {
   return (
     <>
       <ChartWrapper>
-        <BaseBar data={BarData} />
+        <BaseBar
+          data={BarData}
+          config={{
+            x: 'country',
+            y: ['kebab', 'fries'],
+            stack: false,
+          }}
+        />
       </ChartWrapper>
       <ChartWrapper>
         <BaseLine data={LineData} />
