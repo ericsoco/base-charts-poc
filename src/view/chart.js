@@ -25,7 +25,26 @@ export default function Chart() {
         />
       </ChartWrapper>
       <ChartWrapper>
-        <BaseLine data={LineData} />
+        <BaseLine
+          data={LineData}
+          config={{
+            x: 'id',
+            y: [
+              'plane',
+              'helicopter',
+              'boat',
+              'train',
+              'subway',
+              'bus',
+              'car',
+              'moto',
+              'bicycle',
+              'horse',
+              'skateboard',
+              'others',
+            ],
+          }}
+        />
       </ChartWrapper>
     </>
   );

@@ -7,6 +7,53 @@
 export type Datum = $ReadOnly<{
   [string]: number | string | boolean | Date | null,
 }>;
+export type Dataset = $ReadOnlyArray<Datum>;
+
+export type AbstractConfig = $ReadOnly<{
+  [string]: string | $ReadOnlyArray<string>,
+}>;
+
+export type XYConfig = $ReadOnly<{|
+  x: string,
+  y: string | $ReadOnlyArray<string>,
+|}>;
+
+export type ValidationError = $ReadOnly<{|
+  field: string,
+  error: Error,
+|}>;
+
+export type ConfigValidation = $ReadOnly<{|
+  valid: boolean,
+  errors: $ReadOnlyArray<ValidationError>,
+|}>;
+
+/**
+ * Validate config against passed data, ensuring all field names
+ * in config are present in the data.
+ * TODO: implement
+ * TODO: type inference: allow only certain datatypes per config channel
+ */
+export function validateConfig(
+  data: Dataset,
+  config: AbstractConfig
+): ConfigValidation {
+  const sampleDatum = data[0];
+  const allFields = Object.keys(config).reduce(
+    (fields, channel) => fields.concat(config[channel]),
+    []
+  );
+  const errors = allFields
+    .filter(field => !Object.hasOwnProperty.call(sampleDatum, field))
+    .map(field => ({
+      field,
+      error: new Error(`Field '${field}' is missing in passed dataset.`),
+    }));
+  return {
+    valid: errors.length === 0,
+    errors,
+  };
+}
 
 const defaultMargin = {
   margin: {
