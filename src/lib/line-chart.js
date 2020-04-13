@@ -19,27 +19,45 @@ export type BaseLineConfig = $ReadOnly<{|
   // TODO: ?
 |}>;
 
+type NivoLineDatum = $ReadOnly<{|
+  x: string,
+  y: number | null,
+|}>;
+type NivoLineDataset = $ReadOnly<{|
+  id: string,
+  data: $ReadOnlyArray<NivoLineDatum>,
+|}>;
 type NivoProps = $ReadOnly<{|
-  indexBy: string,
-  keys: $ReadOnlyArray<string>,
+  data: $ReadOnlyArray<NivoLineDataset>,
 |}>;
 
 /**
  * Convert Base Charts config to Nivo props.
  */
-function convertToNivo(data: Dataset, config: BaseLineConfig): NivoProps {
+export function convertToNivo(
+  data: Dataset,
+  config: BaseLineConfig
+): NivoProps {
   const validation = validateConfig(data, config);
   if (!validation.valid) {
     // TODO: surface errors
   }
 
+  const keys = Array.isArray(config.y) ? config.y : [config.y];
+  const nivoData = keys.map(key => ({
+    id: key,
+    data: data.map(d => ({
+      x: d[config.x],
+      y: d[key],
+    })),
+  }));
+
   return {
-    indexBy: config.x,
-    keys: Array.isArray(config.y) ? config.y : [config.y],
+    data: nivoData,
   };
 }
 
 export default function BaseLine({ data, config }: Props) {
   const nivoProps = useMemo(() => convertToNivo(data, config), [data, config]);
-  return <ResponsiveLine data={data} {...lineProperties} {...nivoProps} />;
+  return <ResponsiveLine {...lineProperties} {...nivoProps} />;
 }

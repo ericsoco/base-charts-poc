@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import styled, { type BareStyledComponent } from 'styled-components';
-import { BaseBar, BaseLine } from '../lib';
+import { BaseArea, BaseBar, BaseLine } from '../lib';
 import BarData from '../fixtures/bar-data.json';
 import LineData from '../fixtures/line-data.json';
 
@@ -28,21 +28,17 @@ export default function Chart() {
         <BaseLine
           data={LineData}
           config={{
-            x: 'id',
-            y: [
-              'plane',
-              'helicopter',
-              'boat',
-              'train',
-              'subway',
-              'bus',
-              'car',
-              'moto',
-              'bicycle',
-              'horse',
-              'skateboard',
-              'others',
-            ],
+            x: 'datestr',
+            y: 'japan',
+          }}
+        />
+      </ChartWrapper>
+      <ChartWrapper>
+        <BaseArea
+          data={LineData}
+          config={{
+            x: 'datestr',
+            y: ['japan', 'france', 'usa', 'germany', 'norway'],
           }}
         />
       </ChartWrapper>

@@ -206,6 +206,7 @@ export const lineProperties = {
     ...defaultAxis,
     axisBottom: {
       ...defaultAxis.axisBottom,
+      format: '%b %d',
       // TODO: make this dynamic, based on data
       legend: 'TODO: y-axis label here',
     },
@@ -220,15 +221,22 @@ export const lineProperties = {
   ...defaultAnimationProps,
 
   xScale: {
-    type: 'point',
+    // TODO: derive scale types from passed data
+    // type: 'point',
+    type: 'time',
+    // TODO: derive formatting from passed data
+    format: '%Y-%m-%d',
+    precision: 'day',
   },
   yScale: {
     type: 'linear',
     min: 'auto',
     max: 'auto',
-    stacked: true,
+    stacked: false,
     reverse: false,
   },
+  // TODO: derive formatting from passed data
+  xFormat: 'time:%Y-%m-%d',
 
   curve: 'linear',
 
@@ -244,17 +252,31 @@ export const lineProperties = {
   pointLabelYOffset: -12,
 
   enableArea: false,
-  areaBlendMode: 'normal',
-  areaBaselineValue: 0,
-  areaOpacity: 0.2,
 
   isInteractive: true,
-  enableSlices: false,
+  enableSlices: 'x',
   debugSlices: false,
 
   enableCrosshair: true,
   crosshairType: 'bottom-left',
 
-  useMesh: true,
+  useMesh: false,
   debugMesh: false,
+};
+
+export const areaProperties = {
+  ...lineProperties,
+  yScale: {
+    type: 'linear',
+    min: 'auto',
+    max: 'auto',
+    stacked: true,
+    reverse: false,
+  },
+
+  enablePoints: false,
+  enableArea: true,
+  areaBlendMode: 'normal',
+  areaBaselineValue: 0,
+  areaOpacity: 1.0,
 };

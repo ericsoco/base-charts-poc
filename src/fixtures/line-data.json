@@ -1,267 +1,98 @@
 [
   {
-    "id": "japan",
-    "data": [
-      {
-        "x": "plane",
-        "y": 59
-      },
-      {
-        "x": "helicopter",
-        "y": 110
-      },
-      {
-        "x": "boat",
-        "y": 216
-      },
-      {
-        "x": "train",
-        "y": 197
-      },
-      {
-        "x": "subway",
-        "y": 173
-      },
-      {
-        "x": "bus",
-        "y": 180
-      },
-      {
-        "x": "car",
-        "y": 44
-      },
-      {
-        "x": "moto",
-        "y": 92
-      },
-      {
-        "x": "bicycle",
-        "y": 237
-      },
-      {
-        "x": "horse",
-        "y": 94
-      },
-      {
-        "x": "skateboard",
-        "y": 268
-      },
-      {
-        "x": "others",
-        "y": 25
-      }
-    ]
+    "datestr": "2020-02-01",
+    "japan": 59,
+    "france": 141,
+    "usa": 197,
+    "germany": 164,
+    "norway": 253
   },
   {
-    "id": "france",
-    "data": [
-      {
-        "x": "plane",
-        "y": 141
-      },
-      {
-        "x": "helicopter",
-        "y": 156
-      },
-      {
-        "x": "boat",
-        "y": 69
-      },
-      {
-        "x": "train",
-        "y": 129
-      },
-      {
-        "x": "subway",
-        "y": 284
-      },
-      {
-        "x": "bus",
-        "y": 146
-      },
-      {
-        "x": "car",
-        "y": 101
-      },
-      {
-        "x": "moto",
-        "y": 145
-      },
-      {
-        "x": "bicycle",
-        "y": 189
-      },
-      {
-        "x": "horse",
-        "y": 204
-      },
-      {
-        "x": "skateboard",
-        "y": 209
-      },
-      {
-        "x": "others",
-        "y": 176
-      }
-    ]
+    "datestr": "2020-02-02",
+    "japan": 110,
+    "france": 156,
+    "usa": 190,
+    "germany": 147,
+    "norway": 89
   },
   {
-    "id": "us",
-    "data": [
-      {
-        "x": "plane",
-        "y": 197
-      },
-      {
-        "x": "helicopter",
-        "y": 190
-      },
-      {
-        "x": "boat",
-        "y": 157
-      },
-      {
-        "x": "train",
-        "y": 25
-      },
-      {
-        "x": "subway",
-        "y": 95
-      },
-      {
-        "x": "bus",
-        "y": 195
-      },
-      {
-        "x": "car",
-        "y": 71
-      },
-      {
-        "x": "moto",
-        "y": 100
-      },
-      {
-        "x": "bicycle",
-        "y": 14
-      },
-      {
-        "x": "horse",
-        "y": 6
-      },
-      {
-        "x": "skateboard",
-        "y": 205
-      },
-      {
-        "x": "others",
-        "y": 292
-      }
-    ]
+    "datestr": "2020-02-03",
+    "japan": 216,
+    "france": 69,
+    "usa": 157,
+    "germany": 99,
+    "norway": 144
   },
   {
-    "id": "germany",
-    "data": [
-      {
-        "x": "plane",
-        "y": 164
-      },
-      {
-        "x": "helicopter",
-        "y": 147
-      },
-      {
-        "x": "boat",
-        "y": 99
-      },
-      {
-        "x": "train",
-        "y": 196
-      },
-      {
-        "x": "subway",
-        "y": 194
-      },
-      {
-        "x": "bus",
-        "y": 146
-      },
-      {
-        "x": "car",
-        "y": 102
-      },
-      {
-        "x": "moto",
-        "y": 130
-      },
-      {
-        "x": "bicycle",
-        "y": 31
-      },
-      {
-        "x": "horse",
-        "y": 198
-      },
-      {
-        "x": "skateboard",
-        "y": 140
-      },
-      {
-        "x": "others",
-        "y": 102
-      }
-    ]
+    "datestr": "2020-02-04",
+    "japan": 197,
+    "france": 129,
+    "usa": 25,
+    "germany": 196,
+    "norway": 182
   },
   {
-    "id": "norway",
-    "data": [
-      {
-        "x": "plane",
-        "y": 253
-      },
-      {
-        "x": "helicopter",
-        "y": 89
-      },
-      {
-        "x": "boat",
-        "y": 144
-      },
-      {
-        "x": "train",
-        "y": 182
-      },
-      {
-        "x": "subway",
-        "y": 41
-      },
-      {
-        "x": "bus",
-        "y": 295
-      },
-      {
-        "x": "car",
-        "y": 226
-      },
-      {
-        "x": "moto",
-        "y": 59
-      },
-      {
-        "x": "bicycle",
-        "y": 165
-      },
-      {
-        "x": "horse",
-        "y": 93
-      },
-      {
-        "x": "skateboard",
-        "y": 248
-      },
-      {
-        "x": "others",
-        "y": 214
-      }
-    ]
+    "datestr": "2020-02-05",
+    "japan": 173,
+    "france": 284,
+    "usa": 95,
+    "germany": 194,
+    "norway": 41
+  },
+  {
+    "datestr": "2020-02-06",
+    "japan": 180,
+    "france": 146,
+    "usa": 195,
+    "germany": 146,
+    "norway": 295
+  },
+  {
+    "datestr": "2020-02-07",
+    "japan": 44,
+    "france": 101,
+    "usa": 71,
+    "germany": 102,
+    "norway": 226
+  },
+  {
+    "datestr": "2020-02-08",
+    "japan": 92,
+    "france": 145,
+    "usa": 100,
+    "germany": 130,
+    "norway": 59
+  },
+  {
+    "datestr": "2020-02-09",
+    "japan": 237,
+    "france": 189,
+    "usa": 14,
+    "germany": 31,
+    "norway": 165
+  },
+  {
+    "datestr": "2020-02-10",
+    "japan": 94,
+    "france": 204,
+    "usa": 6,
+    "germany": 198,
+    "norway": 93
+  },
+  {
+    "datestr": "2020-02-11",
+    "japan": 268,
+    "france": 209,
+    "usa": 205,
+    "germany": 140,
+    "norway": 248
+  },
+  {
+    "datestr": "2020-02-12",
+    "japan": 25,
+    "france": 176,
+    "usa": 292,
+    "germany": 102,
+    "norway": 214
   }
 ]
