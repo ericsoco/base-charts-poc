@@ -1,0 +1,1562 @@
+[
+    {
+        "country": "Afghanistan",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 1763,
+        "life_expectancy_years": 64.08,
+        "population_total": 38041757
+    },
+    {
+        "country": "Albania",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 12694,
+        "life_expectancy_years": 78.47,
+        "population_total": 2880913
+    },
+    {
+        "country": "Algeria",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 13967,
+        "life_expectancy_years": 78.12,
+        "population_total": 43053054
+    },
+    {
+        "country": "Andorra",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 53245,
+        "life_expectancy_years": null,
+        "population_total": 77146
+    },
+    {
+        "country": "Angola",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 5544,
+        "life_expectancy_years": 65,
+        "population_total": 31825299
+    },
+    {
+        "country": "Antigua and Barbuda",
+        "world_4region": "americas",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 24463,
+        "life_expectancy_years": 77.28,
+        "population_total": 97115
+    },
+    {
+        "country": "Argentina",
+        "world_4region": "americas",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 17529,
+        "life_expectancy_years": 76.96,
+        "population_total": 44780675
+    },
+    {
+        "country": "Armenia",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 9728,
+        "life_expectancy_years": 75.9,
+        "population_total": 2957728
+    },
+    {
+        "country": "Australia",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 45495,
+        "life_expectancy_years": 82.7,
+        "population_total": 25203200
+    },
+    {
+        "country": "Austria",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 46873,
+        "life_expectancy_years": 81.98,
+        "population_total": 8955108
+    },
+    {
+        "country": "Azerbaijan",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 16248,
+        "life_expectancy_years": 71.07,
+        "population_total": 10047719
+    },
+    {
+        "country": "Bahamas",
+        "world_4region": "americas",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 28774,
+        "life_expectancy_years": 74.1,
+        "population_total": 389486
+    },
+    {
+        "country": "Bahrain",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 41966,
+        "life_expectancy_years": 79.76,
+        "population_total": 1641164
+    },
+    {
+        "country": "Bangladesh",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 4139,
+        "life_expectancy_years": 73.66,
+        "population_total": 163046173
+    },
+    {
+        "country": "Barbados",
+        "world_4region": "americas",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 16640,
+        "life_expectancy_years": 77.33,
+        "population_total": 287021
+    },
+    {
+        "country": "Belarus",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 18046,
+        "life_expectancy_years": 74.47,
+        "population_total": 9452409
+    },
+    {
+        "country": "Belgium",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 43517,
+        "life_expectancy_years": 81.7,
+        "population_total": 11539326
+    },
+    {
+        "country": "Belize",
+        "world_4region": "americas",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 7818,
+        "life_expectancy_years": 74.42,
+        "population_total": 390351
+    },
+    {
+        "country": "Benin",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 2230,
+        "life_expectancy_years": 65.26,
+        "population_total": 11801151
+    },
+    {
+        "country": "Bhutan",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 9708,
+        "life_expectancy_years": 74.73,
+        "population_total": 763094
+    },
+    {
+        "country": "Bolivia",
+        "world_4region": "americas",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 7152,
+        "life_expectancy_years": 73.34,
+        "population_total": 11513102
+    },
+    {
+        "country": "Bosnia and Herzegovina",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 13120,
+        "life_expectancy_years": 77,
+        "population_total": 3300998
+    },
+    {
+        "country": "Botswana",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 16781,
+        "life_expectancy_years": 69.85,
+        "population_total": 2303703
+    },
+    {
+        "country": "Brazil",
+        "world_4region": "americas",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 14307,
+        "life_expectancy_years": 75.93,
+        "population_total": 211049519
+    },
+    {
+        "country": "Brunei",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 72376,
+        "life_expectancy_years": 75.63,
+        "population_total": 433296
+    },
+    {
+        "country": "Bulgaria",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 20150,
+        "life_expectancy_years": 75.11,
+        "population_total": 7000117
+    },
+    {
+        "country": "Burkina Faso",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 1808,
+        "life_expectancy_years": 62.5,
+        "population_total": 20321383
+    },
+    {
+        "country": "Burundi",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 644,
+        "life_expectancy_years": 62.25,
+        "population_total": 11530577
+    },
+    {
+        "country": "Cambodia",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 4079,
+        "life_expectancy_years": 70.42,
+        "population_total": 16486542
+    },
+    {
+        "country": "Cameroon",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 3401,
+        "life_expectancy_years": 63.82,
+        "population_total": 25876387
+    },
+    {
+        "country": "Canada",
+        "world_4region": "americas",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 44181,
+        "life_expectancy_years": 82.18,
+        "population_total": 37411038
+    },
+    {
+        "country": "Cape Verde",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 6911,
+        "life_expectancy_years": 76.2,
+        "population_total": 549936
+    },
+    {
+        "country": "Central African Republic",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 794,
+        "life_expectancy_years": 52.91,
+        "population_total": 4745179
+    },
+    {
+        "country": "Chad",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 1743,
+        "life_expectancy_years": 60.62,
+        "population_total": 15946882
+    },
+    {
+        "country": "Chile",
+        "world_4region": "americas",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 23012,
+        "life_expectancy_years": 79.97,
+        "population_total": 18952035
+    },
+    {
+        "country": "China",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 17122,
+        "life_expectancy_years": 77.51,
+        "population_total": 1433783692
+    },
+    {
+        "country": "Colombia",
+        "world_4region": "americas",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 13630,
+        "life_expectancy_years": 80.49,
+        "population_total": 50339443
+    },
+    {
+        "country": "Comoros",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 2478,
+        "life_expectancy_years": 69.07,
+        "population_total": 850891
+    },
+    {
+        "country": "Congo, Dem. Rep.",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 838,
+        "life_expectancy_years": 63.05,
+        "population_total": 86790568
+    },
+    {
+        "country": "Congo, Rep.",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 5096,
+        "life_expectancy_years": 63.25,
+        "population_total": 5380504
+    },
+    {
+        "country": "Costa Rica",
+        "world_4region": "americas",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 15824,
+        "life_expectancy_years": 79.84,
+        "population_total": 5047561
+    },
+    {
+        "country": "Cote d'Ivoire",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 3911,
+        "life_expectancy_years": 63.32,
+        "population_total": 25716554
+    },
+    {
+        "country": "Croatia",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 24525,
+        "life_expectancy_years": 78.83,
+        "population_total": 4130299
+    },
+    {
+        "country": "Cuba",
+        "world_4region": "americas",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 8126,
+        "life_expectancy_years": 78.55,
+        "population_total": 11333484
+    },
+    {
+        "country": "Cyprus",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 34544,
+        "life_expectancy_years": 82.03,
+        "population_total": 1198574
+    },
+    {
+        "country": "Czech Republic",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 34143,
+        "life_expectancy_years": 79.48,
+        "population_total": 10689213
+    },
+    {
+        "country": "Denmark",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 48274,
+        "life_expectancy_years": 80.98,
+        "population_total": 5771877
+    },
+    {
+        "country": "Djibouti",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 3598,
+        "life_expectancy_years": 68.6,
+        "population_total": 973557
+    },
+    {
+        "country": "Dominica",
+        "world_4region": "americas",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 10354,
+        "life_expectancy_years": null,
+        "population_total": 71808
+    },
+    {
+        "country": "Dominican Republic",
+        "world_4region": "americas",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 16446,
+        "life_expectancy_years": 73.48,
+        "population_total": 10738957
+    },
+    {
+        "country": "Ecuador",
+        "world_4region": "americas",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 10215,
+        "life_expectancy_years": 77.16,
+        "population_total": 17373657
+    },
+    {
+        "country": "Egypt",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 11360,
+        "life_expectancy_years": 70.97,
+        "population_total": 100388076
+    },
+    {
+        "country": "El Salvador",
+        "world_4region": "americas",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 7509,
+        "life_expectancy_years": 74.46,
+        "population_total": 6453550
+    },
+    {
+        "country": "Equatorial Guinea",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 19220,
+        "life_expectancy_years": 66.28,
+        "population_total": 1355982
+    },
+    {
+        "country": "Eritrea",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 1391,
+        "life_expectancy_years": 63.42,
+        "population_total": 3497117
+    },
+    {
+        "country": "Estonia",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 31960,
+        "life_expectancy_years": 78.48,
+        "population_total": 1325649
+    },
+    {
+        "country": "Ethiopia",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 1897,
+        "life_expectancy_years": 69.14,
+        "population_total": 112078727
+    },
+    {
+        "country": "Fiji",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 9990,
+        "life_expectancy_years": 68.27,
+        "population_total": 889955
+    },
+    {
+        "country": "Finland",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 42383,
+        "life_expectancy_years": 81.77,
+        "population_total": 5532159
+    },
+    {
+        "country": "France",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 39989,
+        "life_expectancy_years": 83.07,
+        "population_total": 65129731
+    },
+    {
+        "country": "Gabon",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 16173,
+        "life_expectancy_years": 69.05,
+        "population_total": 2172578
+    },
+    {
+        "country": "Gambia",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 1568,
+        "life_expectancy_years": 66.42,
+        "population_total": 2347696
+    },
+    {
+        "country": "Georgia",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 10671,
+        "life_expectancy_years": 73.18,
+        "population_total": 3996762
+    },
+    {
+        "country": "Germany",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 46173,
+        "life_expectancy_years": 80.92,
+        "population_total": 83517046
+    },
+    {
+        "country": "Ghana",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 4434,
+        "life_expectancy_years": 66.13,
+        "population_total": 30417858
+    },
+    {
+        "country": "Greece",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 25703,
+        "life_expectancy_years": 81.32,
+        "population_total": 10473452
+    },
+    {
+        "country": "Grenada",
+        "world_4region": "americas",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 14345,
+        "life_expectancy_years": 74.12,
+        "population_total": 112002
+    },
+    {
+        "country": "Guatemala",
+        "world_4region": "americas",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 7606,
+        "life_expectancy_years": 73.11,
+        "population_total": 17581476
+    },
+    {
+        "country": "Guinea",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 2415,
+        "life_expectancy_years": 61.62,
+        "population_total": 12771246
+    },
+    {
+        "country": "Guinea-Bissau",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 1634,
+        "life_expectancy_years": 60.66,
+        "population_total": 1920917
+    },
+    {
+        "country": "Guyana",
+        "world_4region": "americas",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 7931,
+        "life_expectancy_years": 69.49,
+        "population_total": 782775
+    },
+    {
+        "country": "Haiti",
+        "world_4region": "americas",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 1639,
+        "life_expectancy_years": 65.67,
+        "population_total": 11263079
+    },
+    {
+        "country": "Holy See",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": null,
+        "life_expectancy_years": null,
+        "population_total": 815
+    },
+    {
+        "country": "Honduras",
+        "world_4region": "americas",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 4633,
+        "life_expectancy_years": 74.35,
+        "population_total": 9746115
+    },
+    {
+        "country": "Hungary",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 29603,
+        "life_expectancy_years": 77.19,
+        "population_total": 9684680
+    },
+    {
+        "country": "Iceland",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 47861,
+        "life_expectancy_years": 83.01,
+        "population_total": 339037
+    },
+    {
+        "country": "India",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 7227,
+        "life_expectancy_years": 69.46,
+        "population_total": 1366417756
+    },
+    {
+        "country": "Indonesia",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 12061,
+        "life_expectancy_years": 71.91,
+        "population_total": 270625567
+    },
+    {
+        "country": "Iran",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 16089,
+        "life_expectancy_years": 77.76,
+        "population_total": 82913893
+    },
+    {
+        "country": "Iraq",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 15687,
+        "life_expectancy_years": 77.07,
+        "population_total": 39309789
+    },
+    {
+        "country": "Ireland",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 72413,
+        "life_expectancy_years": 82.28,
+        "population_total": 4882498
+    },
+    {
+        "country": "Israel",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 34052,
+        "life_expectancy_years": 83.28,
+        "population_total": 8519373
+    },
+    {
+        "country": "Italy",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 35816,
+        "life_expectancy_years": 83.49,
+        "population_total": 60550092
+    },
+    {
+        "country": "Jamaica",
+        "world_4region": "americas",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 8308,
+        "life_expectancy_years": 74.87,
+        "population_total": 2948277
+    },
+    {
+        "country": "Japan",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 39739,
+        "life_expectancy_years": 84.53,
+        "population_total": 126860299
+    },
+    {
+        "country": "Jordan",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 8352,
+        "life_expectancy_years": 79.58,
+        "population_total": 10101697
+    },
+    {
+        "country": "Kazakhstan",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 25350,
+        "life_expectancy_years": 72.84,
+        "population_total": 18551428
+    },
+    {
+        "country": "Kenya",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 3161,
+        "life_expectancy_years": 66.65,
+        "population_total": 52573967
+    },
+    {
+        "country": "Kiribati",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 2047,
+        "life_expectancy_years": 62.89,
+        "population_total": 117608
+    },
+    {
+        "country": "Kuwait",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 64111,
+        "life_expectancy_years": 83.32,
+        "population_total": 4207077
+    },
+    {
+        "country": "Kyrgyz Republic",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 3503,
+        "life_expectancy_years": 72.98,
+        "population_total": 6415851
+    },
+    {
+        "country": "Lao",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 6940,
+        "life_expectancy_years": 68.23,
+        "population_total": 7169456
+    },
+    {
+        "country": "Latvia",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 27269,
+        "life_expectancy_years": 75.41,
+        "population_total": 1906740
+    },
+    {
+        "country": "Lebanon",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 11683,
+        "life_expectancy_years": 78.06,
+        "population_total": 6855709
+    },
+    {
+        "country": "Lesotho",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 2924,
+        "life_expectancy_years": 56.09,
+        "population_total": 2125267
+    },
+    {
+        "country": "Liberia",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 1137,
+        "life_expectancy_years": 65.23,
+        "population_total": 4937374
+    },
+    {
+        "country": "Libya",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 14751,
+        "life_expectancy_years": 73.35,
+        "population_total": 6777453
+    },
+    {
+        "country": "Liechtenstein",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": null,
+        "life_expectancy_years": null,
+        "population_total": 38020
+    },
+    {
+        "country": "Lithuania",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 32377,
+        "life_expectancy_years": 75.44,
+        "population_total": 2759631
+    },
+    {
+        "country": "Luxembourg",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 94325,
+        "life_expectancy_years": 81.96,
+        "population_total": 615730
+    },
+    {
+        "country": "Madagascar",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 1487,
+        "life_expectancy_years": 64.21,
+        "population_total": 26969306
+    },
+    {
+        "country": "Malawi",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 1182,
+        "life_expectancy_years": 64.2,
+        "population_total": 18628749
+    },
+    {
+        "country": "Malaysia",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 29071,
+        "life_expectancy_years": 75.05,
+        "population_total": 31949789
+    },
+    {
+        "country": "Maldives",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 14252,
+        "life_expectancy_years": 82.07,
+        "population_total": 530957
+    },
+    {
+        "country": "Mali",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 2097,
+        "life_expectancy_years": 62.86,
+        "population_total": 19658023
+    },
+    {
+        "country": "Malta",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 39339,
+        "life_expectancy_years": 81.3,
+        "population_total": 440377
+    },
+    {
+        "country": "Marshall Islands",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 3627,
+        "life_expectancy_years": null,
+        "population_total": 58791
+    },
+    {
+        "country": "Mauritania",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 3885,
+        "life_expectancy_years": 71.03,
+        "population_total": 4525698
+    },
+    {
+        "country": "Mauritius",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 21830,
+        "life_expectancy_years": 75.02,
+        "population_total": 1269670
+    },
+    {
+        "country": "Mexico",
+        "world_4region": "americas",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 18002,
+        "life_expectancy_years": 75.63,
+        "population_total": 127575529
+    },
+    {
+        "country": "Micronesia, Fed. Sts.",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 3239,
+        "life_expectancy_years": 67.47,
+        "population_total": 113811
+    },
+    {
+        "country": "Moldova",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 6722,
+        "life_expectancy_years": 73.08,
+        "population_total": 4043258
+    },
+    {
+        "country": "Monaco",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 61371,
+        "life_expectancy_years": null,
+        "population_total": 38967
+    },
+    {
+        "country": "Mongolia",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 12760,
+        "life_expectancy_years": 69.3,
+        "population_total": 3225166
+    },
+    {
+        "country": "Montenegro",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 17783,
+        "life_expectancy_years": 76.71,
+        "population_total": 627988
+    },
+    {
+        "country": "Morocco",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 7772,
+        "life_expectancy_years": 74.42,
+        "population_total": 36471766
+    },
+    {
+        "country": "Mozambique",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 1170,
+        "life_expectancy_years": 59.86,
+        "population_total": 30366043
+    },
+    {
+        "country": "Myanmar",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 6267,
+        "life_expectancy_years": 69.1,
+        "population_total": 54045422
+    },
+    {
+        "country": "Namibia",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 9696,
+        "life_expectancy_years": 67.22,
+        "population_total": 2494524
+    },
+    {
+        "country": "Nauru",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 13590,
+        "life_expectancy_years": null,
+        "population_total": 10764
+    },
+    {
+        "country": "Nepal",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 2878,
+        "life_expectancy_years": 71.53,
+        "population_total": 28608715
+    },
+    {
+        "country": "Netherlands",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 50536,
+        "life_expectancy_years": 81.79,
+        "population_total": 17097123
+    },
+    {
+        "country": "New Zealand",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 36472,
+        "life_expectancy_years": 81.92,
+        "population_total": 4783062
+    },
+    {
+        "country": "Nicaragua",
+        "world_4region": "americas",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 4615,
+        "life_expectancy_years": 79.24,
+        "population_total": 6545503
+    },
+    {
+        "country": "Niger",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 954,
+        "life_expectancy_years": 63.2,
+        "population_total": 23310719
+    },
+    {
+        "country": "Nigeria",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 5300,
+        "life_expectancy_years": 65.23,
+        "population_total": 200963603
+    },
+    {
+        "country": "North Korea",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 1715,
+        "life_expectancy_years": 72.36,
+        "population_total": 25666158
+    },
+    {
+        "country": "North Macedonia",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 13898,
+        "life_expectancy_years": 76.76,
+        "population_total": 2083458
+    },
+    {
+        "country": "Norway",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 66308,
+        "life_expectancy_years": 82.59,
+        "population_total": 5378859
+    },
+    {
+        "country": "Oman",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 35758,
+        "life_expectancy_years": 77.57,
+        "population_total": 4974992
+    },
+    {
+        "country": "Pakistan",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 4997,
+        "life_expectancy_years": 67.18,
+        "population_total": 216565317
+    },
+    {
+        "country": "Palau",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 17428,
+        "life_expectancy_years": null,
+        "population_total": 18001
+    },
+    {
+        "country": "Palestine",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 4671,
+        "life_expectancy_years": 77.17,
+        "population_total": 4981422
+    },
+    {
+        "country": "Panama",
+        "world_4region": "americas",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 23315,
+        "life_expectancy_years": 79.65,
+        "population_total": 4246440
+    },
+    {
+        "country": "Papua New Guinea",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 3931,
+        "life_expectancy_years": 58.94,
+        "population_total": 8776119
+    },
+    {
+        "country": "Paraguay",
+        "world_4region": "americas",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 12015,
+        "life_expectancy_years": 76.38,
+        "population_total": 7044639
+    },
+    {
+        "country": "Peru",
+        "world_4region": "americas",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 12992,
+        "life_expectancy_years": 80.79,
+        "population_total": 32510462
+    },
+    {
+        "country": "Philippines",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 8264,
+        "life_expectancy_years": 70,
+        "population_total": 108116622
+    },
+    {
+        "country": "Poland",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 29912,
+        "life_expectancy_years": 78.38,
+        "population_total": 37887771
+    },
+    {
+        "country": "Portugal",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 29275,
+        "life_expectancy_years": 81.84,
+        "population_total": 10226178
+    },
+    {
+        "country": "Qatar",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 113331,
+        "life_expectancy_years": 80.45,
+        "population_total": 2832071
+    },
+    {
+        "country": "Romania",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 25527,
+        "life_expectancy_years": 75.44,
+        "population_total": 19364558
+    },
+    {
+        "country": "Russia",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 25654,
+        "life_expectancy_years": 72.52,
+        "population_total": 145872260
+    },
+    {
+        "country": "Rwanda",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 2110,
+        "life_expectancy_years": 69.14,
+        "population_total": 12626938
+    },
+    {
+        "country": "Samoa",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 6239,
+        "life_expectancy_years": 73.15,
+        "population_total": 197093
+    },
+    {
+        "country": "San Marino",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 57803,
+        "life_expectancy_years": null,
+        "population_total": 33864
+    },
+    {
+        "country": "Sao Tome and Principe",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 3047,
+        "life_expectancy_years": 67.3,
+        "population_total": 215048
+    },
+    {
+        "country": "Saudi Arabia",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 48115,
+        "life_expectancy_years": 77.12,
+        "population_total": 34268529
+    },
+    {
+        "country": "Senegal",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 3461,
+        "life_expectancy_years": 68.62,
+        "population_total": 16296362
+    },
+    {
+        "country": "Serbia",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 16663,
+        "life_expectancy_years": 76.03,
+        "population_total": 8772228
+    },
+    {
+        "country": "Seychelles",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 27788,
+        "life_expectancy_years": 73.75,
+        "population_total": 97741
+    },
+    {
+        "country": "Sierra Leone",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 1464,
+        "life_expectancy_years": 61.32,
+        "population_total": 7813207
+    },
+    {
+        "country": "Singapore",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 90080,
+        "life_expectancy_years": 85.14,
+        "population_total": 5804343
+    },
+    {
+        "country": "Slovak Republic",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 32095,
+        "life_expectancy_years": 77.73,
+        "population_total": 5457012
+    },
+    {
+        "country": "Slovenia",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 33676,
+        "life_expectancy_years": 81.41,
+        "population_total": 2078654
+    },
+    {
+        "country": "Solomon Islands",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 2152,
+        "life_expectancy_years": 68.86,
+        "population_total": 669821
+    },
+    {
+        "country": "Somalia",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 631,
+        "life_expectancy_years": 59.23,
+        "population_total": 15442906
+    },
+    {
+        "country": "South Africa",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 12039,
+        "life_expectancy_years": 66.93,
+        "population_total": 58558267
+    },
+    {
+        "country": "South Korea",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 37343,
+        "life_expectancy_years": 83,
+        "population_total": 51225321
+    },
+    {
+        "country": "South Sudan",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 1855,
+        "life_expectancy_years": 59.74,
+        "population_total": 11062114
+    },
+    {
+        "country": "Spain",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 35659,
+        "life_expectancy_years": 83.33,
+        "population_total": 46736782
+    },
+    {
+        "country": "Sri Lanka",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 12143,
+        "life_expectancy_years": 77.8,
+        "population_total": 21323734
+    },
+    {
+        "country": "St. Kitts and Nevis",
+        "world_4region": "americas",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 28989,
+        "life_expectancy_years": null,
+        "population_total": 52834
+    },
+    {
+        "country": "St. Lucia",
+        "world_4region": "americas",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 12452,
+        "life_expectancy_years": 75.83,
+        "population_total": 182795
+    },
+    {
+        "country": "St. Vincent and the Grenadines",
+        "world_4region": "americas",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 11183,
+        "life_expectancy_years": 72.53,
+        "population_total": 110593
+    },
+    {
+        "country": "Sudan",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 4506,
+        "life_expectancy_years": 70.77,
+        "population_total": 42813237
+    },
+    {
+        "country": "Suriname",
+        "world_4region": "americas",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 13912,
+        "life_expectancy_years": 72.27,
+        "population_total": 581363
+    },
+    {
+        "country": "Swaziland",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 9560,
+        "life_expectancy_years": 61.82,
+        "population_total": 1148133
+    },
+    {
+        "country": "Sweden",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 47211,
+        "life_expectancy_years": 82.78,
+        "population_total": 10036391
+    },
+    {
+        "country": "Switzerland",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 59044,
+        "life_expectancy_years": 84.27,
+        "population_total": 8591361
+    },
+    {
+        "country": "Syria",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 2900,
+        "life_expectancy_years": 71.49,
+        "population_total": 17070132
+    },
+    {
+        "country": "Tajikistan",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 3150,
+        "life_expectancy_years": 70.77,
+        "population_total": 9321023
+    },
+    {
+        "country": "Tanzania",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 2978,
+        "life_expectancy_years": 67.73,
+        "population_total": 58005461
+    },
+    {
+        "country": "Thailand",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 17359,
+        "life_expectancy_years": 78.58,
+        "population_total": 69625581
+    },
+    {
+        "country": "Timor-Leste",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 7054,
+        "life_expectancy_years": 71.31,
+        "population_total": 1293120
+    },
+    {
+        "country": "Togo",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 1605,
+        "life_expectancy_years": 64.96,
+        "population_total": 8082359
+    },
+    {
+        "country": "Tonga",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 5904,
+        "life_expectancy_years": 71.98,
+        "population_total": 104497
+    },
+    {
+        "country": "Trinidad and Tobago",
+        "world_4region": "americas",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 28522,
+        "life_expectancy_years": 74.51,
+        "population_total": 1394969
+    },
+    {
+        "country": "Tunisia",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 11146,
+        "life_expectancy_years": 78.73,
+        "population_total": 11694721
+    },
+    {
+        "country": "Turkey",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 25039,
+        "life_expectancy_years": 79.48,
+        "population_total": 83429607
+    },
+    {
+        "country": "Turkmenistan",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 17599,
+        "life_expectancy_years": 70.35,
+        "population_total": 5942094
+    },
+    {
+        "country": "Tuvalu",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 3725,
+        "life_expectancy_years": null,
+        "population_total": 11655
+    },
+    {
+        "country": "Uganda",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 1870,
+        "life_expectancy_years": 66.6,
+        "population_total": 44269587
+    },
+    {
+        "country": "Ukraine",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 8480,
+        "life_expectancy_years": 70.77,
+        "population_total": 43993643
+    },
+    {
+        "country": "United Arab Emirates",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 65650,
+        "life_expectancy_years": 73.63,
+        "population_total": 9770526
+    },
+    {
+        "country": "United Kingdom",
+        "world_4region": "europe",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 40392,
+        "life_expectancy_years": 81.12,
+        "population_total": 67530161
+    },
+    {
+        "country": "United States",
+        "world_4region": "americas",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 56657,
+        "life_expectancy_years": 78.6,
+        "population_total": 329064917
+    },
+    {
+        "country": "Uruguay",
+        "world_4region": "americas",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 20925,
+        "life_expectancy_years": 77.32,
+        "population_total": 3461731
+    },
+    {
+        "country": "Uzbekistan",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 6493,
+        "life_expectancy_years": 70.69,
+        "population_total": 32981715
+    },
+    {
+        "country": "Vanuatu",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 2888,
+        "life_expectancy_years": 65,
+        "population_total": 299882
+    },
+    {
+        "country": "Venezuela",
+        "world_4region": "americas",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 9724,
+        "life_expectancy_years": 75.1,
+        "population_total": 28515829
+    },
+    {
+        "country": "Vietnam",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 6970,
+        "life_expectancy_years": 74.69,
+        "population_total": 96462108
+    },
+    {
+        "country": "Yemen",
+        "world_4region": "asia",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 2343,
+        "life_expectancy_years": 68.1,
+        "population_total": 29161922
+    },
+    {
+        "country": "Zambia",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 3700,
+        "life_expectancy_years": 64.04,
+        "population_total": 17861034
+    },
+    {
+        "country": "Zimbabwe",
+        "world_4region": "africa",
+        "time": 2019,
+        "income_per_person_gdppercapita_ppp_inflation_adjusted": 2392,
+        "life_expectancy_years": 62.04,
+        "population_total": 14645473
+    }
+]

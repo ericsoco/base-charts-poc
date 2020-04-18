@@ -19,7 +19,7 @@ export type XYConfig = $ReadOnly<{|
 |}>;
 
 export type ValidationError = $ReadOnly<{|
-  field: string,
+  field: string | null,
   error: Error,
 |}>;
 
@@ -279,4 +279,24 @@ export const areaProperties = {
   areaBlendMode: 'normal',
   areaBaselineValue: 0,
   areaOpacity: 1.0,
+};
+
+export const scatterplotProperties = {
+  ...defaultMargin,
+  ...defaultColor,
+  ...defaultAxis,
+  ...defaultGrid,
+  legends: [defaultLegend],
+  ...defaultAnimationProps,
+  xScale: {
+    type: 'linear',
+    min: 'auto',
+    max: 'auto',
+  },
+  yScale: {
+    type: 'linear',
+    min: 'auto',
+    max: 'auto',
+  },
+  // TODO: refine this
 };
