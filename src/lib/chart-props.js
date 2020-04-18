@@ -18,20 +18,21 @@ export type XYConfig = $ReadOnly<{|
   y: string | $ReadOnlyArray<string>,
 |}>;
 
-export type ValidationError = $ReadOnly<{|
-  field: string | null,
+export type ValidationIssue = $ReadOnly<{|
+  field?: string,
+  datum?: Datum,
   error: Error,
 |}>;
 
 export type ConfigValidation = $ReadOnly<{|
   valid: boolean,
-  errors: $ReadOnlyArray<ValidationError>,
+  warnings: $ReadOnlyArray<ValidationIssue>,
+  errors: $ReadOnlyArray<ValidationIssue>,
 |}>;
 
 /**
  * Validate config against passed data, ensuring all field names
- * in config are present in the data.
- * TODO: implement
+ * encoded in the config are present in the data.
  * TODO: type inference: allow only certain datatypes per config channel
  */
 export function validateConfig(
@@ -39,18 +40,22 @@ export function validateConfig(
   config: AbstractConfig
 ): ConfigValidation {
   const sampleDatum = data[0];
-  const allFields = Object.keys(config).reduce(
-    (fields, channel) => fields.concat(config[channel]),
-    []
-  );
-  const errors = allFields
+  const allEncodedFields = Object.keys(config).reduce((fields, channel) => {
+    return typeof config[channel] === 'string'
+      ? fields.concat(config[channel])
+      : fields;
+  }, []);
+
+  const errors = allEncodedFields
     .filter(field => !Object.hasOwnProperty.call(sampleDatum, field))
     .map(field => ({
       field,
       error: new Error(`Field '${field}' is missing in passed dataset.`),
     }));
+
   return {
     valid: errors.length === 0,
+    warnings: [],
     errors,
   };
 }
@@ -298,5 +303,6 @@ export const scatterplotProperties = {
     min: 'auto',
     max: 'auto',
   },
+  blendMode: 'multiply',
   // TODO: refine this
 };

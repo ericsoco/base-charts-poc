@@ -9,6 +9,7 @@ import {
   type ConfigValidation,
   type Dataset,
   type Datum,
+  type ValidationIssue,
   type XYConfig,
 } from './chart-props';
 
@@ -45,18 +46,25 @@ type NivoProps = $ReadOnly<{|
   data: $ReadOnlyArray<NivoScatterplotDataset>,
 |}>;
 
-const DEFAULT_SIZE_RANGE = [2, 20];
+// Diameter, in pixels
+const DEFAULT_SIZE_RANGE = [4, 40];
 
+/**
+ * TODO: Scatterplot's validator is validating dataset in addition to config.
+ * Probably better to separate those concerns, and possibly even keep
+ * dataset validation completely within Scatterplot, as it's not clear yet
+ * that other chart types need dataset validation.
+ */
 function validateConfig(
   data: Dataset,
   config: BaseScatterplotConfig
 ): ConfigValidation {
   const validation = validateAbstractConfig(data, config);
-  const errors = [
+
+  const configErrors = [
     ...(Array.isArray(config.y) && config.color
       ? [
           {
-            field: null,
             error: new Error(
               'When `color` is specified, `y` must be encoded to a single field.'
             ),
@@ -64,10 +72,58 @@ function validateConfig(
         ]
       : []),
   ];
+
+  const invalidDataWarnings = validateData(data, config);
+
   return {
-    valid: validation.valid && errors.length === 0,
-    errors: [...validation.errors, ...errors],
+    valid: validation.valid && configErrors.length === 0,
+    warnings: invalidDataWarnings,
+    errors: [...validation.errors, ...configErrors],
   };
+}
+
+function validateData(
+  data: Dataset,
+  config: BaseScatterplotConfig
+): $ReadOnlyArray<ValidationIssue> {
+  const sizeField = typeof config.size === 'string' ? config.size : null;
+  const yKeys = Array.isArray(config.y) ? config.y : [config.y];
+  return data
+    .filter(
+      d =>
+        !Number.isFinite(d[config.x]) ||
+        yKeys.some(key => !Number.isFinite(d[key])) ||
+        (sizeField && !Number.isFinite(d[sizeField])) ||
+        (config.color && !d[config.color])
+    )
+    .map(d => ({
+      datum: d,
+      error: new Error(
+        `Invalid value found at encoded field. Dropping invalid datum: ${JSON.stringify(
+          d
+        )}`
+      ),
+    }));
+}
+
+function removeInvalidData(data, validation) {
+  let mutableInvalidDataMap = new Map(
+    validation.warnings
+      .filter(warning => warning.datum)
+      .map(warning => [warning.datum, true])
+  );
+  validation.warnings.forEach(warning => console.warn(warning.error));
+  return mutableInvalidDataMap.size
+    ? data.filter(d => {
+        if (mutableInvalidDataMap.get(d)) {
+          // once found, remove from invalid data map
+          // for faster subsequent checks
+          mutableInvalidDataMap.delete(d);
+          return false;
+        }
+        return true;
+      })
+    : data;
 }
 
 function mapToNivoDatum({ x, y, size }) {
@@ -88,13 +144,17 @@ export function convertToNivo(
   const validation = validateConfig(data, config);
   if (!validation.valid) {
     // TODO: surface errors
+    console.error('‼️ Config validation error(s):');
+    validation.errors.forEach(e => console.error(e));
   }
+
+  const validData = removeInvalidData(data, validation);
 
   const size = typeof config.size === 'string' ? config.size : null;
   const nodeSize = size
     ? {
         key: 'size',
-        values: extent(data, d => d[size]),
+        values: extent(validData, d => d[size]),
         sizes: DEFAULT_SIZE_RANGE,
       }
     : config.size;
@@ -104,7 +164,7 @@ export function convertToNivo(
     // multi-series
     nivoData = config.y.map(key => ({
       id: key,
-      data: data.map(
+      data: validData.map(
         mapToNivoDatum({
           x: config.x,
           y: key,
@@ -114,15 +174,13 @@ export function convertToNivo(
     }));
   } else if (config.color) {
     // color by field
-    // TODO: if group() returns a Map, will need to iterate differently
-    // or convert to object...
-    const grouped = group(data, d => d[config.color]);
-    nivoData = Object.keys(grouped).map(key => ({
+    const grouped = group(validData, d => d[config.color]);
+    nivoData = Array.from(grouped.keys(), key => ({
       id: key,
-      data: grouped[key].map(
+      data: grouped.get(key).map(
         mapToNivoDatum({
           x: config.x,
-          y: key,
+          y: config.y,
           size,
         })
       ),
@@ -132,7 +190,7 @@ export function convertToNivo(
     nivoData = [
       {
         id: 'data',
-        data: data.map(
+        data: validData.map(
           mapToNivoDatum({
             x: config.x,
             y: config.y,

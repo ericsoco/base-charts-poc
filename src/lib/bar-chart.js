@@ -32,6 +32,8 @@ function convertToNivo(data: Dataset, config: BaseBarConfig): NivoProps {
   const validation = validateConfig(data, config);
   if (!validation.valid) {
     // TODO: surface errors
+    console.error('‼️ Config validation error(s):');
+    validation.errors.forEach(e => console.error(e));
   }
 
   return {

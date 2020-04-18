@@ -92,7 +92,6 @@ export default function Chart() {
           }}
         />
       </ChartWrapper>
-      {/*
       <ChartWrapper>
         <ChartTitle>{'Bubble Chart'}</ChartTitle>
         <BaseScatterplot
@@ -105,7 +104,6 @@ export default function Chart() {
           }}
         />
       </ChartWrapper>
-    */}
     </>
   );
 }

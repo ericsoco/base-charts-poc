@@ -41,6 +41,8 @@ export function convertToNivo(
   const validation = validateConfig(data, config);
   if (!validation.valid) {
     // TODO: surface errors
+    console.error('‼️ Config validation error(s):');
+    validation.errors.forEach(e => console.error(e));
   }
 
   const keys = Array.isArray(config.y) ? config.y : [config.y];
