@@ -5,18 +5,23 @@
  * passed to a Base Charts chart component.
  */
 export type Datum = $ReadOnly<{
-  [string]: number | string | boolean | Date | null,
+  [string]: number | string | boolean | null,
 }>;
 export type Dataset = $ReadOnlyArray<Datum>;
 
-export type AbstractConfig = $ReadOnly<{
+/**
+ * Abstract type for the portion of a config
+ * that contains channel encodings
+ */
+export type EncodingsConfig = $ReadOnly<{
   [string]: string | $ReadOnlyArray<string>,
 }>;
 
-export type XYConfig = $ReadOnly<{|
+// Base config type for XY-charts
+export type XYConfig = {
   x: string,
   y: string | $ReadOnlyArray<string>,
-|}>;
+};
 
 export type ValidationIssue = $ReadOnly<{|
   field?: string,
@@ -35,16 +40,15 @@ export type ConfigValidation = $ReadOnly<{|
  * encoded in the config are present in the data.
  * TODO: type inference: allow only certain datatypes per config channel
  */
-export function validateConfig(
+export function validateEncodings(
   data: Dataset,
-  config: AbstractConfig
+  config: EncodingsConfig
 ): ConfigValidation {
   const sampleDatum = data[0];
-  const allEncodedFields = Object.keys(config).reduce((fields, channel) => {
-    return typeof config[channel] === 'string'
-      ? fields.concat(config[channel])
-      : fields;
-  }, []);
+  const allEncodedFields = Object.keys(config).reduce(
+    (fields, channel) => fields.concat(config[channel]),
+    []
+  );
 
   const errors = allEncodedFields
     .filter(field => !Object.hasOwnProperty.call(sampleDatum, field))
@@ -129,7 +133,7 @@ const defaultLegend = {
   itemHeight: 20,
   itemDirection: 'left-to-right',
   itemOpacity: 0.85,
-  onClick: data => {
+  onClick: (data: { [string]: mixed }) => {
     alert(JSON.stringify(data, null, '    '));
   },
   effects: [

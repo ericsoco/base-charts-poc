@@ -11,23 +11,13 @@ type Props = $ReadOnly<{|
 |}>;
 
 export type BaseAreaConfig = $ReadOnly<{|
-  ...XYConfig,
-  // TODO: ?
+  ...$Exact<XYConfig>,
 |}>;
-
-type NivoProps = $ReadOnly<{|
-  indexBy: string,
-  keys: $ReadOnlyArray<string>,
-|}>;
-
-/**
- * Convert Base Charts config to Nivo props.
- */
-function convertToNivo(data: Dataset, config: BaseAreaConfig): NivoProps {
-  return convertToNivoLine(data, config);
-}
 
 export default function BaseArea({ data, config }: Props) {
-  const nivoProps = useMemo(() => convertToNivo(data, config), [data, config]);
+  const nivoProps = useMemo(() => convertToNivoLine(data, config), [
+    data,
+    config,
+  ]);
   return <ResponsiveLine {...areaProperties} {...nivoProps} />;
 }

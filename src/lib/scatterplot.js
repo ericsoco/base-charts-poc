@@ -5,10 +5,11 @@ import { group, extent } from 'd3-array';
 
 import {
   scatterplotProperties,
-  validateConfig as validateAbstractConfig,
+  validateEncodings,
   type ConfigValidation,
   type Dataset,
   type Datum,
+  type EncodingsConfig,
   type ValidationIssue,
   type XYConfig,
 } from './chart-props';
@@ -27,26 +28,51 @@ type Props = $ReadOnly<{|
  * color: (categorical) field to use for color scale domain
  */
 export type BaseScatterplotConfig = $ReadOnly<{|
-  ...XYConfig,
+  ...$Exact<XYConfig>,
   size: number | string | (Datum => number),
-  color: string,
+  color?: string,
 |}>;
 
 type NivoScatterplotDatum = $ReadOnly<{|
-  // id: string,  // present in nivo sample data, but is it required?
-  x: number,
-  y: number,
+  x: number | string | Date,
+  y: number | string | Date,
   size?: number,
 |}>;
 type NivoScatterplotDataset = $ReadOnly<{|
   id: string,
   data: $ReadOnlyArray<NivoScatterplotDatum>,
 |}>;
+type NivoNodeSizeConfig = $ReadOnly<{|
+  key: string,
+  values: [number, number],
+  sizes: [number, number],
+|}>;
+type NivoNodeSize =
+  | number
+  | (NivoScatterplotDatum => number)
+  | NivoNodeSizeConfig;
 type NivoProps = $ReadOnly<{|
   data: $ReadOnlyArray<NivoScatterplotDataset>,
+  nodeSize: NivoNodeSize,
 |}>;
 
-// Diameter, in pixels
+/**
+ * Isolate only the channel encodings in a config
+ * TODO: Use opaque `Field: string` type instead
+ */
+function toEncodingsConfig(config: BaseScatterplotConfig): EncodingsConfig {
+  // eslint-disable-next-line no-unused-vars
+  if (typeof config.size && config.size === 'string') {
+    // Flow needs help here despite the typecheck above
+    return (config: any);
+  }
+  // eslint-disable-next-line no-unused-vars
+  const { size, ...rest } = config;
+  return rest;
+}
+
+// Scatterplot mark sizes, in pixels
+const DEFAULT_SIZE = 4;
 const DEFAULT_SIZE_RANGE = [4, 40];
 
 /**
@@ -59,7 +85,7 @@ function validateConfig(
   data: Dataset,
   config: BaseScatterplotConfig
 ): ConfigValidation {
-  const validation = validateAbstractConfig(data, config);
+  const validation = validateEncodings(data, toEncodingsConfig(config));
 
   const configErrors = [
     ...(Array.isArray(config.y) && config.color
@@ -126,12 +152,22 @@ function removeInvalidData(data, validation) {
     : data;
 }
 
-function mapToNivoDatum({ x, y, size }) {
-  return d => ({
-    x: d[x],
-    y: d[y],
-    ...(size ? { size: d[size] } : {}),
-  });
+function mapToNivoDatum({
+  x,
+  y,
+  size,
+}: $ReadOnly<{|
+  x: string,
+  y: string,
+  size: ?string,
+|}>): Datum => NivoScatterplotDatum {
+  // TODO: Validate datatypes in validation step and remove typecast
+  return d =>
+    ({
+      x: d[x],
+      y: d[y],
+      ...(size ? { size: d[size] } : {}),
+    }: any);
 }
 
 /**
@@ -151,13 +187,14 @@ export function convertToNivo(
   const validData = removeInvalidData(data, validation);
 
   const size = typeof config.size === 'string' ? config.size : null;
-  const nodeSize = size
+  const nodeSize: NivoNodeSize = size
     ? {
         key: 'size',
         values: extent(validData, d => d[size]),
         sizes: DEFAULT_SIZE_RANGE,
       }
-    : config.size;
+    : // Already switched on size: string above
+      ((config.size: any): number) || DEFAULT_SIZE;
 
   let nivoData;
   if (Array.isArray(config.y)) {
@@ -180,7 +217,8 @@ export function convertToNivo(
       data: grouped.get(key).map(
         mapToNivoDatum({
           x: config.x,
-          y: config.y,
+          // Already switched on y: string[] above
+          y: ((config.y: any): string),
           size,
         })
       ),
@@ -203,7 +241,7 @@ export function convertToNivo(
 
   return {
     data: nivoData,
-    ...(nodeSize ? { nodeSize } : {}),
+    nodeSize,
   };
 }
 

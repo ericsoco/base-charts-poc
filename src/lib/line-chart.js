@@ -4,8 +4,9 @@ import { ResponsiveLine } from '@nivo/line';
 
 import {
   lineProperties,
-  validateConfig,
+  validateEncodings,
   type Dataset,
+  type Datum,
   type XYConfig,
 } from './chart-props';
 
@@ -15,8 +16,7 @@ type Props = $ReadOnly<{|
 |}>;
 
 export type BaseLineConfig = $ReadOnly<{|
-  ...XYConfig,
-  // TODO: ?
+  ...$Exact<XYConfig>,
 |}>;
 
 type NivoLineDatum = $ReadOnly<{|
@@ -31,6 +31,21 @@ type NivoProps = $ReadOnly<{|
   data: $ReadOnlyArray<NivoLineDataset>,
 |}>;
 
+function mapToNivoDatum({
+  x,
+  y,
+}: $ReadOnly<{|
+  x: string,
+  y: string,
+|}>): Datum => NivoLineDatum {
+  // TODO: Validate datatypes in validation step and remove typecast
+  return d =>
+    ({
+      x: d[x],
+      y: d[y],
+    }: any);
+}
+
 /**
  * Convert Base Charts config to Nivo props.
  */
@@ -38,7 +53,7 @@ export function convertToNivo(
   data: Dataset,
   config: BaseLineConfig
 ): NivoProps {
-  const validation = validateConfig(data, config);
+  const validation = validateEncodings(data, config);
   if (!validation.valid) {
     // TODO: surface errors
     console.error('‼️ Config validation error(s):');
@@ -48,10 +63,12 @@ export function convertToNivo(
   const keys = Array.isArray(config.y) ? config.y : [config.y];
   const nivoData = keys.map(key => ({
     id: key,
-    data: data.map(d => ({
-      x: d[config.x],
-      y: d[key],
-    })),
+    data: data.map(
+      mapToNivoDatum({
+        x: config.x,
+        y: key,
+      })
+    ),
   }));
 
   return {

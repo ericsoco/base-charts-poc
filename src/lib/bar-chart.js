@@ -4,8 +4,9 @@ import { ResponsiveBar } from '@nivo/bar';
 
 import {
   barProperties,
-  validateConfig,
+  validateEncodings,
   type Dataset,
+  type EncodingsConfig,
   type XYConfig,
 } from './chart-props';
 
@@ -15,7 +16,7 @@ type Props = $ReadOnly<{|
 |}>;
 
 export type BaseBarConfig = $ReadOnly<{|
-  ...XYConfig,
+  ...$Exact<XYConfig>,
   stack?: boolean,
 |}>;
 
@@ -26,10 +27,20 @@ type NivoProps = $ReadOnly<{|
 |}>;
 
 /**
+ * Isolate only the channel encodings in a config
+ * TODO: Use opaque `Field: string` type instead
+ */
+function toEncodingsConfig(config: BaseBarConfig): EncodingsConfig {
+  // eslint-disable-next-line no-unused-vars
+  const { stack, ...rest } = config;
+  return rest;
+}
+
+/**
  * Convert Base Charts config to Nivo props.
  */
 function convertToNivo(data: Dataset, config: BaseBarConfig): NivoProps {
-  const validation = validateConfig(data, config);
+  const validation = validateEncodings(data, toEncodingsConfig(config));
   if (!validation.valid) {
     // TODO: surface errors
     console.error('‼️ Config validation error(s):');

@@ -24,7 +24,13 @@
     "flowtype",
     "react"
   ],
-  "rules": {},
+  "rules": {
+    "flowtype/space-after-type-colon": [
+      "error",
+      "always",
+      {"allowLineBreak": true}
+    ]
+  },
   "settings": {
     "react": {
       "pragma": "React",
