@@ -7,6 +7,7 @@ import {
   validateEncodings,
   type Dataset,
   type Datum,
+  type EncodingsConfig,
   type XYConfig,
 } from './chart-props';
 
@@ -47,13 +48,23 @@ function mapToNivoDatum({
 }
 
 /**
+ * Isolate only the channel encodings in a config
+ * TODO: Use opaque `Field: string` type instead
+ */
+function toEncodingsConfig(config: BaseLineConfig): EncodingsConfig {
+  // eslint-disable-next-line no-unused-vars
+  const { options, ...rest } = config;
+  return rest;
+}
+
+/**
  * Convert Base Charts config to Nivo props.
  */
 export function convertToNivo(
   data: Dataset,
   config: BaseLineConfig
 ): NivoProps {
-  const validation = validateEncodings(data, config);
+  const validation = validateEncodings(data, toEncodingsConfig(config));
   if (!validation.valid) {
     // TODO: surface errors
     console.error('‼️ Config validation error(s):');

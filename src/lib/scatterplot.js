@@ -29,7 +29,7 @@ type Props = $ReadOnly<{|
  */
 export type BaseScatterplotConfig = $ReadOnly<{|
   ...$Exact<XYConfig>,
-  size: number | string | (Datum => number),
+  size?: number | string | (Datum => number),
   color?: string,
 |}>;
 
@@ -67,7 +67,7 @@ function toEncodingsConfig(config: BaseScatterplotConfig): EncodingsConfig {
     return (config: any);
   }
   // eslint-disable-next-line no-unused-vars
-  const { size, ...rest } = config;
+  const { options, size, ...rest } = config;
   return rest;
 }
 

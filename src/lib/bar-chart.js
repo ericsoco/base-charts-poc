@@ -32,7 +32,7 @@ type NivoProps = $ReadOnly<{|
  */
 function toEncodingsConfig(config: BaseBarConfig): EncodingsConfig {
   // eslint-disable-next-line no-unused-vars
-  const { stack, ...rest } = config;
+  const { options, stack, ...rest } = config;
   return rest;
 }
 

@@ -18,10 +18,38 @@ export type EncodingsConfig = $ReadOnly<{
 }>;
 
 // Base config type for XY-charts
-export type XYConfig = {
+export type XYConfig = $ReadOnly<{
   x: string,
   y: string | $ReadOnlyArray<string>,
-};
+  options?: XYOptions,
+}>;
+
+// d3-format strings to specify input/output formatting
+type FormatOption = $ReadOnly<{|
+  // Format of values within source dataset
+  input: string,
+  // Format used to render values within axis ticks and tooltip
+  output: string,
+|}>;
+
+// Axis display options
+type AxisOption = $ReadOnly<{|
+  label: string,
+|}>;
+
+// Base options map for XY-charts
+export type XYOptions = $ReadOnly<{|
+  format?: $ReadOnly<{
+    x?: FormatOption,
+    y?: FormatOption,
+  }>,
+  axis?: $ReadOnly<{
+    x?: AxisOption,
+    y?: AxisOption,
+  }>,
+  // Discrete series keys in order of mapping to Base Charts color scale
+  seriesColors?: $ReadOnlyArray<string>,
+|}>;
 
 export type ValidationIssue = $ReadOnly<{|
   field?: string,
@@ -64,9 +92,12 @@ export function validateEncodings(
   };
 }
 
+const TOP_MARGIN = 40;
 const defaultMargin = {
+  // NOTE: Extra margins leave room for legends (top)
+  // and axis labels (left, bottom)
   margin: {
-    top: 20,
+    top: TOP_MARGIN,
     right: 20,
     bottom: 50,
     left: 75,
@@ -74,7 +105,7 @@ const defaultMargin = {
 };
 
 const defaultColor = {
-  // TODO: create 'baseCharts' scheme?
+  // TODO: create 'baseCharts' scheme? one per primary color?
   // colors: { scheme: 'nivo' },
   colors: [
     // Primary color palette
@@ -124,12 +155,12 @@ const defaultLegend = {
   anchor: 'top-left',
   direction: 'row',
   translateX: 0,
-  translateY: -50,
+  translateY: -TOP_MARGIN,
   symbolSize: 12,
   symbolShape: 'circle',
   justify: false,
   itemsSpacing: 2,
-  itemWidth: 100,
+  itemWidth: 80,
   itemHeight: 20,
   itemDirection: 'left-to-right',
   itemOpacity: 0.85,
@@ -169,13 +200,7 @@ export const barProperties = {
     },
   },
   ...defaultGrid,
-  legends: [
-    {
-      ...defaultLegend,
-      // TODO: make this dynamic, based on data
-      dataFrom: 'keys',
-    },
-  ],
+  legends: [defaultLegend],
   ...defaultAnimationProps,
 
   padding: 0.3,
@@ -195,7 +220,7 @@ export const barProperties = {
     modifiers: [['darker', 1.6]],
   },
 
-  enableLabel: true,
+  enableLabel: false,
   labelSkipWidth: 12,
   labelSkipHeight: 12,
   labelTextColor: {
@@ -308,5 +333,4 @@ export const scatterplotProperties = {
     max: 'auto',
   },
   blendMode: 'multiply',
-  // TODO: refine this
 };
