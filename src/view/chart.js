@@ -1,7 +1,14 @@
 // @flow
 import React from 'react';
 import styled, { type BareStyledComponent } from 'styled-components';
-import { BaseArea, BaseBar, BaseLine, BaseScatterplot } from '../lib';
+import {
+  BaseArea,
+  BaseBar,
+  BaseLine,
+  BaseScatterplot,
+  field,
+  color,
+} from '../lib';
 import CategoricalData from '../fixtures/categorical-data.json';
 import ContinuousData from '../fixtures/continuous-data.json';
 import TimeSeriesData from '../fixtures/time-series-data.json';
@@ -23,8 +30,8 @@ export default function Chart() {
         <BaseBar
           data={CategoricalData}
           config={{
-            x: 'country',
-            y: 'kebab',
+            x: field('country'),
+            y: field('kebab'),
             stack: false,
           }}
         />
@@ -34,8 +41,8 @@ export default function Chart() {
         <BaseBar
           data={CategoricalData}
           config={{
-            x: 'country',
-            y: ['kebab', 'fries'],
+            x: field('country'),
+            y: [field('kebab'), field('fries')],
             stack: false,
           }}
         />
@@ -45,8 +52,13 @@ export default function Chart() {
         <BaseBar
           data={CategoricalData}
           config={{
-            x: 'country',
-            y: ['kebab', 'fries', 'hot dog', 'donut'],
+            x: field('country'),
+            y: [
+              field('kebab'),
+              field('fries'),
+              field('hot dog'),
+              field('donut'),
+            ],
             stack: true,
           }}
         />
@@ -56,8 +68,8 @@ export default function Chart() {
         <BaseLine
           data={TimeSeriesData}
           config={{
-            x: 'datestr',
-            y: 'japan',
+            x: field('datestr'),
+            y: field('japan'),
           }}
         />
       </ChartWrapper>
@@ -66,8 +78,8 @@ export default function Chart() {
         <BaseLine
           data={TimeSeriesData}
           config={{
-            x: 'datestr',
-            y: ['japan', 'france'],
+            x: field('datestr'),
+            y: [field('japan'), field('france')],
           }}
         />
       </ChartWrapper>
@@ -76,19 +88,27 @@ export default function Chart() {
         <BaseArea
           data={TimeSeriesData}
           config={{
-            x: 'datestr',
-            y: ['japan', 'france', 'usa', 'germany', 'norway'],
+            x: field('datestr'),
+            y: [
+              field('japan'),
+              field('france'),
+              field('usa'),
+              field('germany'),
+              field('norway'),
+            ],
           }}
         />
       </ChartWrapper>
       <ChartWrapper>
-        <ChartTitle>{'Scatterplot'}</ChartTitle>
+        <ChartTitle>{'Scatterplot w/ fixed size and color'}</ChartTitle>
         <BaseScatterplot
           data={ContinuousData}
           config={{
-            x: 'income_per_person_gdppercapita_ppp_inflation_adjusted',
-            y: 'life_expectancy_years',
+            x: field('income_per_person_gdppercapita_ppp_inflation_adjusted'),
+            y: field('life_expectancy_years'),
             size: 10,
+            // TODO: Use Base Web theme for this color (re-export through Base Charts)
+            color: color('#FF9900'),
           }}
         />
       </ChartWrapper>
@@ -97,10 +117,10 @@ export default function Chart() {
         <BaseScatterplot
           data={ContinuousData}
           config={{
-            x: 'income_per_person_gdppercapita_ppp_inflation_adjusted',
-            y: 'life_expectancy_years',
-            size: 'population_total',
-            color: 'world_4region',
+            x: field('income_per_person_gdppercapita_ppp_inflation_adjusted'),
+            y: field('life_expectancy_years'),
+            size: field('population_total'),
+            color: field('world_4region'),
           }}
         />
       </ChartWrapper>

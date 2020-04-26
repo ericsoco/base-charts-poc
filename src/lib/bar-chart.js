@@ -2,23 +2,14 @@
 import React, { useMemo } from 'react';
 import { ResponsiveBar } from '@nivo/bar';
 
+import { barProperties } from './chart-props';
+import { validateEncodings, type EncodingsConfig } from './validation';
+
 import {
-  barProperties,
-  validateEncodings,
   type Dataset,
-  type EncodingsConfig,
-  type XYConfig,
-} from './chart-props';
-
-type Props = $ReadOnly<{|
-  config: BaseBarConfig,
-  data: Dataset,
-|}>;
-
-export type BaseBarConfig = $ReadOnly<{|
-  ...$Exact<XYConfig>,
-  stack?: boolean,
-|}>;
+  type BarConfig,
+  type BarProps as Props,
+} from './input-types';
 
 type NivoProps = $ReadOnly<{|
   indexBy: string,
@@ -30,7 +21,7 @@ type NivoProps = $ReadOnly<{|
  * Isolate only the channel encodings in a config
  * TODO: Use opaque `Field: string` type instead
  */
-function toEncodingsConfig(config: BaseBarConfig): EncodingsConfig {
+function toEncodingsConfig(config: BarConfig): EncodingsConfig {
   // eslint-disable-next-line no-unused-vars
   const { options, stack, ...rest } = config;
   return rest;
@@ -39,7 +30,7 @@ function toEncodingsConfig(config: BaseBarConfig): EncodingsConfig {
 /**
  * Convert Base Charts config to Nivo props.
  */
-function convertToNivo(data: Dataset, config: BaseBarConfig): NivoProps {
+function convertToNivo(data: Dataset, config: BarConfig): NivoProps {
   const validation = validateEncodings(data, toEncodingsConfig(config));
   if (!validation.valid) {
     // TODO: surface errors

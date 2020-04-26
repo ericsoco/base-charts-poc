@@ -2,23 +2,14 @@
 import React, { useMemo } from 'react';
 import { ResponsiveLine } from '@nivo/line';
 
+import { lineProperties } from './chart-props';
+import { validateEncodings, type EncodingsConfig } from './validation';
 import {
-  lineProperties,
-  validateEncodings,
   type Dataset,
   type Datum,
-  type EncodingsConfig,
-  type XYConfig,
-} from './chart-props';
-
-type Props = $ReadOnly<{|
-  config: BaseLineConfig,
-  data: Dataset,
-|}>;
-
-export type BaseLineConfig = $ReadOnly<{|
-  ...$Exact<XYConfig>,
-|}>;
+  type LineConfig,
+  type LineProps as Props,
+} from './input-types';
 
 type NivoLineDatum = $ReadOnly<{|
   x: string,
@@ -51,7 +42,7 @@ function mapToNivoDatum({
  * Isolate only the channel encodings in a config
  * TODO: Use opaque `Field: string` type instead
  */
-function toEncodingsConfig(config: BaseLineConfig): EncodingsConfig {
+function toEncodingsConfig(config: LineConfig): EncodingsConfig {
   // eslint-disable-next-line no-unused-vars
   const { options, ...rest } = config;
   return rest;
@@ -60,10 +51,7 @@ function toEncodingsConfig(config: BaseLineConfig): EncodingsConfig {
 /**
  * Convert Base Charts config to Nivo props.
  */
-export function convertToNivo(
-  data: Dataset,
-  config: BaseLineConfig
-): NivoProps {
+export function convertToNivo(data: Dataset, config: LineConfig): NivoProps {
   const validation = validateEncodings(data, toEncodingsConfig(config));
   if (!validation.valid) {
     // TODO: surface errors

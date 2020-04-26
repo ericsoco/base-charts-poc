@@ -3,35 +3,20 @@ import React, { useMemo } from 'react';
 import { ResponsiveScatterPlot } from '@nivo/scatterplot';
 import { group, extent } from 'd3-array';
 
+import { scatterplotProperties } from './chart-props';
 import {
-  scatterplotProperties,
   validateEncodings,
   type ConfigValidation,
-  type Dataset,
-  type Datum,
   type EncodingsConfig,
   type ValidationIssue,
-  type XYConfig,
-} from './chart-props';
-
-type Props = $ReadOnly<{|
-  config: BaseScatterplotConfig,
-  data: Dataset,
-|}>;
-
-/**
- * XY
- * size:
- * number: fixed size (px)
- * string: linear scale with domain derived from passed field and fixed range
- * Datum => number: full control
- * color: (categorical) field to use for color scale domain
- */
-export type BaseScatterplotConfig = $ReadOnly<{|
-  ...$Exact<XYConfig>,
-  size?: number | string | (Datum => number),
-  color?: string,
-|}>;
+} from './validation';
+import {
+  type Field,
+  type Dataset,
+  type Datum,
+  type ScatterplotConfig,
+  type ScatterplotProps as Props,
+} from './input-types';
 
 type NivoScatterplotDatum = $ReadOnly<{|
   x: number | string | Date,
@@ -54,15 +39,16 @@ type NivoNodeSize =
 type NivoProps = $ReadOnly<{|
   data: $ReadOnlyArray<NivoScatterplotDataset>,
   nodeSize: NivoNodeSize,
+  colors?: $ReadOnlyArray<string>,
 |}>;
 
 /**
  * Isolate only the channel encodings in a config
  * TODO: Use opaque `Field: string` type instead
  */
-function toEncodingsConfig(config: BaseScatterplotConfig): EncodingsConfig {
+function toEncodingsConfig(config: ScatterplotConfig): EncodingsConfig {
   // eslint-disable-next-line no-unused-vars
-  if (typeof config.size && config.size === 'string') {
+  if (config.size && typeof config.size === 'string') {
     // Flow needs help here despite the typecheck above
     return (config: any);
   }
@@ -83,7 +69,7 @@ const DEFAULT_SIZE_RANGE = [4, 40];
  */
 function validateConfig(
   data: Dataset,
-  config: BaseScatterplotConfig
+  config: ScatterplotConfig
 ): ConfigValidation {
   const validation = validateEncodings(data, toEncodingsConfig(config));
 
@@ -110,17 +96,19 @@ function validateConfig(
 
 function validateData(
   data: Dataset,
-  config: BaseScatterplotConfig
+  config: ScatterplotConfig
 ): $ReadOnlyArray<ValidationIssue> {
   const sizeField = typeof config.size === 'string' ? config.size : null;
   const yKeys = Array.isArray(config.y) ? config.y : [config.y];
+  const colorField: Field | null =
+    config.color && !config.color.color ? (config.color: any) : null;
   return data
     .filter(
       d =>
         !Number.isFinite(d[config.x]) ||
         yKeys.some(key => !Number.isFinite(d[key])) ||
         (sizeField && !Number.isFinite(d[sizeField])) ||
-        (config.color && !d[config.color])
+        (colorField && !d[colorField])
     )
     .map(d => ({
       datum: d,
@@ -170,12 +158,19 @@ function mapToNivoDatum({
     }: any);
 }
 
+function getFixedColor(config: ScatterplotConfig): string | null {
+  if (config.color) {
+    if (config.color.color) return (config.color: any).color;
+  }
+  return null;
+}
+
 /**
  * Convert Base Charts config to Nivo props.
  */
 export function convertToNivo(
   data: Dataset,
-  config: BaseScatterplotConfig
+  config: ScatterplotConfig
 ): NivoProps {
   const validation = validateConfig(data, config);
   if (!validation.valid) {
@@ -196,6 +191,8 @@ export function convertToNivo(
     : // Already switched on size: string above
       ((config.size: any): number) || DEFAULT_SIZE;
 
+  const fixedColor = getFixedColor(config);
+
   let nivoData;
   if (Array.isArray(config.y)) {
     // multi-series
@@ -209,7 +206,7 @@ export function convertToNivo(
         })
       ),
     }));
-  } else if (config.color) {
+  } else if (config.color && fixedColor === null) {
     // color by field
     const grouped = group(validData, d => d[config.color]);
     nivoData = Array.from(grouped.keys(), key => ({
@@ -239,10 +236,11 @@ export function convertToNivo(
     ];
   }
 
-  return {
+  const props = {
     data: nivoData,
     nodeSize,
   };
+  return fixedColor ? { ...props, colors: [fixedColor] } : props;
 }
 
 export default function BaseScatterplot({ data, config }: Props) {
