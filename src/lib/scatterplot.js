@@ -6,6 +6,7 @@ import { group, extent } from 'd3-array';
 import { scatterplotProperties } from './chart-props';
 import {
   validateEncodings,
+  getScatteplotEncodings,
   type ConfigValidation,
   type ValidationIssue,
 } from './validation';
@@ -55,7 +56,7 @@ function validateConfig(
   data: Dataset,
   config: ScatterplotConfig
 ): ConfigValidation {
-  const validation = validateEncodings(data, config, 'Scatterplot');
+  const validation = validateEncodings(data, getScatteplotEncodings(config));
 
   const configErrors = [
     ...(Array.isArray(config.y) && config.color
@@ -129,9 +130,9 @@ function mapToNivoDatum({
   y,
   size,
 }: $ReadOnly<{|
-  x: string,
-  y: string,
-  size: ?string,
+  x: Field,
+  y: Field,
+  size: ?Field,
 |}>): Datum => NivoScatterplotDatum {
   // TODO: Validate datatypes in validation step and remove typecast
   return d =>
@@ -199,7 +200,7 @@ export function convertToNivo(
         mapToNivoDatum({
           x: config.x,
           // Already switched on y: string[] above
-          y: ((config.y: any): string),
+          y: ((config.y: any): Field),
           size,
         })
       ),

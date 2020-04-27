@@ -12,8 +12,7 @@
  * passed to a Base Charts chart component.
  */
 export type Datum = $ReadOnly<{
-  // TODO: what's required to use [Field] here instead of [string]?
-  [string]: number | string | boolean | null,
+  [Field]: number | string | boolean | null,
 }>;
 export type Dataset = $ReadOnlyArray<Datum>;
 
@@ -37,7 +36,6 @@ export function color(color: string): Color {
 export type XYConfig = $ReadOnly<{
   x: Field,
   y: Field | $ReadOnlyArray<Field>,
-  options?: XYOptions,
 }>;
 
 // d3-format strings to specify input/output formatting
@@ -67,35 +65,36 @@ export type XYOptions = $ReadOnly<{|
   seriesColors?: $ReadOnlyArray<string>,
 |}>;
 
-export type BarType = 'Bar';
 export type BarConfig = $ReadOnly<{|
   ...$Exact<XYConfig>,
-  stack?: boolean,
+  options?: {
+    ...$Exact<XYOptions>,
+    stack?: boolean,
+  },
 |}>;
 export type BarProps = $ReadOnly<{|
   config: BarConfig,
   data: Dataset,
 |}>;
 
-export type LineType = 'Line';
 export type LineConfig = $ReadOnly<{|
   ...$Exact<XYConfig>,
+  options?: XYOptions,
 |}>;
 export type LineProps = $ReadOnly<{|
   config: LineConfig,
   data: Dataset,
 |}>;
 
-export type AreaType = 'Area';
 export type AreaConfig = $ReadOnly<{|
   ...$Exact<XYConfig>,
+  options?: XYOptions,
 |}>;
 export type AreaProps = $ReadOnly<{|
   config: AreaConfig,
   data: Dataset,
 |}>;
 
-export type ScatterplotType = 'Scatterplot';
 /**
  * size:
  * - number: fixed size (px)
@@ -109,16 +108,9 @@ export type ScatterplotConfig = $ReadOnly<{|
   ...$Exact<XYConfig>,
   size?: number | Field | (Datum => number),
   color?: Field | Color,
+  options?: XYOptions,
 |}>;
 export type ScatterplotProps = $ReadOnly<{|
   config: ScatterplotConfig,
   data: Dataset,
 |}>;
-
-export type BaseChartType = AreaType | BarType | LineType | ScatterplotType;
-
-export type BaseChartConfig =
-  | AreaConfig
-  | BarConfig
-  | LineConfig
-  | ScatterplotConfig;

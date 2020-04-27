@@ -3,10 +3,11 @@ import React, { useMemo } from 'react';
 import { ResponsiveLine } from '@nivo/line';
 
 import { lineProperties } from './chart-props';
-import { validateEncodings } from './validation';
+import { validateEncodings, getXYEncodings } from './validation';
 import {
   type Dataset,
   type Datum,
+  type Field,
   type LineConfig,
   type LineProps as Props,
 } from './input-types';
@@ -27,8 +28,8 @@ function mapToNivoDatum({
   x,
   y,
 }: $ReadOnly<{|
-  x: string,
-  y: string,
+  x: Field,
+  y: Field,
 |}>): Datum => NivoLineDatum {
   // TODO: Validate datatypes in validation step and remove typecast
   return d =>
@@ -42,7 +43,7 @@ function mapToNivoDatum({
  * Convert Base Charts config to Nivo props.
  */
 export function convertToNivo(data: Dataset, config: LineConfig): NivoProps {
-  const validation = validateEncodings(data, config, 'Line');
+  const validation = validateEncodings(data, getXYEncodings(config));
   if (!validation.valid) {
     // TODO: surface errors
     console.error('‼️ Config validation error(s):');

@@ -3,7 +3,7 @@ import React, { useMemo } from 'react';
 import { ResponsiveBar } from '@nivo/bar';
 
 import { barProperties } from './chart-props';
-import { validateEncodings } from './validation';
+import { validateEncodings, getXYEncodings } from './validation';
 
 import {
   type Dataset,
@@ -21,7 +21,7 @@ type NivoProps = $ReadOnly<{|
  * Convert Base Charts config to Nivo props.
  */
 function convertToNivo(data: Dataset, config: BarConfig): NivoProps {
-  const validation = validateEncodings(data, config, 'Bar');
+  const validation = validateEncodings(data, getXYEncodings(config));
   if (!validation.valid) {
     // TODO: surface errors
     console.error('‼️ Config validation error(s):');
@@ -31,7 +31,7 @@ function convertToNivo(data: Dataset, config: BarConfig): NivoProps {
   return {
     indexBy: config.x,
     keys: Array.isArray(config.y) ? config.y : [config.y],
-    groupMode: config.stack ? 'stacked' : 'grouped',
+    groupMode: config.options?.stack ? 'stacked' : 'grouped',
   };
 }
 

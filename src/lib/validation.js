@@ -1,7 +1,5 @@
 // @flow
 import {
-  type BaseChartConfig,
-  type BaseChartType,
   type Dataset,
   type Datum,
   type Field,
@@ -28,69 +26,45 @@ type EncodingsConfig = $ReadOnly<{
 }>;
 
 /**
- * Extract the portion of a config that contains channel encodings.
- * TODO: This config type disambiguation belongs in input-types.
- *   Either move this logic, or consider making each BaseChartType
- *   be member of corresponding BaseChartConfig.
+ * Extract the portion of a XY config that contains channel encodings.
  */
-function toEncodingsConfig(
-  chartConfig: BaseChartConfig,
-  type: BaseChartType
-): EncodingsConfig | null {
-  switch (type) {
-    case 'Area': {
-      const config: AreaConfig = (chartConfig: any);
-      // eslint-disable-next-line no-unused-vars
-      const { options, ...rest } = config;
-      return rest;
-    }
-    case 'Bar': {
-      const config: BarConfig = (chartConfig: any);
-      // eslint-disable-next-line no-unused-vars
-      const { options, stack, ...rest } = config;
-      return rest;
-    }
-    case 'Line': {
-      const config: LineConfig = (chartConfig: any);
-      // eslint-disable-next-line no-unused-vars
-      const { options, ...rest } = config;
-      return rest;
-    }
-    case 'Scatterplot': {
-      // Shallow copy to allow mutation below;
-      // spread type to make writable
-      // TODO: is there a cleaner way to do this?
-      let config: { ...ScatterplotConfig } = { ...(chartConfig: any) };
-      const hasSizeField = config.size && typeof config.size === 'string';
-      const hasColorField =
-        config.color && !Object.hasOwnProperty.call(config.color, 'color');
+export function getXYEncodings(
+  chartConfig: AreaConfig | BarConfig | LineConfig
+): EncodingsConfig {
+  // eslint-disable-next-line no-unused-vars
+  const { options, ...rest } = chartConfig;
+  return (rest: any);
+}
 
-      if (!hasSizeField) delete config.size;
-      if (!hasColorField) delete config.color;
-      delete config.options;
+/**
+ * Extract the portion of a Scatterplot config that contains channel encodings.
+ */
+export function getScatteplotEncodings(
+  chartConfig: ScatterplotConfig
+): EncodingsConfig {
+  // Shallow copy to allow mutation; spread type to make properties writable
+  let config: { ...ScatterplotConfig } = { ...(chartConfig: any) };
+  const hasSizeField = config.size && typeof config.size === 'string';
+  const hasColorField =
+    config.color && !Object.hasOwnProperty.call(config.color, 'color');
 
-      return (config: any);
-    }
-    default:
-      return null;
-  }
+  // prune config entries that are not channel encodings
+  if (!hasSizeField) delete config.size;
+  if (!hasColorField) delete config.color;
+  delete config.options;
+
+  return (config: any);
 }
 
 /**
  * Validate config against passed data, ensuring all field names
  * encoded in the config are present in the data.
- * TODO: type inference: allow only certain datatypes per config channel
+ * TODO: allow only certain datatypes per config channel
  */
 export function validateEncodings(
   data: Dataset,
-  chartConfig: BaseChartConfig,
-  type: BaseChartType
+  config: EncodingsConfig
 ): ConfigValidation {
-  const config = toEncodingsConfig(chartConfig, type);
-  if (!config) {
-    throw new Error('Passed config does not match passed chart type.');
-  }
-
   const sampleDatum = data[0];
   const allEncodedFields = Object.keys(config).reduce(
     (fields, channel) => fields.concat(config[channel]),

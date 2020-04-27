@@ -32,7 +32,7 @@ export default function Chart() {
           config={{
             x: field('country'),
             y: field('kebab'),
-            stack: false,
+            options: { stack: false },
           }}
         />
       </ChartWrapper>
@@ -43,7 +43,7 @@ export default function Chart() {
           config={{
             x: field('country'),
             y: [field('kebab'), field('fries')],
-            stack: false,
+            options: { stack: false },
           }}
         />
       </ChartWrapper>
@@ -59,7 +59,7 @@ export default function Chart() {
               field('hot dog'),
               field('donut'),
             ],
-            stack: true,
+            options: { stack: true },
           }}
         />
       </ChartWrapper>
