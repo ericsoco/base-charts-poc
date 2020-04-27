@@ -67,6 +67,7 @@ export type XYOptions = $ReadOnly<{|
   seriesColors?: $ReadOnlyArray<string>,
 |}>;
 
+export type BarType = 'Bar';
 export type BarConfig = $ReadOnly<{|
   ...$Exact<XYConfig>,
   stack?: boolean,
@@ -76,6 +77,7 @@ export type BarProps = $ReadOnly<{|
   data: Dataset,
 |}>;
 
+export type LineType = 'Line';
 export type LineConfig = $ReadOnly<{|
   ...$Exact<XYConfig>,
 |}>;
@@ -84,6 +86,7 @@ export type LineProps = $ReadOnly<{|
   data: Dataset,
 |}>;
 
+export type AreaType = 'Area';
 export type AreaConfig = $ReadOnly<{|
   ...$Exact<XYConfig>,
 |}>;
@@ -92,6 +95,7 @@ export type AreaProps = $ReadOnly<{|
   data: Dataset,
 |}>;
 
+export type ScatterplotType = 'Scatterplot';
 /**
  * size:
  * - number: fixed size (px)
@@ -110,3 +114,11 @@ export type ScatterplotProps = $ReadOnly<{|
   config: ScatterplotConfig,
   data: Dataset,
 |}>;
+
+export type BaseChartType = AreaType | BarType | LineType | ScatterplotType;
+
+export type BaseChartConfig =
+  | AreaConfig
+  | BarConfig
+  | LineConfig
+  | ScatterplotConfig;

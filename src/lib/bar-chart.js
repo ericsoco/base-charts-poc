@@ -3,7 +3,7 @@ import React, { useMemo } from 'react';
 import { ResponsiveBar } from '@nivo/bar';
 
 import { barProperties } from './chart-props';
-import { validateEncodings, type EncodingsConfig } from './validation';
+import { validateEncodings } from './validation';
 
 import {
   type Dataset,
@@ -18,20 +18,10 @@ type NivoProps = $ReadOnly<{|
 |}>;
 
 /**
- * Isolate only the channel encodings in a config
- * TODO: Use opaque `Field: string` type instead
- */
-function toEncodingsConfig(config: BarConfig): EncodingsConfig {
-  // eslint-disable-next-line no-unused-vars
-  const { options, stack, ...rest } = config;
-  return rest;
-}
-
-/**
  * Convert Base Charts config to Nivo props.
  */
 function convertToNivo(data: Dataset, config: BarConfig): NivoProps {
-  const validation = validateEncodings(data, toEncodingsConfig(config));
+  const validation = validateEncodings(data, config, 'Bar');
   if (!validation.valid) {
     // TODO: surface errors
     console.error('‼️ Config validation error(s):');

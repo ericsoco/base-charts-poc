@@ -1,13 +1,15 @@
 // @flow
-import { type Dataset, type Datum, type Field } from './input-types';
-
-/**
- * Abstract type for the portion of a config
- * that contains channel encodings
- */
-export type EncodingsConfig = $ReadOnly<{
-  [string]: Field | $ReadOnlyArray<Field>,
-}>;
+import {
+  type BaseChartConfig,
+  type BaseChartType,
+  type Dataset,
+  type Datum,
+  type Field,
+  type AreaConfig,
+  type BarConfig,
+  type LineConfig,
+  type ScatterplotConfig,
+} from './input-types';
 
 export type ValidationIssue = $ReadOnly<{|
   field?: string,
@@ -21,6 +23,59 @@ export type ConfigValidation = $ReadOnly<{|
   errors: $ReadOnlyArray<ValidationIssue>,
 |}>;
 
+type EncodingsConfig = $ReadOnly<{
+  [string]: Field | $ReadOnlyArray<Field>,
+}>;
+
+/**
+ * Extract the portion of a config that contains channel encodings.
+ * TODO: This config type disambiguation belongs in input-types.
+ *   Either move this logic, or consider making each BaseChartType
+ *   be member of corresponding BaseChartConfig.
+ */
+function toEncodingsConfig(
+  chartConfig: BaseChartConfig,
+  type: BaseChartType
+): EncodingsConfig | null {
+  switch (type) {
+    case 'Area': {
+      const config: AreaConfig = (chartConfig: any);
+      // eslint-disable-next-line no-unused-vars
+      const { options, ...rest } = config;
+      return rest;
+    }
+    case 'Bar': {
+      const config: BarConfig = (chartConfig: any);
+      // eslint-disable-next-line no-unused-vars
+      const { options, stack, ...rest } = config;
+      return rest;
+    }
+    case 'Line': {
+      const config: LineConfig = (chartConfig: any);
+      // eslint-disable-next-line no-unused-vars
+      const { options, ...rest } = config;
+      return rest;
+    }
+    case 'Scatterplot': {
+      // Shallow copy to allow mutation below;
+      // spread type to make writable
+      // TODO: is there a cleaner way to do this?
+      let config: { ...ScatterplotConfig } = { ...(chartConfig: any) };
+      const hasSizeField = config.size && typeof config.size === 'string';
+      const hasColorField =
+        config.color && !Object.hasOwnProperty.call(config.color, 'color');
+
+      if (!hasSizeField) delete config.size;
+      if (!hasColorField) delete config.color;
+      delete config.options;
+
+      return (config: any);
+    }
+    default:
+      return null;
+  }
+}
+
 /**
  * Validate config against passed data, ensuring all field names
  * encoded in the config are present in the data.
@@ -28,8 +83,14 @@ export type ConfigValidation = $ReadOnly<{|
  */
 export function validateEncodings(
   data: Dataset,
-  config: EncodingsConfig
+  chartConfig: BaseChartConfig,
+  type: BaseChartType
 ): ConfigValidation {
+  const config = toEncodingsConfig(chartConfig, type);
+  if (!config) {
+    throw new Error('Passed config does not match passed chart type.');
+  }
+
   const sampleDatum = data[0];
   const allEncodedFields = Object.keys(config).reduce(
     (fields, channel) => fields.concat(config[channel]),

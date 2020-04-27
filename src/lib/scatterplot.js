@@ -7,7 +7,6 @@ import { scatterplotProperties } from './chart-props';
 import {
   validateEncodings,
   type ConfigValidation,
-  type EncodingsConfig,
   type ValidationIssue,
 } from './validation';
 import {
@@ -42,21 +41,6 @@ type NivoProps = $ReadOnly<{|
   colors?: $ReadOnlyArray<string>,
 |}>;
 
-/**
- * Isolate only the channel encodings in a config
- * TODO: Use opaque `Field: string` type instead
- */
-function toEncodingsConfig(config: ScatterplotConfig): EncodingsConfig {
-  // eslint-disable-next-line no-unused-vars
-  if (config.size && typeof config.size === 'string') {
-    // Flow needs help here despite the typecheck above
-    return (config: any);
-  }
-  // eslint-disable-next-line no-unused-vars
-  const { options, size, ...rest } = config;
-  return rest;
-}
-
 // Scatterplot mark sizes, in pixels
 const DEFAULT_SIZE = 4;
 const DEFAULT_SIZE_RANGE = [4, 40];
@@ -71,7 +55,7 @@ function validateConfig(
   data: Dataset,
   config: ScatterplotConfig
 ): ConfigValidation {
-  const validation = validateEncodings(data, toEncodingsConfig(config));
+  const validation = validateEncodings(data, config, 'Scatterplot');
 
   const configErrors = [
     ...(Array.isArray(config.y) && config.color
