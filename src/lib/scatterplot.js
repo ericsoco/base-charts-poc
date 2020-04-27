@@ -10,12 +10,14 @@ import {
   type ConfigValidation,
   type ValidationIssue,
 } from './validation';
+import { keys } from './utils';
 import {
   type Field,
   type Dataset,
   type Datum,
   type ScatterplotConfig,
   type ScatterplotProps as Props,
+  type ScatterplotSizeAccessor,
 } from './input-types';
 
 type NivoScatterplotDatum = $ReadOnly<{|
@@ -32,10 +34,7 @@ type NivoNodeSizeConfig = $ReadOnly<{|
   values: [number, number],
   sizes: [number, number],
 |}>;
-type NivoNodeSize =
-  | number
-  | (NivoScatterplotDatum => number)
-  | NivoNodeSizeConfig;
+type NivoNodeSize = number | NivoNodeSizeConfig | ScatterplotSizeAccessor;
 type NivoProps = $ReadOnly<{|
   data: $ReadOnlyArray<NivoScatterplotDataset>,
   nodeSize: NivoNodeSize,
@@ -83,14 +82,13 @@ function validateData(
   data: Dataset,
   config: ScatterplotConfig
 ): $ReadOnlyArray<ValidationIssue> {
-  const sizeField = typeof config.size === 'string' ? config.size : null;
-  const yKeys = Array.isArray(config.y) ? config.y : [config.y];
-  const colorField: Field | null =
-    config.color && !config.color.color ? (config.color: any) : null;
+  const yKeys = keys(config.y);
+  const sizeField = typeof config.size === 'object' ? config.size.key : null;
+  const colorField = typeof config.color === 'object' ? config.color.key : null;
   return data
     .filter(
       d =>
-        !Number.isFinite(d[config.x]) ||
+        !Number.isFinite(d[config.x.key]) ||
         yKeys.some(key => !Number.isFinite(d[key])) ||
         (sizeField && !Number.isFinite(d[sizeField])) ||
         (colorField && !d[colorField])
@@ -137,17 +135,10 @@ function mapToNivoDatum({
   // TODO: Validate datatypes in validation step and remove typecast
   return d =>
     ({
-      x: d[x],
-      y: d[y],
-      ...(size ? { size: d[size] } : {}),
+      x: d[x.key],
+      y: d[y.key],
+      ...(size ? { size: d[size.key] } : {}),
     }: any);
-}
-
-function getFixedColor(config: ScatterplotConfig): string | null {
-  if (config.color) {
-    if (config.color.color) return (config.color: any).color;
-  }
-  return null;
 }
 
 /**
@@ -166,34 +157,34 @@ export function convertToNivo(
 
   const validData = removeInvalidData(data, validation);
 
-  const size = typeof config.size === 'string' ? config.size : null;
-  const nodeSize: NivoNodeSize = size
+  const sizeField = typeof config.size === 'object' ? config.size : null;
+  const nodeSize: NivoNodeSize = sizeField
     ? {
         key: 'size',
-        values: extent(validData, d => d[size]),
+        values: extent(validData, d => d[sizeField.key]),
         sizes: DEFAULT_SIZE_RANGE,
       }
-    : // Already switched on size: string above
-      ((config.size: any): number) || DEFAULT_SIZE;
+    : ((config.size: any): number | ScatterplotSizeAccessor) || DEFAULT_SIZE;
 
-  const fixedColor = getFixedColor(config);
+  const { color } = config;
+  const fixedColor = typeof color === 'string' ? color : null;
 
   let nivoData;
   if (Array.isArray(config.y)) {
     // multi-series
-    nivoData = config.y.map(key => ({
-      id: key,
+    nivoData = config.y.map(field => ({
+      id: field.key,
       data: validData.map(
         mapToNivoDatum({
           x: config.x,
-          y: key,
-          size,
+          y: field,
+          size: sizeField,
         })
       ),
     }));
-  } else if (config.color && fixedColor === null) {
+  } else if (typeof color === 'object') {
     // color by field
-    const grouped = group(validData, d => d[config.color]);
+    const grouped = group(validData, d => d[color.key]);
     nivoData = Array.from(grouped.keys(), key => ({
       id: key,
       data: grouped.get(key).map(
@@ -201,7 +192,7 @@ export function convertToNivo(
           x: config.x,
           // Already switched on y: string[] above
           y: ((config.y: any): Field),
-          size,
+          size: sizeField,
         })
       ),
     }));
@@ -214,7 +205,7 @@ export function convertToNivo(
           mapToNivoDatum({
             x: config.x,
             y: config.y,
-            size,
+            size: sizeField,
           })
         ),
       },

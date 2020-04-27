@@ -12,24 +12,53 @@
  * passed to a Base Charts chart component.
  */
 export type Datum = $ReadOnly<{
-  [Field]: number | string | boolean | null,
+  [string]: number | string | boolean | null,
 }>;
 export type Dataset = $ReadOnlyArray<Datum>;
 
 /**
- * Type and helper for field names used in chart configs.
+ * Datatypes supported by Base Charts.
  */
-export opaque type Field: string = string;
-export function field(field: string): Field {
-  return field;
-}
+export const DATATYPES = {
+  STRING: 'STRING',
+  NUMBER: 'NUMBER',
+  TIME: 'TIME',
+  BOOL: 'BOOL',
+};
+export type Datatype = $Keys<typeof DATATYPES>;
 
 /**
- * Type and helper for color strings used in chart configs.
+ * Fields used in chart configs, and constructors by datatype.
  */
-export type Color = $ReadOnly<{| color: string |}>;
-export function color(color: string): Color {
-  return { color };
+export type Field = $ReadOnly<{|
+  key: string,
+  type: Datatype,
+  format?: string,
+|}>;
+export function string(key: string): Field {
+  return {
+    key,
+    type: DATATYPES.STRING,
+  };
+}
+export function number(key: string): Field {
+  return {
+    key,
+    type: DATATYPES.NUMBER,
+  };
+}
+export function time(key: string, format: string): Field {
+  return {
+    key,
+    type: DATATYPES.TIME,
+    format,
+  };
+}
+export function bool(key: string): Field {
+  return {
+    key,
+    type: DATATYPES.BOOL,
+  };
 }
 
 // Base config type for XY-charts
@@ -95,6 +124,7 @@ export type AreaProps = $ReadOnly<{|
   data: Dataset,
 |}>;
 
+export type ScatterplotSizeAccessor = ({ [string]: mixed }) => number;
 /**
  * size:
  * - number: fixed size (px)
@@ -106,8 +136,8 @@ export type AreaProps = $ReadOnly<{|
  */
 export type ScatterplotConfig = $ReadOnly<{|
   ...$Exact<XYConfig>,
-  size?: number | Field | (Datum => number),
-  color?: Field | Color,
+  size?: number | Field | ScatterplotSizeAccessor,
+  color?: Field | string,
   options?: XYOptions,
 |}>;
 export type ScatterplotProps = $ReadOnly<{|

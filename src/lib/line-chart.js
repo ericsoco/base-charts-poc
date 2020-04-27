@@ -34,8 +34,8 @@ function mapToNivoDatum({
   // TODO: Validate datatypes in validation step and remove typecast
   return d =>
     ({
-      x: d[x],
-      y: d[y],
+      x: d[x.key],
+      y: d[y.key],
     }: any);
 }
 
@@ -50,13 +50,13 @@ export function convertToNivo(data: Dataset, config: LineConfig): NivoProps {
     validation.errors.forEach(e => console.error(e));
   }
 
-  const keys = Array.isArray(config.y) ? config.y : [config.y];
-  const nivoData = keys.map(key => ({
-    id: key,
+  const fields = Array.isArray(config.y) ? config.y : [config.y];
+  const nivoData = fields.map(field => ({
+    id: field.key,
     data: data.map(
       mapToNivoDatum({
         x: config.x,
-        y: key,
+        y: field,
       })
     ),
   }));

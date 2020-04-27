@@ -4,7 +4,7 @@ import { ResponsiveBar } from '@nivo/bar';
 
 import { barProperties } from './chart-props';
 import { validateEncodings, getXYEncodings } from './validation';
-
+import { keys } from './utils';
 import {
   type Dataset,
   type BarConfig,
@@ -29,8 +29,8 @@ function convertToNivo(data: Dataset, config: BarConfig): NivoProps {
   }
 
   return {
-    indexBy: config.x,
-    keys: Array.isArray(config.y) ? config.y : [config.y],
+    indexBy: config.x.key,
+    keys: keys(config.y),
     groupMode: config.options?.stack ? 'stacked' : 'grouped',
   };
 }

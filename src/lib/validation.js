@@ -8,6 +8,7 @@ import {
   type LineConfig,
   type ScatterplotConfig,
 } from './input-types';
+import { keys } from './utils';
 
 export type ValidationIssue = $ReadOnly<{|
   field?: string,
@@ -66,16 +67,21 @@ export function validateEncodings(
   config: EncodingsConfig
 ): ConfigValidation {
   const sampleDatum = data[0];
-  const allEncodedFields = Object.keys(config).reduce(
-    (fields, channel) => fields.concat(config[channel]),
+  const allEncodedKeys = Object.keys(config).reduce(
+    (fields, channel) =>
+      fields.concat(
+        Array.isArray(config[channel])
+          ? keys(config[channel])
+          : [config[channel].key]
+      ),
     []
   );
 
-  const errors = allEncodedFields
-    .filter(field => !Object.hasOwnProperty.call(sampleDatum, field))
-    .map(field => ({
-      field,
-      error: new Error(`Field '${field}' is missing in passed dataset.`),
+  const errors = allEncodedKeys
+    .filter(key => !Object.hasOwnProperty.call(sampleDatum, key))
+    .map(key => ({
+      field: key,
+      error: new Error(`Field '${key}' is missing in passed dataset.`),
     }));
 
   return {

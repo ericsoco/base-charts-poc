@@ -14,6 +14,7 @@ const defaultMargin = {
 
 const defaultColor = {
   // TODO: create 'baseCharts' scheme? one per primary color?
+  // TODO: pull these colors from Base Web theme where relevant
   // colors: { scheme: 'nivo' },
   colors: [
     // Primary color palette
