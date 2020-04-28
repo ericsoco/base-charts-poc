@@ -12,7 +12,7 @@ import { keys } from './utils';
 
 export type ValidationIssue = $ReadOnly<{|
   field?: string,
-  datum?: Datum,
+  data?: $ReadOnlyArray<Datum>,
   error: Error,
 |}>;
 
@@ -47,7 +47,7 @@ export function getScatteplotEncodings(
   let config: { ...ScatterplotConfig } = { ...(chartConfig: any) };
   const hasSizeField = config.size && typeof config.size === 'string';
   const hasColorField =
-    config.color && !Object.hasOwnProperty.call(config.color, 'color');
+    config.color && Object.hasOwnProperty.call(config.color, 'key');
 
   // prune config entries that are not channel encodings
   if (!hasSizeField) delete config.size;

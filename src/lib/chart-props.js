@@ -109,7 +109,12 @@ export const barProperties = {
     },
   },
   ...defaultGrid,
-  legends: [defaultLegend],
+  legends: [
+    {
+      ...defaultLegend,
+      dataFrom: 'keys',
+    },
+  ],
   ...defaultAnimationProps,
 
   padding: 0.3,

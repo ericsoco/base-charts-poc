@@ -85,31 +85,36 @@ function validateData(
   const yKeys = keys(config.y);
   const sizeField = typeof config.size === 'object' ? config.size.key : null;
   const colorField = typeof config.color === 'object' ? config.color.key : null;
-  return data
-    .filter(
-      d =>
-        !Number.isFinite(d[config.x.key]) ||
-        yKeys.some(key => !Number.isFinite(d[key])) ||
-        (sizeField && !Number.isFinite(d[sizeField])) ||
-        (colorField && !d[colorField])
-    )
-    .map(d => ({
-      datum: d,
-      error: new Error(
-        `Invalid value found at encoded field. Dropping invalid datum: ${JSON.stringify(
-          d
-        )}`
-      ),
-    }));
+  const invalidData = data.filter(
+    d =>
+      !Number.isFinite(d[config.x.key]) ||
+      yKeys.some(key => !Number.isFinite(d[key])) ||
+      (sizeField && !Number.isFinite(d[sizeField])) ||
+      (colorField && !d[colorField])
+  );
+  return invalidData.length > 0
+    ? [
+        {
+          data: invalidData,
+          error: new Error(
+            'Invalid value found at encoded field. Dropping invalid data:'
+          ),
+        },
+      ]
+    : [];
 }
 
 function removeInvalidData(data, validation) {
   let mutableInvalidDataMap = new Map(
-    validation.warnings
-      .filter(warning => warning.datum)
-      .map(warning => [warning.datum, true])
+    validation.warnings.reduce(
+      (invalidData, warning) =>
+        invalidData.concat((warning.data || []).map(d => [d, true])),
+      []
+    )
   );
-  validation.warnings.forEach(warning => console.warn(warning.error));
+  validation.warnings.forEach(warning =>
+    console.warn(warning.error, warning.data)
+  );
   return mutableInvalidDataMap.size
     ? data.filter(d => {
         if (mutableInvalidDataMap.get(d)) {
