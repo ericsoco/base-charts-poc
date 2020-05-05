@@ -1,5 +1,7 @@
 // @flow
 
+import { DATATYPES } from './input-types';
+
 const TOP_MARGIN = 40;
 const defaultMargin = {
   // NOTE: Extra margins leave room for legends (top)
@@ -92,22 +94,17 @@ const defaultAnimationProps = {
   motionDamping: 15,
 };
 
+export const datatypeToScaleType = {
+  [DATATYPES.STRING]: 'point',
+  [DATATYPES.NUMBER]: 'linear',
+  [DATATYPES.TIME]: 'time',
+  [DATATYPES.BOOL]: 'point',
+};
+
 export const barProperties = {
   ...defaultMargin,
   ...defaultColor,
-  ...{
-    ...defaultAxis,
-    axisBottom: {
-      ...defaultAxis.axisBottom,
-      // TODO: make this dynamic, based on data
-      legend: 'TODO: y-axis label here',
-    },
-    axisLeft: {
-      ...defaultAxis.axisLeft,
-      // TODO: make this dynamic, based on data
-      legend: 'TODO: x-axis label here',
-    },
-  },
+  ...defaultAxis,
   ...defaultGrid,
   legends: [
     {
@@ -150,32 +147,11 @@ export const barProperties = {
 export const lineProperties = {
   ...defaultMargin,
   ...defaultColor,
-  ...{
-    ...defaultAxis,
-    axisBottom: {
-      ...defaultAxis.axisBottom,
-      format: '%b %d',
-      // TODO: make this dynamic, based on data
-      legend: 'TODO: y-axis label here',
-    },
-    axisLeft: {
-      ...defaultAxis.axisLeft,
-      // TODO: make this dynamic, based on data
-      legend: 'TODO: x-axis label here',
-    },
-  },
+  ...defaultAxis,
   ...defaultGrid,
   legends: [defaultLegend],
   ...defaultAnimationProps,
 
-  xScale: {
-    // TODO: derive scale types from passed data
-    // type: 'point',
-    type: 'time',
-    // TODO: derive formatting from passed data
-    format: '%Y-%m-%d',
-    precision: 'day',
-  },
   yScale: {
     type: 'linear',
     min: 'auto',
@@ -183,8 +159,6 @@ export const lineProperties = {
     stacked: false,
     reverse: false,
   },
-  // TODO: derive formatting from passed data
-  xFormat: 'time:%Y-%m-%d',
 
   curve: 'linear',
 

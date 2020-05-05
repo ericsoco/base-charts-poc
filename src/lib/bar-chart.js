@@ -17,6 +17,14 @@ type NivoProps = $ReadOnly<{|
   groupMode: 'grouped' | 'stacked',
 |}>;
 
+type NivoAxisOverrides = {
+  legend: string,
+};
+type NivoOverrides = $ReadOnly<{|
+  axisBottom: NivoAxisOverrides,
+  axisLeft: NivoAxisOverrides,
+|}>;
+
 /**
  * Convert Base Charts config to Nivo props.
  */
@@ -35,7 +43,32 @@ function convertToNivo(data: Dataset, config: BarConfig): NivoProps {
   };
 }
 
+/**
+ * Derive overrides for chart properties from Base Charts config.
+ */
+function getPropsOverrides(config: BarConfig): NivoOverrides {
+  const axisBottom = {
+    ...barProperties.axisBottom,
+    legend: config.x.key,
+  };
+  const axisLeft = {
+    ...barProperties.axisLeft,
+    legend: keys(config.y).join(','),
+  };
+  return {
+    axisBottom,
+    axisLeft,
+  };
+}
+
 export default function BaseBar({ data, config }: Props) {
   const nivoProps = useMemo(() => convertToNivo(data, config), [data, config]);
-  return <ResponsiveBar data={data} {...barProperties} {...nivoProps} />;
+  return (
+    <ResponsiveBar
+      data={data}
+      {...barProperties}
+      {...getPropsOverrides(config)}
+      {...nivoProps}
+    />
+  );
 }

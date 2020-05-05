@@ -1,98 +1,98 @@
 [
   {
     "datestr": "2020-02-01",
-    "japan": 59,
-    "france": 141,
-    "usa": 197,
-    "germany": 164,
-    "norway": 253
+    "japan": 59.9,
+    "france": 141.1,
+    "usa": 197.7,
+    "germany": 164.4,
+    "norway": 253.3
   },
   {
     "datestr": "2020-02-02",
-    "japan": 110,
-    "france": 156,
-    "usa": 190,
-    "germany": 147,
-    "norway": 89
+    "japan": 110.0,
+    "france": 156.6,
+    "usa": 190.0,
+    "germany": 147.7,
+    "norway": 89.9
   },
   {
     "datestr": "2020-02-03",
-    "japan": 216,
-    "france": 69,
-    "usa": 157,
-    "germany": 99,
-    "norway": 144
+    "japan": 216.6,
+    "france": 69.9,
+    "usa": 157.7,
+    "germany": 99.9,
+    "norway": 144.4
   },
   {
     "datestr": "2020-02-04",
-    "japan": 197,
-    "france": 129,
-    "usa": 25,
-    "germany": 196,
-    "norway": 182
+    "japan": 197.7,
+    "france": 129.9,
+    "usa": 25.5,
+    "germany": 196.6,
+    "norway": 182.2
   },
   {
     "datestr": "2020-02-05",
-    "japan": 173,
-    "france": 284,
-    "usa": 95,
-    "germany": 194,
-    "norway": 41
+    "japan": 173.3,
+    "france": 284.4,
+    "usa": 95.5,
+    "germany": 194.4,
+    "norway": 41.1
   },
   {
     "datestr": "2020-02-06",
-    "japan": 180,
-    "france": 146,
-    "usa": 195,
-    "germany": 146,
-    "norway": 295
+    "japan": 180.0,
+    "france": 146.6,
+    "usa": 195.5,
+    "germany": 146.6,
+    "norway": 295.5
   },
   {
     "datestr": "2020-02-07",
-    "japan": 44,
-    "france": 101,
-    "usa": 71,
-    "germany": 102,
-    "norway": 226
+    "japan": 44.4,
+    "france": 101.1,
+    "usa": 71.1,
+    "germany": 102.2,
+    "norway": 226.6
   },
   {
     "datestr": "2020-02-08",
-    "japan": 92,
-    "france": 145,
-    "usa": 100,
-    "germany": 130,
-    "norway": 59
+    "japan": 92.2,
+    "france": 145.5,
+    "usa": 100.0,
+    "germany": 130.0,
+    "norway": 59.9
   },
   {
     "datestr": "2020-02-09",
-    "japan": 237,
-    "france": 189,
-    "usa": 14,
-    "germany": 31,
-    "norway": 165
+    "japan": 237.7,
+    "france": 189.9,
+    "usa": 14.4,
+    "germany": 31.1,
+    "norway": 165.5
   },
   {
     "datestr": "2020-02-10",
-    "japan": 94,
-    "france": 204,
-    "usa": 6,
-    "germany": 198,
-    "norway": 93
+    "japan": 94.4,
+    "france": 204.4,
+    "usa": 6.6,
+    "germany": 198.8,
+    "norway": 93.3
   },
   {
     "datestr": "2020-02-11",
-    "japan": 268,
-    "france": 209,
-    "usa": 205,
-    "germany": 140,
-    "norway": 248
+    "japan": 268.8,
+    "france": 209.9,
+    "usa": 205.5,
+    "germany": 140.0,
+    "norway": 248.8
   },
   {
     "datestr": "2020-02-12",
-    "japan": 25,
-    "france": 176,
-    "usa": 292,
-    "germany": 102,
-    "norway": 214
+    "japan": 25.5,
+    "france": 176.6,
+    "usa": 292.2,
+    "germany": 102.2,
+    "norway": 214.4
   }
 ]

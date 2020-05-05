@@ -2,9 +2,11 @@
 import React, { useMemo } from 'react';
 import { ResponsiveLine } from '@nivo/line';
 
-import { lineProperties } from './chart-props';
+import { lineProperties, datatypeToScaleType } from './chart-props';
 import { validateEncodings, getXYEncodings } from './validation';
+import { keys } from './utils';
 import {
+  DATATYPES,
   type Dataset,
   type Datum,
   type Field,
@@ -22,6 +24,25 @@ type NivoLineDataset = $ReadOnly<{|
 |}>;
 type NivoProps = $ReadOnly<{|
   data: $ReadOnlyArray<NivoLineDataset>,
+|}>;
+
+type NivoAxisOverrides = {
+  format?: string,
+  legend: string,
+};
+type NivoXScale = {
+  // TODO: enumerate these in chart-props and use in datatypeToScaleType
+  type: 'point' | 'linear' | 'time',
+  format?: string,
+  // TODO: enumerate available values from Nivo
+  precision?: string,
+};
+type NivoOverrides = $ReadOnly<{|
+  axisBottom: NivoAxisOverrides,
+  axisLeft: NivoAxisOverrides,
+  xScale: NivoXScale,
+  xFormat?: string,
+  yFormat?: string,
 |}>;
 
 function mapToNivoDatum({
@@ -66,7 +87,67 @@ export function convertToNivo(data: Dataset, config: LineConfig): NivoProps {
   };
 }
 
+/**
+ * Derive overrides for chart properties from Base Charts config.
+ * TODO: Much of this is generalizable to other XY chart types;
+ * move it somewhere accessible to those.
+ */
+function getPropsOverrides(config: LineConfig): NivoOverrides {
+  // Derive input formatting
+  const xScaleFormatting = config.x.format
+    ? {
+        format: config.x.format,
+        // TODO: how to / should we expose this in Base Charts API?
+        precision: 'day',
+      }
+    : {};
+  const xScale = {
+    type: datatypeToScaleType[config.x.type],
+    ...xScaleFormatting,
+  };
+
+  // Derive axis laebl formatting
+  const axis = config.options?.axis;
+
+  const axisXFormat = axis?.x?.format || config.x.format;
+  const axisBottom = {
+    ...lineProperties.axisBottom,
+    ...(axisXFormat ? { format: axisXFormat } : {}),
+    legend: axis?.x?.label || config.x.key,
+  };
+
+  const axisYFormat = axis?.y?.format;
+  const axisLeft = {
+    ...lineProperties.axisLeft,
+    ...(axisYFormat !== null ? { format: axisYFormat } : {}),
+    legend: axis?.y?.label || keys(config.y).join(','),
+  };
+
+  // Derive label/tooltip formatting
+  const xIsTime = config.x.type === DATATYPES.TIME;
+  const labelsXFormat = config.options?.labels?.format?.x;
+  const labelsYFormat = config.options?.labels?.format?.y;
+  const xFormat = labelsXFormat
+    ? `${xIsTime ? 'time:' : ''}${labelsXFormat}`
+    : null;
+  const yFormat = labelsYFormat || null;
+
+  return {
+    axisBottom,
+    axisLeft,
+    xScale,
+    ...(xFormat ? { xFormat } : {}),
+    ...(yFormat ? { yFormat } : {}),
+  };
+}
+
 export default function BaseLine({ data, config }: Props) {
   const nivoProps = useMemo(() => convertToNivo(data, config), [data, config]);
-  return <ResponsiveLine {...lineProperties} {...nivoProps} />;
+  return (
+    <ResponsiveLine
+      {...lineProperties}
+      {...getPropsOverrides(config)}
+      {...nivoProps}
+    />
+  );
 }

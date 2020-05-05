@@ -75,12 +75,25 @@ export default function Chart() {
         />
       </ChartWrapper>
       <ChartWrapper>
-        <ChartTitle>{'Line Chart: Multi-series'}</ChartTitle>
+        <ChartTitle>
+          {'Line Chart: Multi-series, w/ custom formatting'}
+        </ChartTitle>
         <BaseLine
           data={TimeSeriesData}
           config={{
             x: time('datestr', '%Y-%m-%d'),
             y: [number('japan'), number('france')],
+            options: {
+              axis: {
+                x: { format: '%b %d' },
+                y: { format: '~r' },
+              },
+              labels: {
+                format: {
+                  y: '.1f',
+                },
+              },
+            },
           }}
         />
       </ChartWrapper>

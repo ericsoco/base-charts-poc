@@ -35,25 +35,42 @@ export type Field = $ReadOnly<{|
   type: Datatype,
   format?: string,
 |}>;
+
+/**
+ * Construct a string column for a chart config.
+ */
 export function string(key: string): Field {
   return {
     key,
     type: DATATYPES.STRING,
   };
 }
+
+/**
+ * Construct a number column for a chart config.
+ */
 export function number(key: string): Field {
   return {
     key,
     type: DATATYPES.NUMBER,
   };
 }
-export function time(key: string, format: string): Field {
+
+/**
+ * Construct a time column for a chart config.
+ * Requires a d3-time-format.
+ */
+export function time(key: string, format: string): $NonMaybeType<Field> {
   return {
     key,
     type: DATATYPES.TIME,
     format,
   };
 }
+
+/**
+ * Construct a boolean column for a chart config.
+ */
 export function bool(key: string): Field {
   return {
     key,
@@ -67,29 +84,30 @@ export type XYConfig = $ReadOnly<{
   y: Field | $ReadOnlyArray<Field>,
 }>;
 
-// d3-format strings to specify input/output formatting
-type FormatOption = $ReadOnly<{|
-  // Format of values within source dataset
-  input: string,
-  // Format used to render values within axis ticks and tooltip
-  output: string,
-|}>;
-
 // Axis display options
 type AxisOption = $ReadOnly<{|
-  label: string,
+  format?: string,
+  label?: string,
+|}>;
+
+// d3-format strings designate formatting for input
+// and output (axis ticks, tooltip, labels)
+type FormatOption = $ReadOnly<{|
+  x?: string,
+  y?: string,
 |}>;
 
 // Base options map for XY-charts
 export type XYOptions = $ReadOnly<{|
-  format?: $ReadOnly<{
-    x?: FormatOption,
-    y?: FormatOption,
-  }>,
+  // Axis formatting and labeling
   axis?: $ReadOnly<{
     x?: AxisOption,
     y?: AxisOption,
   }>,
+  // Tooltip and label/annotation formatting
+  labels?: $ReadOnly<{|
+    format?: FormatOption,
+  |}>,
   // Discrete series keys in order of mapping to Base Charts color scale
   seriesColors?: $ReadOnlyArray<string>,
 |}>;
