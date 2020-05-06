@@ -106,7 +106,7 @@ function getPropsOverrides(config: LineConfig): NivoOverrides {
     ...xScaleFormatting,
   };
 
-  // Derive axis laebl formatting
+  // Derive axis label formatting
   const axis = config.options?.axis;
 
   const axisXFormat = axis?.x?.format || config.x.format;
@@ -132,12 +132,21 @@ function getPropsOverrides(config: LineConfig): NivoOverrides {
     : null;
   const yFormat = labelsYFormat || null;
 
+  // Sometimes Flow makes my eyes bleed
+  // https://github.com/facebook/flow/issues/8186
+  const xf: $ReadOnly<{|
+    xFormat?: string,
+  |}> = xFormat ? { xFormat } : { ...null };
+  const yf: $ReadOnly<{|
+    yFormat?: string,
+  |}> = yFormat ? { yFormat } : { ...null };
+
   return {
     axisBottom,
     axisLeft,
     xScale,
-    ...(xFormat ? { xFormat } : {}),
-    ...(yFormat ? { yFormat } : {}),
+    ...xf,
+    ...yf,
   };
 }
 

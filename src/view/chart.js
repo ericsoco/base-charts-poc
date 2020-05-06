@@ -65,6 +65,17 @@ export default function Chart() {
         />
       </ChartWrapper>
       <ChartWrapper>
+        <ChartTitle>{'Bar Chart: Horizontal'}</ChartTitle>
+        <BaseBar
+          data={CategoricalData}
+          config={{
+            x: string('country'),
+            y: number('kebab'),
+            options: { stack: false, baseline: 'left' },
+          }}
+        />
+      </ChartWrapper>
+      <ChartWrapper>
         <ChartTitle>{'Line Chart'}</ChartTitle>
         <BaseLine
           data={TimeSeriesData}

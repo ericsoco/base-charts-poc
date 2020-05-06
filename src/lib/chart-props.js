@@ -114,34 +114,17 @@ export const barProperties = {
   ],
   ...defaultAnimationProps,
 
-  padding: 0.3,
-  innerPadding: 0,
   minValue: 'auto',
   maxValue: 'auto',
-
-  groupMode: 'stacked',
-  layout: 'vertical',
-  reverse: false,
-
   colorBy: 'id',
+
+  padding: 0.3,
+  innerPadding: 0,
   borderRadius: 0,
   borderWidth: 0,
-  borderColor: {
-    from: 'color',
-    modifiers: [['darker', 1.6]],
-  },
 
   enableLabel: false,
-  labelSkipWidth: 12,
-  labelSkipHeight: 12,
-  labelTextColor: {
-    from: 'color',
-    modifiers: [['darker', 1.6]],
-  },
-
   isInteractive: true,
-  'custom tooltip example': false,
-  tooltip: null,
 };
 
 export const lineProperties = {
@@ -189,11 +172,8 @@ export const lineProperties = {
 export const areaProperties = {
   ...lineProperties,
   yScale: {
-    type: 'linear',
-    min: 'auto',
-    max: 'auto',
+    ...lineProperties.yScale,
     stacked: true,
-    reverse: false,
   },
 
   enablePoints: false,
