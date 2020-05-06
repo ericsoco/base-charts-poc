@@ -1,6 +1,8 @@
 // @flow
 
-import { DATATYPES } from './input-types';
+//
+// Nivo chart props, configured to meet Base Charts design constraints
+//
 
 const TOP_MARGIN = 40;
 const defaultMargin = {
@@ -92,13 +94,6 @@ const defaultAnimationProps = {
   animate: true,
   motionStiffness: 90,
   motionDamping: 15,
-};
-
-export const datatypeToScaleType = {
-  [DATATYPES.STRING]: 'point',
-  [DATATYPES.NUMBER]: 'linear',
-  [DATATYPES.TIME]: 'time',
-  [DATATYPES.BOOL]: 'point',
 };
 
 export const barProperties = {
