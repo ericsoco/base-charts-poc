@@ -37,6 +37,7 @@ function mapToNivoDatum({
     ({
       x: d[x.key],
       y: d[y.key],
+      // flowlint-next-line unclear-type:off
     }: any);
 }
 

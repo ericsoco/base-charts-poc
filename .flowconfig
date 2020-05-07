@@ -8,8 +8,15 @@
 [libs]
 
 [lints]
+unclear-type=error
+untyped-import=error
+untyped-type-import=error
+sketchy-null=off
 
 [options]
+include_warnings=true
+suppress_comment=\\(.\\|\n\\)*\\$AssertError
+suppress_comment=\\(.\\|\n\\)*\\$FlowFixMe
 esproposal.optional_chaining=enable
 
 [strict]

@@ -10,9 +10,12 @@ import {
   number,
   time,
 } from '../lib';
+
+// flowlint untyped-import:off
 import CategoricalData from '../fixtures/categorical-data.json';
 import ContinuousData from '../fixtures/continuous-data.json';
 import TimeSeriesData from '../fixtures/time-series-data.json';
+// flowlint untyped-import:error
 
 const ChartWrapper: BareStyledComponent = styled.div`
   width: 40rem;

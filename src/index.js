@@ -13,6 +13,7 @@ import App from './view/app';
 import FourOhFour from './view/404';
 
 // TODO: Fix this Flow type workaround
+// flowlint-next-line unclear-type:off
 const store: Store<State, *, *> = createStore((rootReducer: any), initialState);
 const appElement = document.getElementById('app');
 

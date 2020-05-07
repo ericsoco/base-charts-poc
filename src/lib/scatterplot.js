@@ -143,6 +143,7 @@ function mapToNivoDatum({
       x: d[x.key],
       y: d[y.key],
       ...(size ? { size: d[size.key] } : {}),
+      // flowlint-next-line unclear-type:off
     }: any);
 }
 
@@ -169,7 +170,8 @@ export function convertToNivo(
         values: extent(validData, d => d[sizeField.key]),
         sizes: DEFAULT_SIZE_RANGE,
       }
-    : ((config.size: any): number | ScatterplotSizeAccessor) || DEFAULT_SIZE;
+    : // flowlint-next-line unclear-type:off
+      ((config.size: any): number | ScatterplotSizeAccessor) || DEFAULT_SIZE;
 
   const { color } = config;
   const fixedColor = typeof color === 'string' ? color : null;
@@ -196,6 +198,7 @@ export function convertToNivo(
         mapToNivoDatum({
           x: config.x,
           // Already switched on y: string[] above
+          // flowlint-next-line unclear-type:off
           y: ((config.y: any): Field),
           size: sizeField,
         })

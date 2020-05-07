@@ -34,6 +34,8 @@ export function getXYEncodings(
 ): EncodingsConfig {
   // eslint-disable-next-line no-unused-vars
   const { options, ...rest } = chartConfig;
+
+  // flowlint-next-line unclear-type:off
   return (rest: any);
 }
 
@@ -44,6 +46,7 @@ export function getScatteplotEncodings(
   chartConfig: ScatterplotConfig
 ): EncodingsConfig {
   // Shallow copy to allow mutation; spread type to make properties writable
+  // flowlint-next-line unclear-type:off
   let config: { ...ScatterplotConfig } = { ...(chartConfig: any) };
   const hasSizeField = config.size && typeof config.size === 'string';
   const hasColorField =
@@ -54,6 +57,7 @@ export function getScatteplotEncodings(
   if (!hasColorField) delete config.color;
   delete config.options;
 
+  // flowlint-next-line unclear-type:off
   return (config: any);
 }
 

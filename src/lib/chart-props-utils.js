@@ -57,16 +57,14 @@ export function getXYPropsOverrides(
   const xScaleType = datatypeToScaleType[config.x.type];
   const xScale =
     xScaleType === 'time'
-      ? {
-          type: 'time',
-          ...(config.x.format
-            ? {
-                format: config.x.format,
-                // TODO: how to / should we expose this in Base Charts API?
-                precision: 'day',
-              }
-            : {}),
-        }
+      ? config.x.format
+        ? {
+            type: 'time',
+            format: config.x.format,
+            // TODO: how to / should we expose this in Base Charts API?
+            precision: 'day',
+          }
+        : { type: 'time' }
       : xScaleType === 'point'
       ? { type: 'point' }
       : { type: 'linear' };
@@ -77,16 +75,20 @@ export function getXYPropsOverrides(
   const axis = config.options?.axis;
 
   const axisXFormat = axis?.x?.format || config.x.format;
-  const axisBottom = {
+  const axisBottom: AxisOverrides = ({
     ...(axisXFormat ? { format: axisXFormat } : {}),
     legend: axis?.x?.label || config.x.key,
-  };
+    // Flow can't handle spreads into Exact types
+    // flowlint-next-line unclear-type:off
+  }: any);
 
   const axisYFormat = axis?.y?.format;
-  const axisLeft = {
+  const axisLeft = ({
     ...(axisYFormat !== null ? { format: axisYFormat } : {}),
     legend: axis?.y?.label || keys(config.y).join(','),
-  };
+    // Flow can't handle spreads into Exact types
+    // flowlint-next-line unclear-type:off
+  }: any);
 
   // Derive label/tooltip formatting
   const xIsTime = config.x.type === DATATYPES.TIME;

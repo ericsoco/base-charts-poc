@@ -16,7 +16,6 @@ type NivoProps = $ReadOnly<{|
   keys: $ReadOnlyArray<string>,
   groupMode: 'grouped' | 'stacked',
   layout: 'vertical' | 'horizontal',
-  reverse: boolean,
 |}>;
 
 type NivoAxisOverrides = {
@@ -38,15 +37,13 @@ function convertToNivo(data: Dataset, config: BarConfig): NivoProps {
     validation.errors.forEach(e => console.error(e));
   }
 
-  const baseline = config.options?.baseline;
+  const orientation = config.options?.orientation;
 
   return {
     indexBy: config.x.key,
     keys: keys(config.y),
     groupMode: config.options?.stack ? 'stacked' : 'grouped',
-    layout:
-      baseline === 'left' || baseline === 'right' ? 'horizontal' : 'vertical',
-    reverse: baseline === 'top' || baseline === 'right',
+    layout: orientation === 'horizontal' ? 'horizontal' : 'vertical',
   };
 }
 

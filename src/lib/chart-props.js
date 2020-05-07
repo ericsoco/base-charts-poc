@@ -112,6 +112,7 @@ export const barProperties = {
   minValue: 'auto',
   maxValue: 'auto',
   colorBy: 'id',
+  reverse: false,
 
   padding: 0.3,
   innerPadding: 0,

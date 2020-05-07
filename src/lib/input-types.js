@@ -117,7 +117,7 @@ export type BarConfig = $ReadOnly<{|
   options?: {
     ...$Exact<XYOptions>,
     stack?: boolean,
-    baseline?: 'bottom' | 'left' | 'top' | 'right',
+    orientation?: 'vertical' | 'horizontal',
   },
 |}>;
 export type BarProps = $ReadOnly<{|
