@@ -10,8 +10,8 @@ import {
   getScatteplotEncodings,
   type ConfigValidation,
   type ValidationIssue,
-} from './validation';
-import { keys } from './utils';
+} from '../validation';
+import { keys } from '../utils';
 import {
   type Field,
   type Dataset,
@@ -19,7 +19,7 @@ import {
   type ScatterplotConfig,
   type ScatterplotProps as Props,
   type ScatterplotSizeAccessor,
-} from './input-types';
+} from '../input-types';
 
 type NivoScatterplotDatum = $ReadOnly<{|
   x: number | string | Date,

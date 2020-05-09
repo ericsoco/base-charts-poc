@@ -4,8 +4,8 @@
 // Nivo chart props overrides/utils
 //
 
-import { DATATYPES, type XYConfig, type XYOptions } from './input-types';
-import { keys } from './utils';
+import { DATATYPES, type XYConfig, type XYOptions } from '../input-types';
+import { keys } from '../utils';
 
 export const datatypeToScaleType = {
   [DATATYPES.STRING]: 'point',

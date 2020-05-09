@@ -5,7 +5,7 @@ import { ResponsiveLine } from '@nivo/line';
 import { getEncodingProps as convertToNivoLine } from './line-chart';
 import { areaProperties } from './chart-props';
 import { getXYPropsOverrides } from './chart-props-utils';
-import { type AreaProps as Props } from './input-types';
+import { type AreaProps as Props } from '../input-types';
 
 /**
  * Derive Nivo props from Base Charts config and default Nivo props.

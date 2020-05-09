@@ -4,13 +4,13 @@ import { ResponsiveBar } from '@nivo/bar';
 
 import { barProperties } from './chart-props';
 import { getXYPropsOverrides } from './chart-props-utils';
-import { validateEncodings, getXYEncodings } from './validation';
-import { keys } from './utils';
+import { validateEncodings, getXYEncodings } from '../validation';
+import { keys } from '../utils';
 import {
   type Dataset,
   type BarConfig,
   type BarProps as Props,
-} from './input-types';
+} from '../input-types';
 
 type NivoEncodingProps = $ReadOnly<{|
   indexBy: string,

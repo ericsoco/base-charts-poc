@@ -4,14 +4,14 @@ import { ResponsiveLine } from '@nivo/line';
 
 import { lineProperties } from './chart-props';
 import { getXYPropsOverrides } from './chart-props-utils';
-import { validateEncodings, getXYEncodings } from './validation';
+import { validateEncodings, getXYEncodings } from '../validation';
 import {
   type Dataset,
   type Datum,
   type Field,
   type LineConfig,
   type LineProps as Props,
-} from './input-types';
+} from '../input-types';
 
 type NivoLineDatum = $ReadOnly<{|
   x: string,
