@@ -79,6 +79,7 @@ export function bool(key: string): Field {
 }
 
 // Base config type for XY-charts
+// Inexact for extensibility.
 export type XYConfig = $ReadOnly<{
   x: Field,
   y: Field | $ReadOnlyArray<Field>,
@@ -97,8 +98,9 @@ type FormatOption = $ReadOnly<{|
   y?: string,
 |}>;
 
-// Base options map for XY-charts
-export type XYOptions = $ReadOnly<{|
+// Base options map for XY-charts.
+// Inexact for extensibility.
+export type XYOptions = $ReadOnly<{
   // Axis formatting and labeling
   axis?: $ReadOnly<{
     x?: AxisOption,
@@ -110,7 +112,7 @@ export type XYOptions = $ReadOnly<{|
   |}>,
   // Discrete series keys in order of mapping to Base Charts color scale
   seriesColors?: $ReadOnlyArray<string>,
-|}>;
+}>;
 
 export type BarConfig = $ReadOnly<{|
   ...$Exact<XYConfig>,

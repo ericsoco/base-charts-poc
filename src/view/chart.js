@@ -74,7 +74,7 @@ export default function Chart() {
           config={{
             x: string('country'),
             y: number('kebab'),
-            options: { stack: false, baseline: 'left' },
+            options: { stack: false, orientation: 'horizontal' },
           }}
         />
       </ChartWrapper>
@@ -132,7 +132,7 @@ export default function Chart() {
         <BaseScatterplot
           data={ContinuousData}
           config={{
-            x: string('income_per_person_gdppercapita_ppp_inflation_adjusted'),
+            x: number('income_per_person_gdppercapita_ppp_inflation_adjusted'),
             y: number('life_expectancy_years'),
             size: 10,
             // TODO: Use Base Web theme for this color (re-export through Base Charts)
@@ -145,7 +145,7 @@ export default function Chart() {
         <BaseScatterplot
           data={ContinuousData}
           config={{
-            x: string('income_per_person_gdppercapita_ppp_inflation_adjusted'),
+            x: number('income_per_person_gdppercapita_ppp_inflation_adjusted'),
             y: number('life_expectancy_years'),
             size: string('population_total'),
             color: string('world_4region'),

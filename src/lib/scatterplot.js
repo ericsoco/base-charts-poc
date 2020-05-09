@@ -4,6 +4,7 @@ import { ResponsiveScatterPlot } from '@nivo/scatterplot';
 import { group, extent } from 'd3-array';
 
 import { scatterplotProperties } from './chart-props';
+import { getXYPropsOverrides } from './chart-props-utils';
 import {
   validateEncodings,
   getScatteplotEncodings,
@@ -35,7 +36,7 @@ type NivoNodeSizeConfig = $ReadOnly<{|
   sizes: [number, number],
 |}>;
 type NivoNodeSize = number | NivoNodeSizeConfig | ScatterplotSizeAccessor;
-type NivoProps = $ReadOnly<{|
+type NivoEncodingProps = $ReadOnly<{|
   data: $ReadOnlyArray<NivoScatterplotDataset>,
   nodeSize: NivoNodeSize,
   colors?: $ReadOnlyArray<string>,
@@ -148,12 +149,12 @@ function mapToNivoDatum({
 }
 
 /**
- * Convert Base Charts config to Nivo props.
+ * Convert Base Charts config to Nivo channel encoding props.
  */
-export function convertToNivo(
+export function getEncodingProps(
   data: Dataset,
   config: ScatterplotConfig
-): NivoProps {
+): NivoEncodingProps {
   const validation = validateConfig(data, config);
   if (!validation.valid) {
     // TODO: surface errors
@@ -227,7 +228,31 @@ export function convertToNivo(
   return fixedColor ? { ...props, colors: [fixedColor] } : props;
 }
 
+/**
+ * Derive Nivo props from Base Charts config and default Nivo props.
+ * Infers static typing from chart type default props.
+ */
+function getChartProps(config) {
+  const overrides = getXYPropsOverrides(config);
+  return {
+    ...scatterplotProperties,
+    ...overrides,
+    axisBottom: {
+      ...scatterplotProperties.axisBottom,
+      ...overrides.axisBottom,
+    },
+    axisLeft: {
+      ...scatterplotProperties.axisLeft,
+      ...overrides.axisLeft,
+    },
+  };
+}
+
 export default function BaseScatterplot({ data, config }: Props) {
-  const nivoProps = useMemo(() => convertToNivo(data, config), [data, config]);
-  return <ResponsiveScatterPlot {...scatterplotProperties} {...nivoProps} />;
+  const encodingProps = useMemo(() => getEncodingProps(data, config), [
+    data,
+    config,
+  ]);
+  const chartProps = useMemo(() => getChartProps(config), [config]);
+  return <ResponsiveScatterPlot {...chartProps} {...encodingProps} />;
 }

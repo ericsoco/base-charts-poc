@@ -21,7 +21,7 @@ type NivoLineDataset = $ReadOnly<{|
   id: string,
   data: $ReadOnlyArray<NivoLineDatum>,
 |}>;
-type NivoProps = $ReadOnly<{|
+type NivoEncodingProps = $ReadOnly<{|
   data: $ReadOnlyArray<NivoLineDataset>,
 |}>;
 
@@ -42,9 +42,12 @@ function mapToNivoDatum({
 }
 
 /**
- * Convert Base Charts config to Nivo props.
+ * Convert Base Charts config to Nivo channel encoding props.
  */
-export function convertToNivo(data: Dataset, config: LineConfig): NivoProps {
+export function getEncodingProps(
+  data: Dataset,
+  config: LineConfig
+): NivoEncodingProps {
   const validation = validateEncodings(data, getXYEncodings(config));
   if (!validation.valid) {
     // TODO: surface errors
@@ -68,7 +71,11 @@ export function convertToNivo(data: Dataset, config: LineConfig): NivoProps {
   };
 }
 
-function getPropsOverrides(config) {
+/**
+ * Derive Nivo props from Base Charts config and default Nivo props.
+ * Infers static typing from chart type default props.
+ */
+function getChartProps(config) {
   const overrides = getXYPropsOverrides(config);
   return {
     ...lineProperties,
@@ -85,6 +92,10 @@ function getPropsOverrides(config) {
 }
 
 export default function BaseLine({ data, config }: Props) {
-  const nivoProps = useMemo(() => convertToNivo(data, config), [data, config]);
-  return <ResponsiveLine {...getPropsOverrides(config)} {...nivoProps} />;
+  const encodingProps = useMemo(() => getEncodingProps(data, config), [
+    data,
+    config,
+  ]);
+  const chartProps = useMemo(() => getChartProps(config), [config]);
+  return <ResponsiveLine {...chartProps} {...encodingProps} />;
 }

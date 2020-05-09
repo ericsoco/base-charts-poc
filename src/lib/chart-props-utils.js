@@ -14,10 +14,10 @@ export const datatypeToScaleType = {
   [DATATYPES.BOOL]: 'point',
 };
 
-type XYConfigWithOptions = $ReadOnly<{|
-  ...$Exact<XYConfig>,
+type XYConfigWithOptions = $ReadOnly<{
+  ...XYConfig,
   options?: XYOptions,
-|}>;
+}>;
 
 type AxisOverrides = $ReadOnly<{|
   format?: string,
@@ -29,6 +29,8 @@ type XScalePoint = $ReadOnly<{|
 |}>;
 type XScaleLinear = $ReadOnly<{|
   type: 'linear',
+  min: 'auto' | number,
+  max: 'auto' | number,
 |}>;
 type XScaleTime = $ReadOnly<{|
   // TODO: enumerate these in chart-props and use in datatypeToScaleType
@@ -48,7 +50,8 @@ type XYPropsOverrides = $ReadOnly<{|
 |}>;
 
 /**
- * Get props overrides for XY charts, to spread over per-chart props.
+ * Given a chart config, derive props overrides for XY charts,
+ * to spread over per-chart props.
  */
 export function getXYPropsOverrides(
   config: XYConfigWithOptions
@@ -67,7 +70,11 @@ export function getXYPropsOverrides(
         : { type: 'time' }
       : xScaleType === 'point'
       ? { type: 'point' }
-      : { type: 'linear' };
+      : {
+          type: 'linear',
+          min: 'auto',
+          max: 'auto',
+        };
 
   // TODO: add yScale derivation and remove hardcoded yScales in input-types
 

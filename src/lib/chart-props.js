@@ -186,11 +186,6 @@ export const scatterplotProperties = {
   ...defaultGrid,
   legends: [defaultLegend],
   ...defaultAnimationProps,
-  xScale: {
-    type: 'linear',
-    min: 'auto',
-    max: 'auto',
-  },
   yScale: {
     type: 'linear',
     min: 'auto',
