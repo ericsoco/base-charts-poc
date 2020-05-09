@@ -131,17 +131,9 @@ export const lineProperties = {
   legends: [defaultLegend],
   ...defaultAnimationProps,
 
-  yScale: {
-    type: 'linear',
-    min: 'auto',
-    max: 'auto',
-    stacked: false,
-    reverse: false,
-  },
-
   curve: 'linear',
-
   lineWidth: 2,
+  enableArea: false,
 
   enablePoints: true,
   pointSize: 10,
@@ -151,8 +143,6 @@ export const lineProperties = {
   enablePointLabel: false,
   pointLabel: 'y',
   pointLabelYOffset: -12,
-
-  enableArea: false,
 
   isInteractive: true,
   enableSlices: 'x',
@@ -167,10 +157,6 @@ export const lineProperties = {
 
 export const areaProperties = {
   ...lineProperties,
-  yScale: {
-    ...lineProperties.yScale,
-    stacked: true,
-  },
 
   enablePoints: false,
   enableArea: true,
@@ -186,10 +172,5 @@ export const scatterplotProperties = {
   ...defaultGrid,
   legends: [defaultLegend],
   ...defaultAnimationProps,
-  yScale: {
-    type: 'linear',
-    min: 'auto',
-    max: 'auto',
-  },
   blendMode: 'multiply',
 };

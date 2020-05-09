@@ -88,6 +88,11 @@ function getChartProps(config) {
       ...lineProperties.axisLeft,
       ...overrides.axisLeft,
     },
+    yScale: {
+      ...overrides.yScale,
+      stacked: false,
+      reverse: false,
+    },
   };
 }
 

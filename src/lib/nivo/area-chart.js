@@ -24,6 +24,11 @@ function getChartProps(config) {
       ...areaProperties.axisLeft,
       ...overrides.axisLeft,
     },
+    yScale: {
+      ...overrides.yScale,
+      stacked: true,
+      reverse: false,
+    },
   };
 }
 

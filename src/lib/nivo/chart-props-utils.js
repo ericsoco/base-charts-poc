@@ -24,27 +24,28 @@ type AxisOverrides = $ReadOnly<{|
   legend: string,
 |}>;
 
-type XScalePoint = $ReadOnly<{|
+type ScalePoint = $ReadOnly<{|
   type: 'point',
 |}>;
-type XScaleLinear = $ReadOnly<{|
+type ScaleLinear = $ReadOnly<{|
   type: 'linear',
   min: 'auto' | number,
   max: 'auto' | number,
 |}>;
-type XScaleTime = $ReadOnly<{|
+type ScaleTime = $ReadOnly<{|
   // TODO: enumerate these in chart-props and use in datatypeToScaleType
   type: 'time',
   format?: string,
   // TODO: enumerate available values from Nivo
   precision?: string,
 |}>;
-type XScale = XScalePoint | XScaleLinear | XScaleTime;
+type Scale = ScalePoint | ScaleLinear | ScaleTime;
 
 type XYPropsOverrides = $ReadOnly<{|
   axisBottom: AxisOverrides,
   axisLeft: AxisOverrides,
-  xScale: XScale,
+  xScale: Scale,
+  yScale: Scale,
   xFormat?: string,
   yFormat?: string,
 |}>;
@@ -56,28 +57,6 @@ type XYPropsOverrides = $ReadOnly<{|
 export function getXYPropsOverrides(
   config: XYConfigWithOptions
 ): XYPropsOverrides {
-  // Derive input formatting
-  const xScaleType = datatypeToScaleType[config.x.type];
-  const xScale =
-    xScaleType === 'time'
-      ? config.x.format
-        ? {
-            type: 'time',
-            format: config.x.format,
-            // TODO: how to / should we expose this in Base Charts API?
-            precision: 'day',
-          }
-        : { type: 'time' }
-      : xScaleType === 'point'
-      ? { type: 'point' }
-      : {
-          type: 'linear',
-          min: 'auto',
-          max: 'auto',
-        };
-
-  // TODO: add yScale derivation and remove hardcoded yScales in input-types
-
   // Derive axis label formatting
   const axis = config.options?.axis;
 
@@ -118,8 +97,33 @@ export function getXYPropsOverrides(
   return {
     axisBottom,
     axisLeft,
-    xScale,
+    xScale: deriveScale(config, 'x'),
+    yScale: deriveScale(config, 'y'),
     ...xf,
     ...yf,
   };
+}
+
+/**
+ * Derive scale for specified channel
+ */
+function deriveScale(config: XYConfigWithOptions, channel: string): Scale {
+  const scaleType = datatypeToScaleType[config[channel].type];
+  return scaleType === 'time'
+    ? config.x.format
+      ? {
+          type: 'time',
+          // Specify input format for dates
+          format: config.x.format,
+          // TODO: how to / should we expose this in Base Charts API?
+          precision: 'day',
+        }
+      : { type: 'time' }
+    : scaleType === 'point'
+    ? { type: 'point' }
+    : {
+        type: 'linear',
+        min: 'auto',
+        max: 'auto',
+      };
 }
