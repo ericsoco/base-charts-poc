@@ -145,6 +145,21 @@ export type AreaProps = $ReadOnly<{|
   data: Dataset,
 |}>;
 
+export type RadialConfig = $ReadOnly<{|
+  x: Field,
+  y: Field,
+  //
+  // TODO: What to do about options?
+  // Pie/Donut, what else?
+  // Center label? (per Base Charts design)
+  //
+  options?: XYOptions,
+|}>;
+export type RadialProps = $ReadOnly<{|
+  config: RadialConfig,
+  data: Dataset,
+|}>;
+
 export type ScatterplotSizeAccessor = ({ [string]: mixed }) => number;
 /**
  * size:

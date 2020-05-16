@@ -5,6 +5,7 @@ import {
   BaseArea,
   BaseBar,
   BaseLine,
+  BaseRadial,
   BaseScatterplot,
   string,
   number,
@@ -124,6 +125,17 @@ export default function Chart() {
               number('germany'),
               number('norway'),
             ],
+          }}
+        />
+      </ChartWrapper>
+      <ChartWrapper>
+        <ChartTitle>{'Pie Chart'}</ChartTitle>
+        <BaseRadial
+          data={CategoricalData}
+          // TODO: what to name channels? Could even stick with x/y...
+          config={{
+            x: string('country'),
+            y: number('kebab'),
           }}
         />
       </ChartWrapper>
