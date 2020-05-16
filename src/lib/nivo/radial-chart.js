@@ -3,7 +3,7 @@ import React, { useMemo } from 'react';
 import { ResponsivePie } from '@nivo/pie';
 
 import { radialProperties } from './chart-props';
-import { validateEncodings, getXYEncodings } from '../validation';
+import { validateEncodings } from '../validation';
 import {
   type Dataset,
   type Datum,
@@ -21,18 +21,18 @@ type NivoEncodingProps = $ReadOnly<{|
 |}>;
 
 function mapToNivoDatum({
-  x,
-  y,
+  key,
+  value,
 }: $ReadOnly<{|
-  x: Field,
-  y: Field,
+  key: Field,
+  value: Field,
 |}>): Datum => NivoRadialDatum {
   // TODO: Validate datatypes in validation step and remove typecast
   return d =>
     ({
-      id: d[x.key],
-      label: d[x.key],
-      value: d[y.key],
+      id: d[key.key],
+      label: d[key.key],
+      value: d[value.key],
       // flowlint-next-line unclear-type:off
     }: any);
 }
@@ -44,7 +44,9 @@ export function getEncodingProps(
   data: Dataset,
   config: RadialConfig
 ): NivoEncodingProps {
-  const validation = validateEncodings(data, getXYEncodings(config));
+  // TODO: Fix this
+  // flowlint-next-line unclear-type:off
+  const validation = validateEncodings(data, (config: any));
   if (!validation.valid) {
     // TODO: surface errors
     console.error('‼️ Config validation error(s):');
@@ -52,8 +54,8 @@ export function getEncodingProps(
   }
 
   const dataMapper = mapToNivoDatum({
-    x: config.x,
-    y: config.y,
+    key: config.key,
+    value: config.value,
   });
   const nivoData = data.map(dataMapper);
 
@@ -62,15 +64,19 @@ export function getEncodingProps(
   };
 }
 
+const DONUT_INNER_RADIUS = 0.8;
+const DONUT_PAD_ANGLE = 0.7;
+
 /**
  * Derive Nivo props from Base Charts config and default Nivo props.
  * Infers static typing from chart type default props.
  */
-// eslint-disable-next-line no-unused-vars
 function getChartProps(config) {
-  // TODO: support custom formatting for labels/tooltips/legends
-  // e.g. via getXYPropsOverrides
-  return radialProperties;
+  return {
+    ...radialProperties,
+    innerRadius: config.options?.layout === 'pie' ? 0 : DONUT_INNER_RADIUS,
+    padAngle: config.options?.layout === 'pie' ? 0 : DONUT_PAD_ANGLE,
+  };
 }
 
 export default function BaseRadial({ data, config }: Props) {

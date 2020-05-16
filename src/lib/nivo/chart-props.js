@@ -179,25 +179,26 @@ export const radialProperties = {
   margin: {
     top: TOP_MARGIN,
     right: 80,
-    bottom: 80,
+    bottom: TOP_MARGIN,
     left: 80,
   },
   ...defaultColor,
   legends: [defaultLegend],
   ...defaultAnimationProps,
 
-  innerRadius: 0.8,
-  padAngle: 0.7,
   cornerRadius: 0,
   borderWidth: 0,
+
+  enableSlicesLabels: false,
+
+  // TODO: if radial labels are supported in the future, refine these values
+  //       & apply greater radial line distance when closer to top/bottom
+  //       per https://github.com/plouc/nivo/issues/143#issuecomment-387817599
+  enableRadialLabels: false,
   radialLabelsSkipAngle: 10,
   radialLabelsTextXOffset: 6,
-  // radialLabelsTextColor: "#333333"
   radialLabelsLinkOffset: 0,
   radialLabelsLinkDiagonalLength: 16,
   radialLabelsLinkHorizontalLength: 24,
   radialLabelsLinkStrokeWidth: 1,
-  radialLabelsLinkColor: { from: 'color' },
-  slicesLabelsSkipAngle: 10,
-  // slicesLabelsTextColor: "#333333"
 };

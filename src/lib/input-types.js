@@ -98,6 +98,18 @@ type FormatOption = $ReadOnly<{|
   y?: string,
 |}>;
 
+// Tooltip and label/annotation formatting
+export type LabelOptions = $ReadOnly<{|
+  labels?: $ReadOnly<{|
+    format?: FormatOption,
+  |}>,
+|}>;
+
+// Discrete series keys in order of mapping to Base Charts color scale
+export type ColorOptions = $ReadOnly<{|
+  seriesColors?: $ReadOnlyArray<string>,
+|}>;
+
 // Base options map for XY-charts.
 // Inexact for extensibility.
 export type XYOptions = $ReadOnly<{
@@ -106,12 +118,8 @@ export type XYOptions = $ReadOnly<{
     x?: AxisOption,
     y?: AxisOption,
   }>,
-  // Tooltip and label/annotation formatting
-  labels?: $ReadOnly<{|
-    format?: FormatOption,
-  |}>,
-  // Discrete series keys in order of mapping to Base Charts color scale
-  seriesColors?: $ReadOnlyArray<string>,
+  ...$Exact<LabelOptions>,
+  ...$Exact<ColorOptions>,
 }>;
 
 export type BarConfig = $ReadOnly<{|
@@ -146,14 +154,14 @@ export type AreaProps = $ReadOnly<{|
 |}>;
 
 export type RadialConfig = $ReadOnly<{|
-  x: Field,
-  y: Field,
-  //
-  // TODO: What to do about options?
-  // Pie/Donut, what else?
-  // Center label? (per Base Charts design)
-  //
-  options?: XYOptions,
+  key: Field,
+  value: Field,
+  options?: $ReadOnly<{|
+    // ...$Exact<LabelOptions>,
+    ...$Exact<ColorOptions>,
+    layout?: 'donut' | 'pie',
+    // TODO: consider adding radial/center label support
+  |}>,
 |}>;
 export type RadialProps = $ReadOnly<{|
   config: RadialConfig,

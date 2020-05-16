@@ -129,13 +129,27 @@ export default function Chart() {
         />
       </ChartWrapper>
       <ChartWrapper>
+        <ChartTitle>{'Donut Chart'}</ChartTitle>
+        <BaseRadial
+          data={CategoricalData}
+          // TODO: what to name channels? Could even stick with x/y...
+          config={{
+            key: string('country'),
+            value: number('kebab'),
+          }}
+        />
+      </ChartWrapper>
+      <ChartWrapper>
         <ChartTitle>{'Pie Chart'}</ChartTitle>
         <BaseRadial
           data={CategoricalData}
           // TODO: what to name channels? Could even stick with x/y...
           config={{
-            x: string('country'),
-            y: number('kebab'),
+            key: string('country'),
+            value: number('kebab'),
+            options: {
+              layout: 'pie',
+            },
           }}
         />
       </ChartWrapper>
