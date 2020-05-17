@@ -4,6 +4,7 @@ import { ResponsiveLine } from '@nivo/line';
 
 import { lineProperties } from './chart-props';
 import { getXYPropsOverrides } from './chart-props-utils';
+import { useTheme, type Theme } from '../theme';
 import { validateEncodings, getXYEncodings } from '../validation';
 import {
   type Dataset,
@@ -75,10 +76,11 @@ export function getEncodingProps(
  * Derive Nivo props from Base Charts config and default Nivo props.
  * Infers static typing from chart type default props.
  */
-function getChartProps(config) {
+function getChartProps(config, theme: Theme) {
   const overrides = getXYPropsOverrides(config);
   return {
     ...lineProperties,
+    colors: theme.colors,
     ...overrides,
     axisBottom: {
       ...lineProperties.axisBottom,
@@ -97,10 +99,11 @@ function getChartProps(config) {
 }
 
 export default function BaseLine({ data, config }: Props) {
+  const theme = useTheme();
   const encodingProps = useMemo(() => getEncodingProps(data, config), [
     data,
     config,
   ]);
-  const chartProps = useMemo(() => getChartProps(config), [config]);
+  const chartProps = useMemo(() => getChartProps(config, theme), [config]);
   return <ResponsiveLine {...chartProps} {...encodingProps} />;
 }

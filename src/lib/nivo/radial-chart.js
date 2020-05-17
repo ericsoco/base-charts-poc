@@ -3,6 +3,7 @@ import React, { useMemo } from 'react';
 import { ResponsivePie } from '@nivo/pie';
 
 import { radialProperties } from './chart-props';
+import { useTheme, type Theme } from '../theme';
 import { validateEncodings } from '../validation';
 import {
   type Dataset,
@@ -71,19 +72,21 @@ const DONUT_PAD_ANGLE = 0.7;
  * Derive Nivo props from Base Charts config and default Nivo props.
  * Infers static typing from chart type default props.
  */
-function getChartProps(config) {
+function getChartProps(config: RadialConfig, theme: Theme) {
   return {
     ...radialProperties,
+    colors: theme.colors,
     innerRadius: config.options?.layout === 'pie' ? 0 : DONUT_INNER_RADIUS,
     padAngle: config.options?.layout === 'pie' ? 0 : DONUT_PAD_ANGLE,
   };
 }
 
 export default function BaseRadial({ data, config }: Props) {
+  const theme = useTheme();
   const encodingProps = useMemo(() => getEncodingProps(data, config), [
     data,
     config,
   ]);
-  const chartProps = useMemo(() => getChartProps(config), [config]);
+  const chartProps = useMemo(() => getChartProps(config, theme), [config]);
   return <ResponsivePie {...chartProps} {...encodingProps} />;
 }

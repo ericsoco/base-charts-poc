@@ -5,6 +5,7 @@ import { group, extent } from 'd3-array';
 
 import { scatterplotProperties } from './chart-props';
 import { getXYPropsOverrides } from './chart-props-utils';
+import { useTheme, type Theme } from '../theme';
 import {
   validateEncodings,
   getScatteplotEncodings,
@@ -232,10 +233,11 @@ export function getEncodingProps(
  * Derive Nivo props from Base Charts config and default Nivo props.
  * Infers static typing from chart type default props.
  */
-function getChartProps(config) {
+function getChartProps(config, theme: Theme) {
   const overrides = getXYPropsOverrides(config);
   return {
     ...scatterplotProperties,
+    colors: theme.colors,
     ...overrides,
     axisBottom: {
       ...scatterplotProperties.axisBottom,
@@ -249,10 +251,11 @@ function getChartProps(config) {
 }
 
 export default function BaseScatterplot({ data, config }: Props) {
+  const theme = useTheme();
   const encodingProps = useMemo(() => getEncodingProps(data, config), [
     data,
     config,
   ]);
-  const chartProps = useMemo(() => getChartProps(config), [config]);
+  const chartProps = useMemo(() => getChartProps(config, theme), [config]);
   return <ResponsiveScatterPlot {...chartProps} {...encodingProps} />;
 }

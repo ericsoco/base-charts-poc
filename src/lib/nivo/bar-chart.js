@@ -4,6 +4,7 @@ import { ResponsiveBar } from '@nivo/bar';
 
 import { barProperties } from './chart-props';
 import { getXYPropsOverrides } from './chart-props-utils';
+import { useTheme, type Theme } from '../theme';
 import { validateEncodings, getXYEncodings } from '../validation';
 import { keys } from '../utils';
 import {
@@ -49,10 +50,11 @@ function getEncodingProps(data: Dataset, config: BarConfig): NivoEncodingProps {
  * Derive Nivo props from Base Charts config and default Nivo props.
  * Infers static typing from chart type default props.
  */
-function getChartProps(config) {
+function getChartProps(config, theme: Theme) {
   const overrides = getXYPropsOverrides(config);
   return {
     ...barProperties,
+    colors: theme.colors,
     ...overrides,
     axisBottom: {
       ...barProperties.axisBottom,
@@ -68,10 +70,11 @@ function getChartProps(config) {
 }
 
 export default function BaseBar({ data, config }: Props) {
+  const theme = useTheme();
   const encodingProps = useMemo(() => getEncodingProps(data, config), [
     data,
     config,
   ]);
-  const chartProps = useMemo(() => getChartProps(config), [config]);
+  const chartProps = useMemo(() => getChartProps(config, theme), [config]);
   return <ResponsiveBar data={data} {...chartProps} {...encodingProps} />;
 }

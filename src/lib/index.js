@@ -7,3 +7,6 @@ export { default as BaseRadial } from './nivo/radial-chart';
 export { default as BaseScatterplot } from './nivo/scatterplot';
 
 export * from './input-types';
+
+export { default as ThemeProvider } from './theme';
+export * from './theme';

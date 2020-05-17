@@ -10,6 +10,7 @@ import {
   string,
   number,
   time,
+  ThemeProvider,
 } from '../lib';
 
 // flowlint untyped-import:off
@@ -29,7 +30,7 @@ const ChartTitle: BareStyledComponent = styled.h3`
 
 export default function Chart() {
   return (
-    <>
+    <ThemeProvider>
       <ChartWrapper>
         <ChartTitle>{'Bar Chart'}</ChartTitle>
         <BaseBar
@@ -178,6 +179,6 @@ export default function Chart() {
           }}
         />
       </ChartWrapper>
-    </>
+    </ThemeProvider>
   );
 }
