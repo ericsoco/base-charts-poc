@@ -16,7 +16,8 @@
     "uber"
   ],
   "license": "MIT",
-  "module": "index.js",
+  "main": "dist/lib.bundle.js",
+  "module": "src/index.js",
   "dependencies": {
     "@nivo/bar": "^0.61.1",
     "@nivo/line": "^0.61.1",
