@@ -23,7 +23,7 @@ module.exports = {
       },
     ],
   },
+  // TODO: Move nivo to peerDependencies and externalize it
+  // to reduce bundle size
+  // https://webpack.js.org/guides/author-libraries/#externalize-lodash
 };
-
-// TODO: add nivo and d3-array as externals
-// https://webpack.js.org/guides/author-libraries/

@@ -28,9 +28,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "yarn start:prod",
-    "start:dev": "webpack-dev-server --mode development",
-    "start:prod": "webpack --mode production",
+    "build": "webpack --mode production",
+    "start": "webpack-dev-server --mode development",
     "test": "yarn lint && yarn prettier"
   },
   "browserslist": [
