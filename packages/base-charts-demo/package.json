@@ -1,0 +1,44 @@
+{
+  "name": "base-charts-demo",
+  "version": "0.0.1",
+  "description": "Base Charts demo app.",
+  "author": "ericsoco",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ericsoco/base-charts-poc.git"
+  },
+  "keywords": [
+    "bi",
+    "charts",
+    "datavis",
+    "dataviz",
+    "data visualization",
+    "uber"
+  ],
+  "license": "MIT",
+  "main": "src/index.js",
+  "dependencies": {
+    "base-charts": "^0.0.1",
+    "react": ">= 16.8.4 < 17.0.0",
+    "react-dom": "^16.13.0",
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^5.1.2",
+    "redux": "^4.0.5",
+    "styled-components": "^5.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "build": "webpack --mode production",
+    "start": "webpack-dev-server --mode development",
+    "test": "yarn lint && yarn prettier"
+  },
+  "browserslist": [
+    "> 1%",
+    "not dead"
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn test"
+    }
+  }
+}

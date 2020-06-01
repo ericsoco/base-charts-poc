@@ -1,55 +1,58 @@
 {
-  "name": "seed-app-2020",
+  "name": "base-charts-repo",
   "version": "0.0.1",
-  "description": "Starter SPA React/Redux app w/ basic runtime and build tooling",
+  "description": "High-level charting API. Datavis complement to Uber Base Web.",
   "author": "ericsoco",
   "repository": {
     "type": "git",
-    "url": "git@github.com:ericsoco/seed-app-2020.git"
+    "url": "git@github.com:ericsoco/base-charts-poc.git"
   },
   "keywords": [
-    "webdev",
-    "SPA",
-    "react",
-    "redux",
-    "parcel"
+    "bi",
+    "charts",
+    "datavis",
+    "dataviz",
+    "data visualization",
+    "uber"
   ],
-  "license": "ISC",
-  "main": "index.js",
-  "dependencies": {
-    "@babel/core": "^7.8.7",
-    "@nivo/bar": "^0.61.1",
-    "@nivo/line": "^0.61.1",
-    "@nivo/pie": "^0.61.1",
-    "@nivo/scatterplot": "^0.61.1",
-    "d3-array": "^2.4.0",
-    "d3-scale": "^3.2.1",
-    "prop-types": ">= 15.5.10 < 16.0.0",
-    "react": ">= 16.8.4 < 17.0.0",
-    "react-dom": "^16.13.0",
-    "react-redux": "^7.2.0",
-    "react-router-dom": "^5.1.2",
-    "redux": "^4.0.5",
-    "styled-components": "^5.0.1"
-  },
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "dependencies": {},
   "devDependencies": {
-    "@babel/preset-env": "^7.8.7",
-    "@babel/preset-flow": "^7.8.3",
-    "@babel/preset-react": "^7.8.3",
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
+    "@babel/preset-flow": "^7.10.1",
+    "@babel/preset-react": "^7.10.1",
     "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
     "eslint": "^6.8.0",
     "eslint-plugin-flowtype": "^4.6.0",
     "eslint-plugin-react": "^7.19.0",
     "flow-bin": "^0.120.1",
+    "html-webpack-plugin": "^4.3.0",
     "husky": "^4.2.3",
-    "parcel": "^1.12.4",
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
-    "lint": "eslint src",
-    "prettier": "prettier --write \"src/**/*.{js,json}\"",
-    "start": "parcel index.html",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "yarn clean:build && yarn build:lib && yarn build:app",
+    "build:app": "yarn workspace base-charts-demo build",
+    "build:lib": "yarn workspace base-charts build",
+    "rebuild": "yarn clean && yarn build",
+    "clean": "yarn clean:build && yarn clean:deps",
+    "clean:build": "rm -rf packages/*/dist",
+    "clean:deps": "rm -rf packages/*/node_modules && rm -rf node_modules",
+    "lint": "eslint packages/**/src/**/*.js",
+    "prettier": "prettier --check \"packages/**/src/**/*.{js,json}\"",
+    "publish": "yarn np",
+    "start": "yarn workspace base-charts build:dev && yarn workspace base-charts-demo start",
+    "restart": "yarn clean && yarn start",
+    "test": "yarn lint && yarn prettier"
   },
   "browserslist": [
     "> 1%",
@@ -57,7 +60,7 @@
   ],
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint && yarn prettier"
+      "pre-commit": "yarn test"
     }
   }
 }
