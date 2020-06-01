@@ -1,0 +1,50 @@
+{
+  "name": "base-charts",
+  "version": "0.0.1",
+  "description": "High-level charting API. Datavis complement to Uber Base Web.",
+  "author": "ericsoco",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ericsoco/base-charts-poc.git"
+  },
+  "keywords": [
+    "bi",
+    "charts",
+    "datavis",
+    "dataviz",
+    "data visualization",
+    "uber"
+  ],
+  "license": "MIT",
+  "module": "index.js",
+  "dependencies": {
+    "@nivo/bar": "^0.61.1",
+    "@nivo/line": "^0.61.1",
+    "@nivo/pie": "^0.61.1",
+    "@nivo/scatterplot": "^0.61.1",
+    "d3-array": "^2.4.0"
+  },
+  "devDependencies": {},
+  "peerDependencies": {
+    "react": ">= 16.8.4 < 17.0.0",
+    "react-dom": "^16.13.0"
+  },
+  "scripts": {
+    "build:dev": "webpack --mode development",
+    "build:prod": "webpack --mode production",
+    "build": "yarn build:prod",
+    "lint": "eslint src",
+    "publish": "yarn np",
+    "prettier": "prettier --write \"src/**/*.{js,json}\"",
+    "test": "yarn lint && yarn prettier"
+  },
+  "browserslist": [
+    "> 1%",
+    "not dead"
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn test"
+    }
+  }
+}

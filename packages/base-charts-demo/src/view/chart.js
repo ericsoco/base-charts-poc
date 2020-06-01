@@ -11,7 +11,7 @@ import {
   number,
   time,
   ThemeProvider,
-} from '../lib';
+} from 'base-charts';
 
 // flowlint untyped-import:off
 import CategoricalData from '../fixtures/categorical-data.json';
