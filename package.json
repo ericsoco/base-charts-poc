@@ -34,6 +34,7 @@
     "flow-bin": "^0.120.1",
     "html-webpack-plugin": "^4.3.0",
     "husky": "^4.2.3",
+    "np": "^6.2.3",
     "prettier": "^1.19.1",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
@@ -49,7 +50,7 @@
     "clean:deps": "rm -rf packages/*/node_modules && rm -rf node_modules",
     "lint": "eslint packages/**/src/**/*.js",
     "prettier": "prettier --check \"packages/**/src/**/*.{js,json}\"",
-    "publish": "yarn np",
+    "pub": "yarn workspace base-charts pub",
     "start": "yarn workspace base-charts build:dev && yarn workspace base-charts-demo start",
     "restart": "yarn clean && yarn start",
     "test": "yarn lint && yarn prettier"

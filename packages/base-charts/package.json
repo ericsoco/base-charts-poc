@@ -34,6 +34,7 @@
     "build": "yarn build:prod",
     "build:dev": "webpack --mode development",
     "build:prod": "webpack --mode production",
+    "pub": "np --contents='./dist'",
     "test": "yarn lint && yarn prettier"
   },
   "browserslist": [
