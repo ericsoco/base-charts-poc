@@ -1,6 +1,6 @@
 {
   "name": "base-charts-demo",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "Base Charts demo app.",
   "author": "ericsoco",
   "repository": {
@@ -16,9 +16,10 @@
     "uber"
   ],
   "license": "MIT",
+  "private": true,
   "main": "src/index.js",
   "dependencies": {
-    "base-charts": "^0.0.1",
+    "base-charts": "^0.0.0",
     "react": ">= 16.8.4 < 17.0.0",
     "react-dom": "^16.13.0",
     "react-redux": "^7.2.0",

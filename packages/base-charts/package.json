@@ -1,6 +1,6 @@
 {
   "name": "base-charts",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "High-level charting API. Datavis complement to Uber Base Web.",
   "author": "ericsoco",
   "repository": {
@@ -34,7 +34,6 @@
     "build": "yarn build:prod",
     "build:dev": "webpack --mode development",
     "build:prod": "webpack --mode production",
-    "pub": "np --contents='./dist'",
     "test": "yarn lint && yarn prettier"
   },
   "browserslist": [
