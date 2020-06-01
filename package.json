@@ -32,6 +32,7 @@
     "eslint-plugin-flowtype": "^4.6.0",
     "eslint-plugin-react": "^7.19.0",
     "flow-bin": "^0.120.1",
+    "html-webpack-plugin": "^4.3.0",
     "husky": "^4.2.3",
     "prettier": "^1.19.1",
     "webpack": "^4.43.0",
@@ -40,10 +41,14 @@
   },
   "scripts": {
     "build": "yarn workspace base-charts build",
+    "clean": "yarn clean:build && yarn clean:deps",
+    "clean:build": "rm -rf packages/*/dist",
+    "clean:deps": "rm -rf packages/*/node_modules && rm -rf node_modules",
     "lint": "eslint packages/**/src/**/*.js",
-    "publish": "yarn np",
     "prettier": "prettier --check \"packages/**/src/**/*.{js,json}\"",
+    "publish": "yarn np",
     "start": "yarn workspace base-charts build:dev && yarn workspace base-charts-demo start:dev",
+    "restart": "yarn clean && yarn start",
     "test": "yarn lint && yarn prettier"
   },
   "browserslist": [

@@ -1,4 +1,5 @@
 const { resolve } = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -23,6 +24,13 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Base Charts Demo',
+      template: './index.html',
+    }),
+  ],
+  /*
   externals: {
     'styled-components': {
       commonjs: 'styled-components',
@@ -30,4 +38,5 @@ module.exports = {
       amd: 'styled-components',
     },
   },
+  */
 };
