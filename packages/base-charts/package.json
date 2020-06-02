@@ -1,6 +1,6 @@
 {
   "name": "base-charts",
-  "version": "0.0.1-alpha.0",
+  "version": "0.0.1",
   "description": "High-level charting API. Datavis complement to Uber Base Web.",
   "author": "ericsoco",
   "repository": {
