@@ -30,7 +30,7 @@
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack-dev-server --mode development",
-    "test": "yarn lint && yarn prettier"
+    "test": "echo 'TODO: add app tests'"
   },
   "browserslist": [
     "> 1%",

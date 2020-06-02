@@ -33,7 +33,7 @@
     "build": "yarn build:prod",
     "build:dev": "webpack --mode development",
     "build:prod": "webpack --mode production",
-    "test": "yarn lint && yarn prettier"
+    "test": "echo 'TODO: add lib tests'"
   },
   "browserslist": [
     "> 1%",
