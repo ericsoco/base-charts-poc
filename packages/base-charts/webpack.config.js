@@ -1,6 +1,8 @@
 const { resolve } = require('path');
 
-module.exports = {
+const isProd = process.env.NODE_ENV === 'production'; // eslint-disable-line
+
+const baseConfig = {
   entry: {
     lib: './src/index.js',
   },
@@ -54,3 +56,14 @@ module.exports = {
   // to reduce bundle size
   // https://webpack.js.org/guides/author-libraries/#externalize-lodash
 };
+
+const prodConfig = {
+  ...baseConfig,
+};
+
+const devConfig = {
+  ...baseConfig,
+  devtool: 'eval-source-map',
+};
+
+module.exports = isProd ? prodConfig : devConfig;

@@ -76,14 +76,8 @@ export function getXYPropsOverrides(
     // flowlint-next-line unclear-type:off
   }: any);
 
-  // Derive label/tooltip formatting
-  const xIsTime = config.x.type === DATATYPES.TIME;
-  const labelsXFormat = config.options?.labels?.format?.x;
-  const labelsYFormat = config.options?.labels?.format?.y;
-  const xFormat = labelsXFormat
-    ? `${xIsTime ? 'time:' : ''}${labelsXFormat}`
-    : null;
-  const yFormat = labelsYFormat || null;
+  const xFormat = deriveFormat(config, 'x');
+  const yFormat = deriveFormat(config, 'y');
 
   // Sometimes Flow makes my eyes bleed
   // https://github.com/facebook/flow/issues/8186
@@ -102,6 +96,25 @@ export function getXYPropsOverrides(
     ...xf,
     ...yf,
   };
+}
+
+/**
+ * Derive label/tooltip formatting for a channel, w/ the following precedence:
+ * - label format if exists, else
+ * - axis format if exists, else
+ * - field format if exists, else
+ * - null.
+ */
+function deriveFormat(
+  config: XYConfigWithOptions,
+  channel: string
+): string | null {
+  const isTime = config[channel].type === DATATYPES.TIME;
+  const labelsFormat = config.options?.labels?.format?.[channel];
+  const axisFormat = config.options?.axis?.[channel]?.format;
+  const formatBase =
+    labelsFormat || axisFormat || config[channel].format || null;
+  return formatBase ? `${isTime ? 'time:' : ''}${formatBase}` : null;
 }
 
 /**

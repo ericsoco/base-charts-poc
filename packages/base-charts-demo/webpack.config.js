@@ -1,7 +1,9 @@
 const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
+const isProd = process.env.NODE_ENV === 'production'; // eslint-disable-line
+
+const baseConfig = {
   entry: {
     app: './src/index.js',
   },
@@ -31,3 +33,14 @@ module.exports = {
     }),
   ],
 };
+
+const prodConfig = {
+  ...baseConfig,
+};
+
+const devConfig = {
+  ...baseConfig,
+  devtool: 'eval-source-map',
+};
+
+module.exports = isProd ? prodConfig : devConfig;

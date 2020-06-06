@@ -113,7 +113,7 @@ export const lineProperties = {
   lineWidth: 2,
   enableArea: false,
 
-  enablePoints: true,
+  enablePoints: false,
   pointSize: 10,
   pointColor: { theme: 'background' },
   pointBorderWidth: 2,
