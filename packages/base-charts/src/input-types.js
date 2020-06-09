@@ -7,12 +7,13 @@
 // - config
 // =======================================
 
+export type DatumValue = number | string | boolean | null;
 /**
  * Row-level datum within a data array
  * passed to a Base Charts chart component.
  */
 export type Datum = $ReadOnly<{
-  [string]: number | string | boolean | null,
+  [string]: DatumValue,
 }>;
 export type Dataset = $ReadOnlyArray<Datum>;
 

@@ -3,9 +3,15 @@
 //
 // Nivo chart props overrides/utils
 //
-
-import { DATATYPES, type XYConfig, type XYOptions } from '../input-types';
+import React, { type Node } from 'react';
+import {
+  DATATYPES,
+  type DatumValue,
+  type XYConfig,
+  type XYOptions,
+} from '../input-types';
 import { keys } from '../utils';
+import Tooltip from '../tooltip';
 
 export const datatypeToScaleType = {
   [DATATYPES.STRING]: 'point',
@@ -48,6 +54,7 @@ type XYPropsOverrides = $ReadOnly<{|
   yScale: Scale,
   xFormat?: string,
   yFormat?: string,
+  sliceTooltip?: ({ slice: NivoSlice }) => Node,
 |}>;
 
 /**
@@ -95,6 +102,9 @@ export function getXYPropsOverrides(
     yScale: deriveScale(config, 'y'),
     ...xf,
     ...yf,
+    // TODO: create pointTooltip for chart types (e.g. Bar)
+    // that use points rather than slices
+    sliceTooltip: buildTooltip(config),
   };
 }
 
@@ -139,4 +149,60 @@ function deriveScale(config: XYConfigWithOptions, channel: string): Scale {
         min: 'auto',
         max: 'auto',
       };
+}
+
+type NivoPoint = $ReadOnly<{|
+  id: string,
+  index: number,
+  serieId: string,
+  serieColor: string,
+  x: number | null,
+  y: number | null,
+  color: string,
+  borderColor: string,
+  data: {
+    x: DatumValue,
+    y: DatumValue,
+    xFormatted: string,
+    yFormatted: string,
+  },
+|}>;
+type NivoSlice = $ReadOnly<{|
+  id: string,
+  x0: number,
+  x: number,
+  y0: number,
+  y: number,
+  width: number,
+  height: number,
+  points: $ReadOnlyArray<NivoPoint>,
+|}>;
+
+function buildTooltip(config: XYConfigWithOptions) {
+  const xKey = config.x.key;
+  function SliceTooltip({ slice }: { slice: NivoSlice }) {
+    const { points } = slice;
+    if (points.length === 0) return null;
+
+    const titleRow = {
+      datum: {
+        key: xKey,
+        value: points[0].data.xFormatted,
+      },
+    };
+    const rows = slice.points.map(point => ({
+      datum: {
+        key: point.serieId,
+        value: point.data.yFormatted,
+      },
+      legend: {
+        color: point.serieColor,
+        // TODO: Does Nivo support / expose these values in a slice/point?
+        style: 'solid',
+        width: '1px',
+      },
+    }));
+    return <Tooltip titleRow={titleRow} rows={rows} />;
+  }
+  return SliceTooltip;
 }

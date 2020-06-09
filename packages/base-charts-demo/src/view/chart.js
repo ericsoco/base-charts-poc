@@ -106,6 +106,7 @@ export default function Chart() {
               },
               labels: {
                 format: {
+                  x: '%A, %B %e',
                   y: '.1f',
                 },
               },
