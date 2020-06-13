@@ -3,7 +3,7 @@ import React, { useMemo } from 'react';
 import { ResponsiveLine } from '@nivo/line';
 
 import { lineProperties } from './chart-props';
-import { getXYPropsOverrides } from './chart-props-utils';
+import { getSliceTooltipProps, getXYPropsOverrides } from './chart-props-utils';
 import { useTheme, type Theme } from '../theme';
 import { validateEncodings, getXYEncodings } from '../validation';
 import {
@@ -95,6 +95,7 @@ function getChartProps(config, theme: Theme) {
       stacked: false,
       reverse: false,
     },
+    ...getSliceTooltipProps(config),
   };
 }
 

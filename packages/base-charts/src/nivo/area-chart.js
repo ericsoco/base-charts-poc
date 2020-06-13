@@ -4,7 +4,7 @@ import { ResponsiveLine } from '@nivo/line';
 
 import { getEncodingProps as convertToNivoLine } from './line-chart';
 import { areaProperties } from './chart-props';
-import { getXYPropsOverrides } from './chart-props-utils';
+import { getSliceTooltipProps, getXYPropsOverrides } from './chart-props-utils';
 import { useTheme, type Theme } from '../theme';
 import { type AreaProps as Props } from '../input-types';
 
@@ -31,6 +31,7 @@ function getChartProps(config, theme: Theme) {
       stacked: true,
       reverse: false,
     },
+    ...getSliceTooltipProps(config),
   };
 }
 

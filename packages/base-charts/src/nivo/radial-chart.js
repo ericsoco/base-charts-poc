@@ -3,6 +3,7 @@ import React, { useMemo } from 'react';
 import { ResponsivePie } from '@nivo/pie';
 
 import { radialProperties } from './chart-props';
+import { getPointTooltipProps } from './chart-props-utils';
 import { useTheme, type Theme } from '../theme';
 import { validateEncodings } from '../validation';
 import {
@@ -78,6 +79,8 @@ function getChartProps(config: RadialConfig, theme: Theme) {
     colors: theme.colors,
     innerRadius: config.options?.layout === 'pie' ? 0 : DONUT_INNER_RADIUS,
     padAngle: config.options?.layout === 'pie' ? 0 : DONUT_PAD_ANGLE,
+    // TODO: implement
+    // ...getPointTooltipProps(),
   };
 }
 

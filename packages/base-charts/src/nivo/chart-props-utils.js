@@ -6,12 +6,14 @@
 import React, { type Node } from 'react';
 import {
   DATATYPES,
+  type Datum,
   type DatumValue,
   type XYConfig,
   type XYOptions,
 } from '../input-types';
-import { keys } from '../utils';
+import { type Theme } from '../theme';
 import Tooltip from '../tooltip';
+import { keys } from '../utils';
 
 export const datatypeToScaleType = {
   [DATATYPES.STRING]: 'point',
@@ -102,9 +104,6 @@ export function getXYPropsOverrides(
     yScale: deriveScale(config, 'y'),
     ...xf,
     ...yf,
-    // TODO: create pointTooltip for chart types (e.g. Bar)
-    // that use points rather than slices
-    sliceTooltip: buildTooltip(config),
   };
 }
 
@@ -152,6 +151,16 @@ function deriveScale(config: XYConfigWithOptions, channel: string): Scale {
 }
 
 type NivoPoint = $ReadOnly<{|
+  color: string,
+  data: Datum,
+  id: string,
+  index: number,
+  indexValue: string,
+  theme: Theme,
+  value: DatumValue,
+|}>;
+
+type NivoSlicePoint = $ReadOnly<{|
   id: string,
   index: number,
   serieId: string,
@@ -175,10 +184,67 @@ type NivoSlice = $ReadOnly<{|
   y: number,
   width: number,
   height: number,
-  points: $ReadOnlyArray<NivoPoint>,
+  points: $ReadOnlyArray<NivoSlicePoint>,
 |}>;
 
-function buildTooltip(config: XYConfigWithOptions) {
+type PointTooltipProps = $ReadOnly<{|
+  tooltip: NivoPoint => Node,
+  theme: { [string]: mixed },
+|}>;
+
+/**
+ * Generator for a tooltip displaying a single { key: value } pair.
+ * Used by e.g. Bar, Radial, Scatterplot.
+ * TODO: Is formatting applied to the `point` prop already, or not at all?
+ */
+export function getPointTooltipProps(): PointTooltipProps {
+  function PointTooltip(point: NivoPoint) {
+    return (
+      <Tooltip
+        rows={[
+          {
+            datum: {
+              key: point.indexValue,
+              value: point.value,
+            },
+            legend: {
+              color: point.color,
+              // TODO: Nivo doesn't appear to support / expose these values
+              style: 'solid',
+              width: '1px',
+            },
+          },
+        ]}
+      />
+    );
+  }
+
+  return {
+    tooltip: PointTooltip,
+    theme: {
+      tooltip: {
+        container: {
+          background: 'rgba(0,0,0,0)',
+          borderRadius: 0,
+          boxShadow: 'none',
+          padding: 0,
+        },
+      },
+    },
+  };
+}
+
+type SliceTooltipProps = $ReadOnly<{|
+  sliceTooltip: ({ slice: NivoSlice }) => Node,
+|}>;
+/**
+ * Generator for a tooltip derived from a Nivo "slice". Displays the slice
+ * x value as title and one row for each { key: value } pair in the slice.
+ * Used by e.g. Area & Line charts.
+ */
+export function getSliceTooltipProps(
+  config: XYConfigWithOptions
+): SliceTooltipProps {
   const xKey = config.x.key;
   function SliceTooltip({ slice }: { slice: NivoSlice }) {
     const { points } = slice;
@@ -197,12 +263,12 @@ function buildTooltip(config: XYConfigWithOptions) {
       },
       legend: {
         color: point.serieColor,
-        // TODO: Does Nivo support / expose these values in a slice/point?
+        // TODO: Nivo doesn't appear to support / expose these values
         style: 'solid',
         width: '1px',
       },
     }));
     return <Tooltip titleRow={titleRow} rows={rows} />;
   }
-  return SliceTooltip;
+  return { sliceTooltip: SliceTooltip };
 }

@@ -22,6 +22,7 @@ export type Props = $ReadOnly<{|
 const ROW_HEIGHT = '0.75rem';
 
 export default function Tooltip({ titleRow, rows }: Props) {
+  const isSingleRow = !titleRow && rows.length === 1;
   return (
     // TODO: How to address styling in this library?
     // Would be nice to avoid a whole styling library
@@ -29,7 +30,9 @@ export default function Tooltip({ titleRow, rows }: Props) {
     <div
       style={{
         minWidth: '8rem',
-        padding: `0.5rem ${ROW_HEIGHT} ${ROW_HEIGHT} ${ROW_HEIGHT}`,
+        padding: isSingleRow
+          ? `0.5rem ${ROW_HEIGHT}`
+          : `0.5rem ${ROW_HEIGHT} ${ROW_HEIGHT} ${ROW_HEIGHT}`,
         background: '#ffffff',
         boxShadow: 'rgba(0, 0, 0, 0.25) 0px 1px 2px',
       }}
@@ -37,7 +40,7 @@ export default function Tooltip({ titleRow, rows }: Props) {
       {titleRow && renderTitleRow(titleRow)}
       <ul
         style={{
-          margin: `${ROW_HEIGHT} 0 0 0`,
+          margin: isSingleRow ? 0 : `${ROW_HEIGHT} 0 0 0`,
           paddingLeft: 0,
           listStyle: 'none',
         }}

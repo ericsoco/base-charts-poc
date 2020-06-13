@@ -3,7 +3,7 @@ import React, { useMemo } from 'react';
 import { ResponsiveBar } from '@nivo/bar';
 
 import { barProperties } from './chart-props';
-import { getXYPropsOverrides } from './chart-props-utils';
+import { getPointTooltipProps, getXYPropsOverrides } from './chart-props-utils';
 import { useTheme, type Theme } from '../theme';
 import { validateEncodings, getXYEncodings } from '../validation';
 import { keys } from '../utils';
@@ -66,6 +66,7 @@ function getChartProps(config, theme: Theme) {
       ...overrides.axisLeft,
       legend: keys(config.y).join(','),
     },
+    ...getPointTooltipProps(),
   };
 }
 
