@@ -4,7 +4,10 @@ import { ResponsiveScatterPlot } from '@nivo/scatterplot';
 import { group, extent } from 'd3-array';
 
 import { scatterplotProperties } from './chart-props';
-import { getPointTooltipProps, getXYPropsOverrides } from './chart-props-utils';
+import {
+  getScatterplotTooltipProps,
+  getXYPropsOverrides,
+} from './chart-props-utils';
 import { useTheme, type Theme } from '../theme';
 import {
   validateEncodings,
@@ -247,8 +250,7 @@ function getChartProps(config, theme: Theme) {
       ...scatterplotProperties.axisLeft,
       ...overrides.axisLeft,
     },
-    // TODO: implement
-    // ...getPointTooltipProps(),
+    ...getScatterplotTooltipProps(config),
   };
 }
 

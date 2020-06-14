@@ -4,6 +4,8 @@
 // Nivo chart props overrides/utils
 //
 import React, { type Node } from 'react';
+import { useValueFormatter } from '@nivo/core';
+
 import {
   DATATYPES,
   type Datum,
@@ -150,15 +152,122 @@ function deriveScale(config: XYConfigWithOptions, channel: string): Scale {
       };
 }
 
-type NivoPoint = $ReadOnly<{|
-  color: string,
-  data: Datum,
-  id: string,
-  index: number,
-  indexValue: string,
-  theme: Theme,
-  value: DatumValue,
+type PointTooltipProps = $ReadOnly<{|
+  tooltip: NivoPoint => Node,
+  theme: { [string]: mixed },
 |}>;
+
+// Inexact because different chart types offer different shapes
+type NivoPoint = $ReadOnly<{
+  color: string,
+  format: string | (DatumValue => string),
+  id: string,
+  value: DatumValue,
+}>;
+
+/**
+ * Generator for a tooltip displaying a single { key: value } pair.
+ * Used by e.g. Bar, Radial, Scatterplot.
+ */
+export function getPointTooltipProps(): PointTooltipProps {
+  function PointTooltip(point: NivoPoint) {
+    // Loosely follows logic in Nivo's BasicTooltip
+    const { id, value, color, format } = point;
+    const formatter = useValueFormatter(format);
+    const formattedValue = formatter ? formatter(value) : value;
+    return (
+      <Tooltip
+        rows={[
+          {
+            datum: {
+              key: id,
+              value: formattedValue,
+            },
+            legend: {
+              color: color,
+              // TODO: Nivo doesn't appear to support / expose these values
+              style: 'solid',
+              width: '1px',
+            },
+          },
+        ]}
+      />
+    );
+  }
+
+  return {
+    tooltip: PointTooltip,
+    theme: {
+      tooltip: {
+        container: {
+          background: 'rgba(0,0,0,0)',
+          borderRadius: 0,
+          boxShadow: 'none',
+          padding: 0,
+        },
+      },
+    },
+  };
+}
+
+type NivoScatterplotPoint = $ReadOnly<{|
+  node: {
+    data: {
+      serieId: string,
+      x: DatumValue,
+      y: DatumValue,
+      formattedX: string,
+      formattedY: string,
+    },
+    style: {
+      color: string,
+    },
+  },
+|}>;
+
+type ScatterplotTooltipProps = $ReadOnly<{|
+  tooltip: NivoScatterplotPoint => Node,
+|}>;
+
+/**
+ * Generator for a tooltip displaying a single { key: value } pair.
+ * Used by e.g. Bar, Radial, Scatterplot.
+ */
+export function getScatterplotTooltipProps(
+  config: XYConfigWithOptions
+): ScatterplotTooltipProps {
+  const channelKeys = {
+    x: config.x.key,
+    y: keys(config.y)[0],
+  };
+  function ScatterplotTooltip(point: NivoScatterplotPoint) {
+    // Loosely follows logic in Nivo's BasicTooltip
+    const { data } = point.node;
+    const formattedValues = {
+      x: data.formattedX,
+      y: data.formattedY,
+    };
+    // TODO: add support for legend in titleRow to render
+    // series/group color using node.style.color
+    const titleRow = {
+      datum: {
+        key: data.serieId,
+        value: data.serieId,
+      },
+    };
+    const rows = ['x', 'y'].map(channel => ({
+      datum: {
+        key: channelKeys[channel],
+        value: formattedValues[channel],
+      },
+    }));
+    return <Tooltip titleRow={titleRow} rows={rows} />;
+  }
+
+  return {
+    tooltip: ScatterplotTooltip,
+  };
+}
 
 type NivoSlicePoint = $ReadOnly<{|
   id: string,
@@ -186,53 +295,6 @@ type NivoSlice = $ReadOnly<{|
   height: number,
   points: $ReadOnlyArray<NivoSlicePoint>,
 |}>;
-
-type PointTooltipProps = $ReadOnly<{|
-  tooltip: NivoPoint => Node,
-  theme: { [string]: mixed },
-|}>;
-
-/**
- * Generator for a tooltip displaying a single { key: value } pair.
- * Used by e.g. Bar, Radial, Scatterplot.
- * TODO: Is formatting applied to the `point` prop already, or not at all?
- */
-export function getPointTooltipProps(): PointTooltipProps {
-  function PointTooltip(point: NivoPoint) {
-    return (
-      <Tooltip
-        rows={[
-          {
-            datum: {
-              key: point.indexValue,
-              value: point.value,
-            },
-            legend: {
-              color: point.color,
-              // TODO: Nivo doesn't appear to support / expose these values
-              style: 'solid',
-              width: '1px',
-            },
-          },
-        ]}
-      />
-    );
-  }
-
-  return {
-    tooltip: PointTooltip,
-    theme: {
-      tooltip: {
-        container: {
-          background: 'rgba(0,0,0,0)',
-          borderRadius: 0,
-          boxShadow: 'none',
-          padding: 0,
-        },
-      },
-    },
-  };
-}
 
 type SliceTooltipProps = $ReadOnly<{|
   sliceTooltip: ({ slice: NivoSlice }) => Node,
