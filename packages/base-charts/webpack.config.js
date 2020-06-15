@@ -1,7 +1,5 @@
 const { resolve } = require('path');
 
-const isProd = process.env.NODE_ENV === 'production'; // eslint-disable-line
-
 const baseConfig = {
   entry: {
     lib: './src/index.js',
@@ -59,11 +57,15 @@ const baseConfig = {
 
 const prodConfig = {
   ...baseConfig,
+  devtool: 'source-map',
 };
 
 const devConfig = {
   ...baseConfig,
-  devtool: 'eval-source-map',
+  devtool: 'inline-source-map',
 };
 
-module.exports = isProd ? prodConfig : devConfig;
+module.exports = (env, argv) => {
+  const isProd = argv.mode === 'production';
+  return isProd ? prodConfig : devConfig;
+};

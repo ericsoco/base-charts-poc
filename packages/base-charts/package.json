@@ -22,7 +22,8 @@
     "@nivo/line": "^0.61.1",
     "@nivo/pie": "^0.61.1",
     "@nivo/scatterplot": "^0.61.1",
-    "d3-array": "^2.4.0"
+    "d3-array": "^2.4.0",
+    "regenerator-runtime": "^0.13.5"
   },
   "peerDependencies": {
     "react": ">= 16.8.4 < 17.0.0",

@@ -8,12 +8,10 @@ import { useValueFormatter } from '@nivo/core';
 
 import {
   DATATYPES,
-  type Datum,
   type DatumValue,
   type XYConfig,
   type XYOptions,
 } from '../input-types';
-import { type Theme } from '../theme';
 import Tooltip from '../tooltip';
 import { keys } from '../utils';
 
