@@ -17,6 +17,7 @@ import {
 import CategoricalData from '../fixtures/categorical-data.json';
 import ContinuousData from '../fixtures/continuous-data.json';
 import TimeSeriesData from '../fixtures/time-series-data.json';
+import DataCentralData from '../fixtures/data-central.json';
 // flowlint untyped-import:error
 
 const ChartWrapper: BareStyledComponent = styled.div`
@@ -108,6 +109,28 @@ export default function Chart() {
                 format: {
                   x: '%A, %B %e',
                   y: '.1f',
+                },
+              },
+            },
+          }}
+        />
+      </ChartWrapper>
+      <ChartWrapper>
+        <ChartTitle>{'Data Central'}</ChartTitle>
+        <BaseLine
+          data={DataCentralData}
+          config={{
+            x: time('x', '%Y-%m-%d'),
+            y: number('Prereplicated size (producer)'),
+            options: {
+              axis: {
+                x: { format: '%b %d' },
+                y: { format: '~s' },
+              },
+              labels: {
+                format: {
+                  x: '%b %d',
+                  y: '~s',
                 },
               },
             },

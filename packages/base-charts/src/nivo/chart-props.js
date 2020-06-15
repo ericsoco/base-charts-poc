@@ -20,7 +20,7 @@ const defaultAxis = {
   axisBottom: {
     enable: true,
     orient: 'bottom',
-    tickSize: 0,
+    tickSize: 5,
     tickPadding: 10,
     tickRotation: 0,
     tickValues: 5,
