@@ -58,9 +58,10 @@ function renderTitleRow({ datum }: Row) {
     <div
       style={{
         width: '100%',
-        height: '1.25rem',
+        height: '1.75rem',
         display: 'flex',
         justifyContent: 'center',
+        boxSizing: 'border-box',
         padding: '3px 0',
         borderBottom: '1px solid rgba(0,0,0,0.25)',
       }}

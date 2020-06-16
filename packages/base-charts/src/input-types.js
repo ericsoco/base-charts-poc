@@ -89,7 +89,7 @@ export type XYConfig = $ReadOnly<{
 // Axis display options
 type AxisOption = $ReadOnly<{|
   format?: string,
-  label?: string,
+  label?: string | null,
 |}>;
 
 // d3-format strings designate formatting for input

@@ -124,8 +124,8 @@ export default function Chart() {
             y: number('Prereplicated size (producer)'),
             options: {
               axis: {
-                x: { format: '%b %d' },
-                y: { format: '~s' },
+                x: { format: '%b %d', label: null },
+                y: { format: '~s', label: null },
               },
               labels: {
                 format: {

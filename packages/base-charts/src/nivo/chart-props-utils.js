@@ -29,7 +29,7 @@ type XYConfigWithOptions = $ReadOnly<{
 
 type AxisOverrides = $ReadOnly<{|
   format?: string,
-  legend: string,
+  legend?: string,
 |}>;
 
 type ScalePoint = $ReadOnly<{|
@@ -66,24 +66,8 @@ type XYPropsOverrides = $ReadOnly<{|
 export function getXYPropsOverrides(
   config: XYConfigWithOptions
 ): XYPropsOverrides {
-  // Derive axis label formatting
-  const axis = config.options?.axis;
-
-  const axisXFormat = axis?.x?.format || config.x.format;
-  const axisBottom: AxisOverrides = ({
-    ...(axisXFormat ? { format: axisXFormat } : {}),
-    legend: axis?.x?.label || config.x.key,
-    // Flow can't handle spreads into Exact types
-    // flowlint-next-line unclear-type:off
-  }: any);
-
-  const axisYFormat = axis?.y?.format;
-  const axisLeft = ({
-    ...(axisYFormat !== null ? { format: axisYFormat } : {}),
-    legend: axis?.y?.label || keys(config.y).join(','),
-    // Flow can't handle spreads into Exact types
-    // flowlint-next-line unclear-type:off
-  }: any);
+  const axisBottom = deriveAxis(config, 'x');
+  const axisLeft = deriveAxis(config, 'y');
 
   const xFormat = deriveFormat(config, 'x');
   const yFormat = deriveFormat(config, 'y');
@@ -105,6 +89,40 @@ export function getXYPropsOverrides(
     ...xf,
     ...yf,
   };
+}
+
+/**
+ * Derive axis formatting for a channel.
+ * Will return axis format if axis or field format exists.
+ * Returned label (Nivo calls this `legend`) will be:
+ * - omitted (suppressed) if an explicit `null` is passed as axis legend, else
+ * - as specified by string literal in axis legend, else
+ * - as field key
+ */
+function deriveAxis(
+  config: XYConfigWithOptions,
+  channel: string
+): AxisOverrides {
+  const axis = config.options?.axis;
+  const format = axis?.[channel]?.format || config[channel].format;
+  const legend =
+    axis?.[channel]?.label === null
+      ? null
+      : axis?.[channel]?.label || config[channel].key;
+
+  // TODO: reduce margin.left|top when axis label is suppressed via `null`
+
+  // Flow made me do it
+  return format && legend !== null
+    ? {
+        format,
+        legend,
+      }
+    : format
+    ? { format }
+    : legend !== null
+    ? { legend }
+    : Object.freeze({});
 }
 
 /**
