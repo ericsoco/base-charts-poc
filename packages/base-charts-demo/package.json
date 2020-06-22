@@ -29,6 +29,7 @@
   },
   "scripts": {
     "build": "webpack --mode production",
+    "build:analyze": "webpack --mode production --analyze",
     "start": "webpack-dev-server --mode development",
     "test": "echo 'TODO: add app tests'"
   },

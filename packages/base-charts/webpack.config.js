@@ -67,5 +67,17 @@ const devConfig = {
 
 module.exports = (env, argv) => {
   const isProd = argv.mode === 'production';
-  return isProd ? prodConfig : devConfig;
+  const config = isProd ? prodConfig : devConfig;
+
+  const runBundleAnalyzer = typeof argv.analyze !== 'undefined';
+
+  if (runBundleAnalyzer) {
+    const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+      .BundleAnalyzerPlugin;
+    return {
+      ...config,
+      plugins: [...(config.plugins || []), new BundleAnalyzerPlugin()],
+    };
+  }
+  return config;
 };

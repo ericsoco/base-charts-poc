@@ -1,8 +1,6 @@
 const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const isProd = process.env.NODE_ENV === 'production'; // eslint-disable-line
-
 const baseConfig = {
   entry: {
     app: './src/index.js',
@@ -43,4 +41,19 @@ const devConfig = {
   devtool: 'eval-source-map',
 };
 
-module.exports = isProd ? prodConfig : devConfig;
+module.exports = (env, argv) => {
+  const isProd = argv.mode === 'production';
+  const config = isProd ? prodConfig : devConfig;
+
+  const runBundleAnalyzer = typeof argv.analyze !== 'undefined';
+
+  if (runBundleAnalyzer) {
+    const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+      .BundleAnalyzerPlugin;
+    return {
+      ...config,
+      plugins: [...(config.plugins || []), new BundleAnalyzerPlugin()],
+    };
+  }
+  return config;
+};

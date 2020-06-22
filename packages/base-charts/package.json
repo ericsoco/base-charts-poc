@@ -18,10 +18,10 @@
   "license": "MIT",
   "main": "dist/lib.bundle.js",
   "dependencies": {
-    "@nivo/bar": "^0.61.1",
-    "@nivo/line": "^0.61.1",
-    "@nivo/pie": "^0.61.1",
-    "@nivo/scatterplot": "^0.61.1",
+    "@nivo/bar": "^0.62.0",
+    "@nivo/line": "^0.62.0",
+    "@nivo/pie": "^0.62.0",
+    "@nivo/scatterplot": "^0.62.0",
     "d3-array": "^2.4.0",
     "regenerator-runtime": "^0.13.5"
   },
@@ -33,6 +33,7 @@
     "build": "yarn build:prod",
     "build:dev": "webpack --mode development",
     "build:prod": "webpack --mode production",
+    "build:analyze": "webpack --mode production --analyze",
     "test": "echo 'TODO: add lib tests'"
   },
   "browserslist": [
