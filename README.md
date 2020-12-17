@@ -4,6 +4,8 @@ A simple JavaScript API to build [Base Charts](https://www.figma.com/file/7OHADD
 
 Base Charts is essentially a translation layer, offering a unified API that delegates chart rendering to arbitrary third-party libraries. The initial implementation wraps [Nivo](https://nivo.rocks/).
 
+![Base Charts overview](https://github.com/ericsoco/base-charts-poc/base-charts.gif)
+
 ## Demo
 
 [Base Charts](https://ericsoco.github.io/base-charts-poc/)
