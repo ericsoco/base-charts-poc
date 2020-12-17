@@ -2,7 +2,6 @@
 import React from 'react';
 import styled, { type BareStyledComponent } from 'styled-components';
 import {
-  BaseArea,
   BaseBar,
   BaseLine,
   string,
