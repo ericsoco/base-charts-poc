@@ -8,6 +8,7 @@ const baseConfig = {
   output: {
     path: resolve(__dirname, 'dist'),
     filename: '[name].bundle.js',
+    publicPath: '/',
   },
   module: {
     rules: [
@@ -39,6 +40,9 @@ const prodConfig = {
 const devConfig = {
   ...baseConfig,
   devtool: 'eval-source-map',
+  devServer: {
+    historyApiFallback: true,
+  },
 };
 
 module.exports = (env, argv) => {

@@ -10,6 +10,7 @@ import initialState, { type State } from './state';
 import rootReducer from './state/root-reducer';
 import theme, { GlobalStyles } from './view/theme';
 import App from './view/app';
+import Sandbox from './view/sandbox';
 import FourOhFour from './view/404';
 
 // TODO: Fix this Flow type workaround
@@ -24,6 +25,7 @@ if (appElement) {
         <BrowserRouter>
           <Switch>
             <Route path={'/'} exact component={App} />
+            <Route path={'/sandbox'} component={Sandbox} />
             <Route component={FourOhFour} />
           </Switch>
         </BrowserRouter>
