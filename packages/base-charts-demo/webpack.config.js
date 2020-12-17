@@ -8,7 +8,7 @@ const baseConfig = {
   output: {
     path: resolve(__dirname, 'dist'),
     filename: '[name].bundle.js',
-    publicPath: '/',
+    publicPath: '/base-charts-poc/',
   },
   module: {
     rules: [
