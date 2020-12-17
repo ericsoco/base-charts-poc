@@ -18,11 +18,14 @@ import FourOhFour from './view/404';
 const store: Store<State, *, *> = createStore((rootReducer: any), initialState);
 const appElement = document.getElementById('app');
 
+// Set in .env files, statically replaced by Webpack DefinePlugin
+const basename = process.env.ASSET_PATH;
+
 if (appElement) {
   render(
     <Provider store={store}>
       <ThemeProvider theme={theme}>
-        <BrowserRouter>
+        <BrowserRouter basename={basename}>
           <Switch>
             <Route path={'/'} exact component={App} />
             <Route path={'/sandbox'} component={Sandbox} />

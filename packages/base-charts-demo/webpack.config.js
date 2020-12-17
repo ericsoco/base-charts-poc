@@ -1,14 +1,15 @@
 const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { DefinePlugin } = require('webpack');
 
-const baseConfig = {
+const baseConfig = envvars => ({
   entry: {
     app: './src/index.js',
   },
   output: {
     path: resolve(__dirname, 'dist'),
     filename: '[name].bundle.js',
-    publicPath: '/base-charts-poc/',
+    publicPath: envvars.ASSET_PATH,
   },
   module: {
     rules: [
@@ -30,24 +31,35 @@ const baseConfig = {
       title: 'Base Charts Demo',
       template: './index.html',
     }),
+    // Make env vars (including from .env files) available in browser
+    new DefinePlugin({
+      'process.env': JSON.stringify(envvars),
+    }),
   ],
-};
+});
 
-const prodConfig = {
-  ...baseConfig,
-};
+const prodConfig = envvars => ({
+  ...baseConfig(envvars),
+});
 
-const devConfig = {
-  ...baseConfig,
+const devConfig = envvars => ({
+  ...baseConfig(envvars),
   devtool: 'eval-source-map',
   devServer: {
     historyApiFallback: true,
   },
-};
+});
 
 module.exports = (env, argv) => {
+  console.log({ MODE: argv.mode });
   const isProd = argv.mode === 'production';
-  const config = isProd ? prodConfig : devConfig;
+
+  // Hydrate env vars with vars in .env file per NODE_ENV
+  require('dotenv').config({
+    path: `${__dirname}/.env${isProd ? '' : '.development'}`,
+  });
+
+  const config = isProd ? prodConfig(process.env) : devConfig(process.env);
 
   const runBundleAnalyzer = typeof argv.analyze !== 'undefined';
 
