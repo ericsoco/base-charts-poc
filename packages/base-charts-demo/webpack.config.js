@@ -51,7 +51,6 @@ const devConfig = envvars => ({
 });
 
 module.exports = (env, argv) => {
-  console.log({ MODE: argv.mode });
   const isProd = argv.mode === 'production';
 
   // Hydrate env vars with vars in .env file per NODE_ENV
